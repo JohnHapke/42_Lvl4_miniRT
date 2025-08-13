@@ -6,7 +6,7 @@
 /*   By: iherman- <iherman-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/08 15:28:02 by iherman-          #+#    #+#             */
-/*   Updated: 2025/08/08 16:17:36 by iherman-         ###   ########.fr       */
+/*   Updated: 2025/08/13 16:41:14 by iherman-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,13 @@
 #  define WINDOW_WIDTH 1048
 # endif // WINDOW_WIDTH
 
+# define MAX_BOUNCE 5
+
 /*
 	To get normalized vector (for direction)
 		Get the magnitude: √(x² + y² + z²) = magnitude
 		Divide all components by magnitude: x/magnitude, y/magnitude, z/magnitude
+	Mostly useful for getting a clean direction for out vec3
 */
 
 typedef struct s_vec3
@@ -46,5 +49,11 @@ typedef struct s_ray
 	t_vec3	origin;
 	t_vec3	direction;
 }	t_ray;
+
+typedef struct s_sphere
+{
+	t_vec3	pos;
+	// r for radious	
+};
 
 #endif // MINIRT_H
