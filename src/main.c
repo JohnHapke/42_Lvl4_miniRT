@@ -6,7 +6,7 @@
 /*   By: iherman- <iherman-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/08 15:13:04 by iherman-          #+#    #+#             */
-/*   Updated: 2025/08/13 16:44:20 by iherman-         ###   ########.fr       */
+/*   Updated: 2025/08/13 17:59:32 by iherman-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,15 +36,4 @@ int	main(int argc, char *argv[])
 	mlx_win = mlx_init(WINDOW_WIDTH, WINDOW_HEIGHT, "miniRT", false);
 	mlx_key_hook(mlx_win, &t_func, mlx_win);
 	mlx_loop(mlx_win);
-}
-
-int raytracer()
-{
-	t_ray ray;
-
-	while (bounce < MAX_BOUNCE)
-	{
-		
-	}
-	rw
 }
