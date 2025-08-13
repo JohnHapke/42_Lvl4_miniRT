@@ -1,23 +1,15 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: iherman- <iherman-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/08 15:13:04 by iherman-          #+#    #+#             */
-/*   Updated: 2025/08/13 18:05:10 by iherman-         ###   ########.fr       */
+/*   Created: 2025/08/13 18:19:03 by iherman-          #+#    #+#             */
+/*   Updated: 2025/08/13 18:19:47 by iherman-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/minirt.h"
+#include "../../include/minirt.h"
 
-int	main(int argc, char *argv[])
-{
-	mlx_t	*mlx_win;
-
-	(void) argc; (void) argv;
-
-	mlx_win = mlx_init(WINDOW_WIDTH, WINDOW_HEIGHT, "miniRT", false);
-	mlx_loop(mlx_win);
-}
+// uhhhhhh...

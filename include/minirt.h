@@ -6,7 +6,7 @@
 /*   By: iherman- <iherman-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/08 15:28:02 by iherman-          #+#    #+#             */
-/*   Updated: 2025/08/13 16:41:14 by iherman-         ###   ########.fr       */
+/*   Updated: 2025/08/13 18:18:52 by iherman-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ typedef struct s_ray
 typedef struct s_sphere
 {
 	t_vec3	pos;
-	// r for radious	
-};
+	// r for radius implement later
+}	t_sphere;
 
 #endif // MINIRT_H
