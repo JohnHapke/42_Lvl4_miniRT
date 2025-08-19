@@ -6,13 +6,16 @@ DEF = \033[0m
 
 NAME = miniRT
 
-SRC = src/main.c
-SRCDIR = src/
-BASESRC := $(notdir $(SRC))
+SRC = src/main.c \
+		src/parsing/error_handler.c \
+		src/parsing/light_camera.c \
+		src/parsing/parsing_handler.c \
+		src/parsing/parsing_objects.c \
+		get_next_line/get_next_line.c \
+		get_next_line/get_next_line_utils.c
 
-BASEOBJ = $(BASESRC:.c=.o)
 OBJDIR = obj/
-OBJ=$(addprefix $(OBJDIR), $(BASEOBJ))
+OBJ= $(SRC:src/%.c=$(OBJDIR)%.o)
 
 FLAGS = -Werror -Wall -Wextra -g #-lm
 CC = @cc
@@ -32,10 +35,11 @@ $(NAME): $(OBJDIR) $(OBJ) $(LIBFT) $(MLX42_A)
 
 $(OBJDIR):
 	@echo "$(YLW)MiniRT: Creating $(OBJDIR) directory...$(DEF)"
-	@mkdir $(OBJDIR)
+	@mkdir -p $(OBJDIR)
 
-$(OBJDIR)%.o: $(SRCDIR)%.c
+$(OBJDIR)%.o: src/%.c
 	@echo "$(YLW)MiniRT: Compiling object files...$(DEF)"
+	@mkdir -p $(dir $@)
 	$(CC) $(FLAGS) $(INCLUDES) -c $< -o $@
 
 $(LIBFT):
@@ -56,6 +60,8 @@ clean:
 fclean: clean
 	@echo "$(GRN)MiniRT: Removing executable...$(DEF)"
 	@rm -f $(NAME)
+	@echo @echo "$(GRN)MiniRT: Removing object directory...$(DEF)"
+	@rm -rf $(OBJDIR)
 	@make -C libft fclean
 	@rm -rf MLX42/build
 

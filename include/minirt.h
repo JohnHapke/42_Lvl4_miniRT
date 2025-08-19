@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iherman- <iherman-@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: johnhapke <johnhapke@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/08 15:28:02 by iherman-          #+#    #+#             */
-/*   Updated: 2025/08/15 14:48:06 by iherman-         ###   ########.fr       */
+/*   Updated: 2025/08/19 11:48:41 by johnhapke        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,10 @@
 # include <unistd.h>
 # include <stdio.h>
 # include <stdlib.h>
-
-# include "../MLX42/include/MLX42/MLX42.h"
+# include "libft.h"
+# include "get_next_line.h"
+# include <MLX42/MLX42.h>
+# include <MLX42/MLX42_Int.h>
 
 # ifndef WINDOW_HEIGHT
 #  define WINDOW_HEIGHT 528
@@ -50,24 +52,76 @@ typedef struct s_ray
 	t_vec3	direction;
 }	t_ray;
 
-typedef struct s_sphere
+typedef	struct s_amb_light
 {
-	t_vec3	pos;
-	double	radius;
-}	t_sphere;
+	double	light_ratio;
+	int		R;
+	int		G;
+	int		B;
+}	t_amb_light;
 
 typedef struct s_camera
 {
-	t_vec3	pos;
+	t_vec3	viewpoint;
 	t_vec3	direction;
 	float	fov;
 }	t_camera;
 
-typedef struct s_raytracer_data
+typedef	struct s_light
 {
-	t_sphere	*spheres;
-	/* other scene objects go here */
+	t_vec3	light_point;
+	double	bright_ratio;
+	int		R;
+	int		G;
+	int		B;
+}	t_light;
+typedef struct s_sphere
+{
+	t_vec3	pos;
+	double	diameter;
+	int		R;
+	int		G;
+	int		B;
+}	t_sphere;
+
+typedef	struct s_plane
+{
+	t_vec3	pos;
+	t_vec3	norm_vec;
+	int		R;
+	int		G;
+	int		B;
+}	t_plane;
+
+typedef	struct s_cylinder
+{
+	t_vec3	pos;
+	t_vec3	norm_vec;
+	double	diameter;
+	double	height;
+	int		R;
+	int		G;
+	int		B;
+}	t_cylinder;
+
+typedef struct s_rt_data
+{
+	t_amb_light	amb_light;
 	t_camera	camera;
-}	t_raytracer_data;
+	t_light		light;
+	t_sphere	*spheres;
+	t_plane		*plane;
+	t_cylinder	*cylinder;
+}	t_rt_data;
+
+// parser
+void	ft_parsing_handler(char *file, t_rt_data *data);
+void ft_parsing_error_handler();
+void	ft_parse_ambient_lighting(char *line, t_rt_data *data);
+void	ft_parse_camera(char *line, t_rt_data *data);
+void	ft_parse_light(char *line, t_rt_data *data);
+void	ft_parse_sphere(char *line, t_rt_data *data);
+void	ft_parse_plane(char *line, t_rt_data *data);
+void	ft_parse_cylinder(char *line, t_rt_data *data);
 
 #endif // MINIRT_H

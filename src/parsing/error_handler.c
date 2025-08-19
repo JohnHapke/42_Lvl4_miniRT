@@ -1,15 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser.c                                           :+:      :+:    :+:   */
+/*   error_handler.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iherman- <iherman-@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: johnhapke <johnhapke@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/13 18:19:03 by iherman-          #+#    #+#             */
-/*   Updated: 2025/08/13 18:19:47 by iherman-         ###   ########.fr       */
+/*   Created: 2025/08/19 10:29:28 by johnhapke         #+#    #+#             */
+/*   Updated: 2025/08/19 11:46:01 by johnhapke        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/minirt.h"
+#include "minirt.h"
 
-// uhhhhhh...
+void ft_parsing_error_handler()
+{
+	printf("Error\n");
+	exit(1);
+}

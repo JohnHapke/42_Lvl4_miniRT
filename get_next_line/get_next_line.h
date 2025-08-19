@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhapke <jhapke@student.42.fr>              +#+  +:+       +#+        */
+/*   By: johnhapke <johnhapke@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 11:46:29 by jhapke            #+#    #+#             */
-/*   Updated: 2025/06/21 16:26:34 by jhapke           ###   ########.fr       */
+/*   Updated: 2025/08/19 14:10:26 by johnhapke        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <fcntl.h>
-# include "libft.h"
+# include "../libft/libft.h"
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 42

@@ -1,25 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   light_camera.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: johnhapke <johnhapke@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/08 15:13:04 by iherman-          #+#    #+#             */
-/*   Updated: 2025/08/19 11:52:45 by johnhapke        ###   ########.fr       */
+/*   Created: 2025/08/19 11:03:21 by johnhapke         #+#    #+#             */
+/*   Updated: 2025/08/19 11:45:58 by johnhapke        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-int	main(int argc, char *argv[])
+void	ft_parse_ambient_lighting(char *line, t_rt_data *data)
 {
-	t_rt_data	data;
-	mlx_t		*mlx_win;
+	(void) line; (void) data;
+	printf("ambient light\n");
+}
 
-	(void) argc;
-	ft_parsing_handler(argv[1], &data);
-	mlx_win = mlx_init(WINDOW_WIDTH, WINDOW_HEIGHT, "miniRT", false);
-	mlx_loop(mlx_win);
-	return (0);
+void	ft_parse_camera(char *line, t_rt_data *data)
+{
+	(void) line; (void) data;
+	printf("camera\n");
+}
+
+void	ft_parse_light(char *line, t_rt_data *data)
+{
+	(void) line; (void) data;
+	printf("light\n");
 }
