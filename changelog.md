@@ -3,6 +3,20 @@ Info: https://keepachangelog.com/en/1.0.0/
 
 /* PLEASE ADD THE NEW VERSION ALWAYS ABOVE TO SEE ALWAYS THE NEWEST CHANGES */
 
+# V01.08
+
+## ADDED
+- parsing/utils -> coded ft_atof() to change a string into a float/double and implemented a function to check if the string is correct
+- added a function double	ft_export_and_convert(const char *line, int *i) to use for all double input values per line -> can be used for most of the input values
+
+## FIXED
+- Makefile -> gnl c-files got deleted by fclean
+- Makefile -> to delete the obj/ folder
+- fixed in parsing static int ft_control_type_identifier(char *file) -> debug and test cases are working now; ready for test by @Igor
+
+## CHANGED
+- parsing -> change of file names, as it makes no sense to have files in parsing/ and call them parsing_something.c 
+
 # V01.07
 
 ## ADDED

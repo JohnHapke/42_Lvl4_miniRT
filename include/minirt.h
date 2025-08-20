@@ -6,7 +6,7 @@
 /*   By: johnhapke <johnhapke@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/08 15:28:02 by iherman-          #+#    #+#             */
-/*   Updated: 2025/08/19 11:48:41 by johnhapke        ###   ########.fr       */
+/*   Updated: 2025/08/20 15:54:05 by johnhapke        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,5 +123,7 @@ void	ft_parse_light(char *line, t_rt_data *data);
 void	ft_parse_sphere(char *line, t_rt_data *data);
 void	ft_parse_plane(char *line, t_rt_data *data);
 void	ft_parse_cylinder(char *line, t_rt_data *data);
+double	ft_atof(const char *str);
+double	ft_export_and_convert(const char *line, int *i);
 
 #endif // MINIRT_H
