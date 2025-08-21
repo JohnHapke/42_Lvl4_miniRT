@@ -3,11 +3,20 @@ Info: https://keepachangelog.com/en/1.0.0/
 
 /* PLEASE ADD THE NEW VERSION ALWAYS ABOVE TO SEE ALWAYS THE NEWEST CHANGES */
 
+# V01.09
+
+## ADDED
+- parsing: function for parsing light, camera and amb_light are coded and tested so far
+
+## FIXED
+- ft_atof function fixed, bug was in handling the input as an integer without point but which has to be safed as an double
+- ft_export_and_convert fct is now for atof and for atoi but is pretty much the same -> IMPROVEMENT NEEDED but functional so far
+
 # V01.08
 
 ## ADDED
 - parsing/utils -> coded ft_atof() to change a string into a float/double and implemented a function to check if the string is correct
-- added a function double	ft_export_and_convert(const char *line, int *i) to use for all double input values per line -> can be used for most of the input values
+- added a function double ft_export_and_convert(const char *line, int *i) to use for all double input values per line -> can be used for most of the input values
 
 ## FIXED
 - Makefile -> gnl c-files got deleted by fclean

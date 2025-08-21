@@ -6,11 +6,67 @@
 /*   By: johnhapke <johnhapke@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 11:40:49 by johnhapke         #+#    #+#             */
-/*   Updated: 2025/08/20 15:49:24 by johnhapke        ###   ########.fr       */
+/*   Updated: 2025/08/21 15:32:36 by johnhapke        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
+
+int	ft_export_and_convert_atoi(const char *line, int *i)
+{
+	int		j;
+	int		start;
+	int		end;
+	char	*str;
+	int		res;
+
+	while (!ft_isdigit(line[*i]))
+		(*i)++;
+	start = *i;
+	while (ft_isdigit(line[*i]))
+		(*i)++;
+	end = *i;
+	str = malloc((end - start + 1) * sizeof(char));
+	if (!str)
+		ft_parsing_error_handler();
+	j = 0;
+	while (start < end)
+	{
+		str[j++] = line[start++];
+	}
+	str[j] = '\0';
+	res = ft_atoi(str);
+	free (str);
+	return (res);
+}
+
+double	ft_export_and_convert_atof(const char *line, int *i)
+{
+	int		j;
+	int		start;
+	int		end;
+	char	*str;
+	double	res;
+
+	while (!ft_isdigit(line[*i]))
+		(*i)++;
+	start = *i;
+	while ((ft_isdigit(line[*i]) || ft_strncmp(&line[*i], ".", 1) == 0) && ft_strncmp(&line[*i], ",", 1) != 0)
+		(*i)++;
+	end = *i;
+	str = malloc((end - start + 1) * sizeof(char));
+	if (!str)
+		ft_parsing_error_handler();
+	j = 0;
+	while (start < end)
+	{
+		str[j++] = line[start++];
+	}
+	str[j] = '\0';
+	res = ft_atof(str);
+	free (str);
+	return (res);
+}
 
 static int	ft_control_input_atof(const char *str)
 {
@@ -48,7 +104,7 @@ double	ft_atof(const char *str)
 	if (ft_control_input_atof(str))
 		ft_parsing_error_handler();
 	i = 1;
-	while (str[i] != '.')
+	while (str[i] != '.' && str[i] != '\0')
 		i++;
 	i++;
 	start = i;

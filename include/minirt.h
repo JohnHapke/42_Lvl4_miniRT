@@ -6,7 +6,7 @@
 /*   By: johnhapke <johnhapke@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/08 15:28:02 by iherman-          #+#    #+#             */
-/*   Updated: 2025/08/20 15:54:05 by johnhapke        ###   ########.fr       */
+/*   Updated: 2025/08/21 14:40:42 by johnhapke        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ typedef struct s_camera
 {
 	t_vec3	viewpoint;
 	t_vec3	direction;
-	float	fov;
+	double	fov;
 }	t_camera;
 
 typedef	struct s_light
@@ -124,6 +124,7 @@ void	ft_parse_sphere(char *line, t_rt_data *data);
 void	ft_parse_plane(char *line, t_rt_data *data);
 void	ft_parse_cylinder(char *line, t_rt_data *data);
 double	ft_atof(const char *str);
-double	ft_export_and_convert(const char *line, int *i);
+double	ft_export_and_convert_atof(const char *line, int *i);
+int	ft_export_and_convert_atoi(const char *line, int *i);
 
 #endif // MINIRT_H
