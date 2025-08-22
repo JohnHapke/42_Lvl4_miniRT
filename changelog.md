@@ -3,6 +3,24 @@ Info: https://keepachangelog.com/en/1.0.0/
 
 /* PLEASE ADD THE NEW VERSION ALWAYS ABOVE TO SEE ALWAYS THE NEWEST CHANGES */
 
+# V01.10
+
+## ADDED
+- sphere, plane and cylinder are now coded in the parsing part and functional
+- ft_free_parsing added in error_handler.c but not fully implemented
+- control statements added when necessary after atof and atoi calls
+
+## CHANGED
+- all normalized vectors are called norm_vec -> changes made in the header
+- structure added in header for colors, to reuse code instead of using in every structure 3x int for R,G,B
+
+## FIXED
+- handling of negative values
+
+## SECURITY
+- lose of 1 block in every atoi and atof call
+- syntax control not robust enough -> will be improved in next versions
+
 # V01.09
 
 ## ADDED

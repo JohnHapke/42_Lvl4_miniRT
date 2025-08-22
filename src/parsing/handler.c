@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing_handler.c                                  :+:      :+:    :+:   */
+/*   handler.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: johnhapke <johnhapke@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/13 18:19:03 by iherman-          #+#    #+#             */
-/*   Updated: 2025/08/20 11:27:56 by johnhapke        ###   ########.fr       */
+/*   Updated: 2025/08/22 14:47:29 by johnhapke        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,10 +83,10 @@ void	ft_parsing_handler(char *file, t_rt_data *data)
 
 	printf("handler \n");
 	if (ft_control_type_identifier(file))
-		ft_parsing_error_handler();
+		ft_parsing_error_handler(NULL);
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
-		ft_parsing_error_handler();
+		ft_parsing_error_handler(NULL);
 	while (1)
 	{
 		line = ft_get_next_line(fd);
@@ -97,5 +97,5 @@ void	ft_parsing_handler(char *file, t_rt_data *data)
 	line = ft_get_next_line(fd);
 		if (!line)
 			return ;
-	ft_parsing_error_handler();
+	ft_parsing_error_handler(NULL);
 }

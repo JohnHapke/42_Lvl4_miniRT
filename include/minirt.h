@@ -6,7 +6,7 @@
 /*   By: johnhapke <johnhapke@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/08 15:28:02 by iherman-          #+#    #+#             */
-/*   Updated: 2025/08/21 14:40:42 by johnhapke        ###   ########.fr       */
+/*   Updated: 2025/08/22 14:58:30 by johnhapke        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,18 +52,23 @@ typedef struct s_ray
 	t_vec3	direction;
 }	t_ray;
 
-typedef	struct s_amb_light
+typedef struct s_color
 {
-	double	light_ratio;
 	int		R;
 	int		G;
 	int		B;
+}	t_color;
+
+typedef	struct s_amb_light
+{
+	double	light_ratio;
+	t_color	color;
 }	t_amb_light;
 
 typedef struct s_camera
 {
 	t_vec3	viewpoint;
-	t_vec3	direction;
+	t_vec3	norm_vec;
 	double	fov;
 }	t_camera;
 
@@ -71,26 +76,20 @@ typedef	struct s_light
 {
 	t_vec3	light_point;
 	double	bright_ratio;
-	int		R;
-	int		G;
-	int		B;
+	t_color	color;
 }	t_light;
 typedef struct s_sphere
 {
 	t_vec3	pos;
 	double	diameter;
-	int		R;
-	int		G;
-	int		B;
+	t_color	color;
 }	t_sphere;
 
 typedef	struct s_plane
 {
 	t_vec3	pos;
 	t_vec3	norm_vec;
-	int		R;
-	int		G;
-	int		B;
+	t_color	color;
 }	t_plane;
 
 typedef	struct s_cylinder
@@ -99,9 +98,7 @@ typedef	struct s_cylinder
 	t_vec3	norm_vec;
 	double	diameter;
 	double	height;
-	int		R;
-	int		G;
-	int		B;
+	t_color	color;
 }	t_cylinder;
 
 typedef struct s_rt_data
@@ -109,14 +106,15 @@ typedef struct s_rt_data
 	t_amb_light	amb_light;
 	t_camera	camera;
 	t_light		light;
-	t_sphere	*spheres;
+	t_sphere	*sphere;
 	t_plane		*plane;
 	t_cylinder	*cylinder;
 }	t_rt_data;
 
 // parser
 void	ft_parsing_handler(char *file, t_rt_data *data);
-void ft_parsing_error_handler();
+void	ft_parsing_error_handler(t_rt_data *data);
+void	ft_free_parsing(t_rt_data*data);
 void	ft_parse_ambient_lighting(char *line, t_rt_data *data);
 void	ft_parse_camera(char *line, t_rt_data *data);
 void	ft_parse_light(char *line, t_rt_data *data);
