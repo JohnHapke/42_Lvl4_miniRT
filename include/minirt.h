@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: johnhapke <johnhapke@student.42.fr>        +#+  +:+       +#+        */
+/*   By: iherman- <iherman-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/08 15:28:02 by iherman-          #+#    #+#             */
-/*   Updated: 2025/08/25 12:57:36 by johnhapke        ###   ########.fr       */
+/*   Updated: 2025/08/25 19:08:30 by iherman-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,9 @@
 # endif // WINDOW_WIDTH
 
 # define MAX_BOUNCE 5
+
+// very small number to add tolerance for floating point comparisons
+# define EPSILON 1e-8
 
 /*
 	To get normalized vector (for direction)

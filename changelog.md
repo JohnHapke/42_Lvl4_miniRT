@@ -3,6 +3,13 @@ Info: https://keepachangelog.com/en/1.0.0/
 
 /* PLEASE ADD THE NEW VERSION ALWAYS ABOVE TO SEE ALWAYS THE NEWEST CHANGES */
 
+# V01.12
+
+## ADDED
+- vector_math.c -> added several simple, untested vector math functions
+- main.c		-> added a debug print function "temp_print_parsing_data(t_rt_data *data)" for later use
+- minirt.h		-> added EPSILON macro for more robust float operations
+
 # V01.11
 
 -> parsing should be fully functional now. Tested without minilibx to see if error handling and memory handling is working correctly. With minilibx ocurre a lot of errors but it seems that all of them come from the minilibx as also there are no hooks implemented and no further lib handling.
