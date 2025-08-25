@@ -6,7 +6,7 @@
 /*   By: johnhapke <johnhapke@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/09 11:45:39 by jhapke            #+#    #+#             */
-/*   Updated: 2025/08/20 17:10:46 by johnhapke        ###   ########.fr       */
+/*   Updated: 2025/08/25 10:39:51 by johnhapke        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ char	*ft_line_extract(char *buffer)
 	i = 0;
 	if (!buffer[i])
 		return (NULL);
-	while (buffer[i] && buffer[i] != '\n')
+	while (buffer[i] != '\0' && buffer[i] != '\n')
 		i++;
 	line = malloc((i + 2) * sizeof(char));
 	if (!line)

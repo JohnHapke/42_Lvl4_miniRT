@@ -11,7 +11,8 @@ SRC = src/main.c \
 		src/parsing/light_camera.c \
 		src/parsing/handler.c \
 		src/parsing/objects.c \
-		src/parsing/utils.c \
+		src/parsing/syntax_controler.c \
+		src/parsing/converter.c
 
 GNL_SRC = get_next_line/get_next_line.c \
 		get_next_line/get_next_line_utils.c

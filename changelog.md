@@ -3,6 +3,23 @@ Info: https://keepachangelog.com/en/1.0.0/
 
 /* PLEASE ADD THE NEW VERSION ALWAYS ABOVE TO SEE ALWAYS THE NEWEST CHANGES */
 
+# V01.11
+
+-> parsing should be fully functional now. Tested without minilibx to see if error handling and memory handling is working correctly. With minilibx ocurre a lot of errors but it seems that all of them come from the minilibx as also there are no hooks implemented and no further lib handling.
+## ADDED
+- ft_control_digits() added to control the line after the identifier
+
+## CHANGED
+- control and convertion changed into syntax_controler.c and converter.c -> code improvement done to minimize lines but still space for potential
+- utils.c deleted
+
+## FIXED
+- ft_parsing_error_handler() changed and added "line" as variable to free it centralized in ft_free_parsing()
+- ft_free_parsing improved to minimize errors and centralize freeing
+- fd closed and call for gnl(-1) to free buffer -> maybe there is a better way but this works at least
+- in main() t_rt_data data -> changed to *data and initialized by ft_calloc() to control values of pointers in data structure
+- edge cases added in ft_atof because it lost memory before
+
 # V01.10
 
 ## ADDED

@@ -6,7 +6,7 @@
 /*   By: johnhapke <johnhapke@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/08 15:28:02 by iherman-          #+#    #+#             */
-/*   Updated: 2025/08/22 14:58:30 by johnhapke        ###   ########.fr       */
+/*   Updated: 2025/08/25 12:57:36 by johnhapke        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,16 +113,17 @@ typedef struct s_rt_data
 
 // parser
 void	ft_parsing_handler(char *file, t_rt_data *data);
-void	ft_parsing_error_handler(t_rt_data *data);
-void	ft_free_parsing(t_rt_data*data);
+void	ft_parsing_error_handler(char *line, t_rt_data *data);
+void	ft_free_parsing(char *line, t_rt_data *data);
 void	ft_parse_ambient_lighting(char *line, t_rt_data *data);
 void	ft_parse_camera(char *line, t_rt_data *data);
 void	ft_parse_light(char *line, t_rt_data *data);
 void	ft_parse_sphere(char *line, t_rt_data *data);
 void	ft_parse_plane(char *line, t_rt_data *data);
 void	ft_parse_cylinder(char *line, t_rt_data *data);
-double	ft_atof(const char *str);
-double	ft_export_and_convert_atof(const char *line, int *i);
-int	ft_export_and_convert_atoi(const char *line, int *i);
+void 	ft_control_type_identifier(char *file, t_rt_data *data);
+double	ft_prepare_to_convert_atoi(const char *line, int *i, t_rt_data *data);
+double	ft_prepare_to_convert_atof(const char *line, int *i, t_rt_data *data);
+// void	ft_control_line_end(char *line, int *i, t_rt_data *data);
 
 #endif // MINIRT_H
