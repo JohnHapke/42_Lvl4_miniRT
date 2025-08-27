@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   light_camera.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: johnhapke <johnhapke@student.42.fr>        +#+  +:+       +#+        */
+/*   By: iherman- <iherman-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 11:03:21 by johnhapke         #+#    #+#             */
-/*   Updated: 2025/08/25 13:04:37 by johnhapke        ###   ########.fr       */
+/*   Updated: 2025/08/27 19:43:24 by iherman-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,9 @@ void	ft_parse_camera(char *line, t_rt_data *data)
 		ft_parsing_error_handler(line, data);
 	if (line[i] != '\n' && line[i] != '\0')
 		ft_parsing_error_handler(line, data);
-
+	data->camera.norm_vec = normalize(data->camera.norm_vec);
+	data->camera.up = normalize((t_vec3){0,1,0});
+	data->camera.right = normalize(vector_cross(data->camera.up, data->camera.norm_vec));
 	printf("=== CAMERA DATA ===\n");
 	printf("Viewpoint: (%.2f, %.2f, %.2f)\n", 
        data->camera.viewpoint.x, data->camera.viewpoint.y, data->camera.viewpoint.z);

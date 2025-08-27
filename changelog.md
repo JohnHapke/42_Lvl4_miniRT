@@ -3,6 +3,17 @@ Info: https://keepachangelog.com/en/1.0.0/
 
 /* PLEASE ADD THE NEW VERSION ALWAYS ABOVE TO SEE ALWAYS THE NEWEST CHANGES */
 
+# V01.13
+
+## ADDED
+- vector_math.c -> added a multitude of tested and necessary vector math operations
+- minirt.h		-> added all new vector math functions and added up and right vectors to t_camera
+- Makefile		-> added the new vector_math.c file
+
+## CHANGED
+- light_camera.c	-> added normalization to the direction vector of camera, also added up and right vector logic and init
+- objects.c			-> added normalization to plane and cylinder. same as above
+
 # V01.12
 
 ## ADDED

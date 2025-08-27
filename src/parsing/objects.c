@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   objects.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: johnhapke <johnhapke@student.42.fr>        +#+  +:+       +#+        */
+/*   By: iherman- <iherman-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 10:48:11 by johnhapke         #+#    #+#             */
-/*   Updated: 2025/08/25 12:57:20 by johnhapke        ###   ########.fr       */
+/*   Updated: 2025/08/27 19:46:01 by iherman-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ void	ft_parse_plane(char *line, t_rt_data *data)
 	if (line[i] != '\n' && line[i] != '\0')
 		ft_parsing_error_handler(line, data);
 
+	data->plane->norm_vec = normalize(data->plane->norm_vec);
 	printf("=== PLANE DATA ===\n");
 	printf("Position: (%.2f, %.2f, %.2f)\n", 
        data->plane->pos.x, data->plane->pos.y, data->plane->pos.z);
@@ -116,6 +117,7 @@ void	ft_parse_cylinder(char *line, t_rt_data *data)
 	if (line[i] != '\n' && line[i] != '\0')
 		ft_parsing_error_handler(line, data);
 
+	data->cylinder->norm_vec = normalize(data->cylinder->norm_vec);
 	printf("=== CYLINDER DATA ===\n");
 	printf("Position: (%.2f, %.2f, %.2f)\n", 
        data->cylinder->pos.x, data->cylinder->pos.y, data->cylinder->pos.z);
