@@ -13,7 +13,8 @@ SRC = src/main.c \
 		src/parsing/objects.c \
 		src/parsing/syntax_controler.c \
 		src/parsing/converter.c \
-		src/math_utils/vector_math.c
+		src/math_utils/vector_math.c \
+		src/engine/ray_tracer.c
 
 GNL_SRC = get_next_line/get_next_line.c \
 		get_next_line/get_next_line_utils.c

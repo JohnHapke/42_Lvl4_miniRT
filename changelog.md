@@ -3,6 +3,15 @@ Info: https://keepachangelog.com/en/1.0.0/
 
 /* PLEASE ADD THE NEW VERSION ALWAYS ABOVE TO SEE ALWAYS THE NEWEST CHANGES */
 
+# V01.14
+
+## ADDED
+- ray_tracer.c	-> added file and implemented basic mlx hook function to create a gradient across the screen
+- main.c		-> added a couple lines to open an mlx window
+
+## REMOVED
+- minirt.h	-> removed several unnecessary lines including an unused macro
+
 # V01.13
 
 ## ADDED

@@ -6,7 +6,7 @@
 /*   By: iherman- <iherman-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/08 15:28:02 by iherman-          #+#    #+#             */
-/*   Updated: 2025/08/27 18:21:42 by iherman-         ###   ########.fr       */
+/*   Updated: 2025/09/02 11:18:25 by iherman-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,15 +22,9 @@
 # include <MLX42/MLX42.h>
 # include <MLX42/MLX42_Int.h>
 
-# ifndef WINDOW_HEIGHT
-#  define WINDOW_HEIGHT 528
-# endif // WINDOW_HEIGHT
+# define WINDOW_HEIGHT 1048
 
-# ifndef WINDOWN_WIDTH
-#  define WINDOW_WIDTH 1048
-# endif // WINDOW_WIDTH
-
-# define MAX_BOUNCE 5
+#  define WINDOW_WIDTH 2096
 
 // very small number to add tolerance for floating point comparisons
 # define EPSILON 1e-8
@@ -144,5 +138,8 @@ t_vec3	vector_multiply(t_vec3 vec, const double factor);
 bool	vector_is_larger(t_vec3 larger, t_vec3 smaller);
 t_vec3	vector_cross(t_vec3 vec1, t_vec3 vec2);
 double	vector_dot(t_vec3 vec1, t_vec3 vec2);
+
+// engine
+void	raytracer(void *tmp_data);
 
 #endif // MINIRT_H
