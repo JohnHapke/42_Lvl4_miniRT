@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   light_camera.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iherman- <iherman-@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: johnhapke <johnhapke@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 11:03:21 by johnhapke         #+#    #+#             */
-/*   Updated: 2025/08/27 19:43:24 by iherman-         ###   ########.fr       */
+/*   Updated: 2025/09/02 15:27:49 by johnhapke        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,8 @@ void	ft_parse_camera(char *line, t_rt_data *data)
 	data->camera.norm_vec.x = ft_prepare_to_convert_atof(line, &i, data);
 	data->camera.norm_vec.y = ft_prepare_to_convert_atof(line, &i, data);
 	data->camera.norm_vec.z = ft_prepare_to_convert_atof(line, &i, data);
-	if ((data->camera.norm_vec.x < 0 || data->camera.norm_vec.x > 1) || (data->camera.norm_vec.y < 0
-		|| data->camera.norm_vec.y > 1) || (data->camera.norm_vec.z < 0 || data->camera.norm_vec.z > 1))
+	if ((data->camera.norm_vec.x < -1 || data->camera.norm_vec.x > 1) || (data->camera.norm_vec.y < -1
+		|| data->camera.norm_vec.y > 1) || (data->camera.norm_vec.z < -1 || data->camera.norm_vec.z > 1))
 		ft_parsing_error_handler(line, data);
 	data->camera.fov = (int) ft_prepare_to_convert_atoi(line, &i, data);
 	if (data->camera.fov < 0 || data->camera.fov > 180)
@@ -62,6 +62,7 @@ void	ft_parse_camera(char *line, t_rt_data *data)
 	data->camera.norm_vec = normalize(data->camera.norm_vec);
 	data->camera.up = normalize((t_vec3){0,1,0});
 	data->camera.right = normalize(vector_cross(data->camera.up, data->camera.norm_vec));
+
 	printf("=== CAMERA DATA ===\n");
 	printf("Viewpoint: (%.2f, %.2f, %.2f)\n", 
        data->camera.viewpoint.x, data->camera.viewpoint.y, data->camera.viewpoint.z);

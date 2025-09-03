@@ -13,6 +13,7 @@ SRC = src/main.c \
 		src/parsing/objects.c \
 		src/parsing/syntax_controler.c \
 		src/parsing/converter.c \
+		src/parsing/utils.c \
 		src/math_utils/vector_math.c \
 		src/engine/ray_tracer.c
 

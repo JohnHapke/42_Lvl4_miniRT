@@ -3,6 +3,23 @@ Info: https://keepachangelog.com/en/1.0.0/
 
 /* PLEASE ADD THE NEW VERSION ALWAYS ABOVE TO SEE ALWAYS THE NEWEST CHANGES */
 
+# V01.15
+
+## ADDED
+- in header t_obj structure as a list added and an enum to define the object type within each t_obj node
+- parsing/utils.c added with function to add back the object nodes into the t_obj list
+
+## CHANGED
+- parsing output centralized in parsing/utils.c to show that every t_obj *node is correctly allocated and that the list works
+- t_rt_data changed -> pointer to object-structures removed and t_obj *obj added to safe all objects in one list, where the intersection fct is included as a fctptr
+
+## FIXED
+- in parsing/objects.c & parsing/light_camera.c normalized vector control from range 0.0 - 1.0 fixed to -1.0 - 1.0 as specified in the subject 
+
+## REMOVED
+- debug function for parsing in main removed
+- debug lines in objects.c removed
+
 # V01.14
 
 ## ADDED

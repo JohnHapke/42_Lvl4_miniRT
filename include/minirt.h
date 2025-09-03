@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iherman- <iherman-@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: johnhapke <johnhapke@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/08 15:28:02 by iherman-          #+#    #+#             */
-/*   Updated: 2025/09/02 11:18:25 by iherman-         ###   ########.fr       */
+/*   Updated: 2025/09/03 12:43:30 by johnhapke        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,15 +102,26 @@ typedef	struct s_cylinder
 	t_color	color;
 }	t_cylinder;
 
+typedef enum e_obj_type
+{
+	SPHERE,
+	PLANE,
+	CYLINDER
+}	t_obj_type;
+typedef struct s_obj
+{
+	void			*obj;
+	t_obj_type		type;
+	void			(*fct_ptr)(void *obj, t_ray ray);
+	struct s_obj	*next;
+}	t_obj;
 typedef struct s_rt_data
 {
 	mlx_t	*mlx_win;
 	t_amb_light	amb_light;
 	t_camera	camera;
 	t_light		light;
-	t_sphere	*sphere;
-	t_plane		*plane;
-	t_cylinder	*cylinder;
+	t_obj		*obj;
 }	t_rt_data;
 
 // parser
@@ -127,6 +138,9 @@ void 	ft_control_type_identifier(char *file, t_rt_data *data);
 double	ft_prepare_to_convert_atoi(const char *line, int *i, t_rt_data *data);
 double	ft_prepare_to_convert_atof(const char *line, int *i, t_rt_data *data);
 // void	ft_control_line_end(char *line, int *i, t_rt_data *data);
+int		sphere_addback(t_obj **obj, t_sphere *node);
+int		plane_addback(t_obj **obj, t_plane *node);
+int		cylinder_addback(t_obj **obj, t_cylinder *node);
 
 // vector math
 t_vec3	normalize(t_vec3 vec);
