@@ -3,6 +3,12 @@ Info: https://keepachangelog.com/en/1.0.0/
 
 /* PLEASE ADD THE NEW VERSION ALWAYS ABOVE TO SEE ALWAYS THE NEWEST CHANGES */
 
+# V01.16
+
+## ADDED
+- ray_tracer.c	-> added a generate_ray() function to generate a ray that shoots out of the camera at a correctl angle
+- minirt.h		-> added t_hitinfo to be used as return type for intersection functions
+
 # V01.15
 
 ## ADDED

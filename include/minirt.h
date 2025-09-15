@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: johnhapke <johnhapke@student.42.fr>        +#+  +:+       +#+        */
+/*   By: iherman- <iherman-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/08 15:28:02 by iherman-          #+#    #+#             */
-/*   Updated: 2025/09/03 12:43:30 by johnhapke        ###   ########.fr       */
+/*   Updated: 2025/09/11 15:27:38 by iherman-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,7 @@ typedef enum e_obj_type
 	PLANE,
 	CYLINDER
 }	t_obj_type;
+
 typedef struct s_obj
 {
 	void			*obj;
@@ -115,6 +116,17 @@ typedef struct s_obj
 	void			(*fct_ptr)(void *obj, t_ray ray);
 	struct s_obj	*next;
 }	t_obj;
+
+typedef struct s_hitinfo
+{
+	double		t;
+	t_vec3		surface_dir;
+	t_vec3		pos;
+
+	void		*obj; // may not be neccessary
+	t_obj_type	obj_type;
+}	t_hitinfo;
+
 typedef struct s_rt_data
 {
 	mlx_t	*mlx_win;
