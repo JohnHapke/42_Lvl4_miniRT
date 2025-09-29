@@ -6,7 +6,7 @@
 /*   By: johnhapke <johnhapke@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/08 15:28:02 by iherman-          #+#    #+#             */
-/*   Updated: 2025/09/29 09:35:06 by johnhapke        ###   ########.fr       */
+/*   Updated: 2025/09/29 15:25:55 by johnhapke        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,9 @@ typedef struct s_vec3
 
 typedef struct s_color
 {
-	int		R;
-	int		G;
-	int		B;
+	double		R;
+	double		G;
+	double		B;
 }	t_color;
 
 typedef struct s_ray

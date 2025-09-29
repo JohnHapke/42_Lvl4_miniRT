@@ -3,6 +3,11 @@ Info: https://keepachangelog.com/en/1.0.0/
 
 /* PLEASE ADD THE NEW VERSION ALWAYS ABOVE TO SEE ALWAYS THE NEWEST CHANGES */
 
+# V01.18
+
+## CHANGED
+- objects/shading.c -> t_color in header changed to double and final_color cast to int for more accuracy and possible bit shifting
+
 # V01.17
 
 ## ADDED

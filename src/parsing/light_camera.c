@@ -6,7 +6,7 @@
 /*   By: johnhapke <johnhapke@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 11:03:21 by johnhapke         #+#    #+#             */
-/*   Updated: 2025/09/27 16:02:40 by johnhapke        ###   ########.fr       */
+/*   Updated: 2025/09/29 15:26:55 by johnhapke        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	ft_parse_ambient_lighting(char *line, t_rt_data *data)
 
 	printf("=== AMBIENT LIGHT DATA ===\n");
 	printf("Light Ratio: %.3f\n", data->amb_light.light_ratio);
-	printf("Color: RGB(%d, %d, %d) ", 
+	printf("Color: RGB(%f, %f, %f) ", 
        data->amb_light.color.R, data->amb_light.color.G, data->amb_light.color.B);
 	printf("(Valid: %s)\n", 
        ((data->amb_light.color.R >= 0 && data->amb_light.color.R <= 255) &&
@@ -101,7 +101,7 @@ void	ft_parse_light(char *line, t_rt_data *data)
 	printf("Brightness Ratio: %.3f ", data->light.bright_ratio);
 	printf("(Valid: %s)\n", 
        (data->light.bright_ratio >= 0.0 && data->light.bright_ratio <= 1.0) ? "YES" : "NO");
-	printf("Color: RGB(%d, %d, %d)\n", 
+	printf("Color: RGB(%f, %f, %f)\n", 
        data->light.color.R, data->light.color.G, data->light.color.B);
 	printf("==================\n");
 }

@@ -6,7 +6,7 @@
 /*   By: johnhapke <johnhapke@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 14:22:54 by johnhapke         #+#    #+#             */
-/*   Updated: 2025/09/19 09:27:04 by johnhapke        ###   ########.fr       */
+/*   Updated: 2025/09/29 15:27:32 by johnhapke        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static void	print_sphere(t_sphere *sphere)
 	printf("Position: (%.2f, %.2f, %.2f)\n", 
        sphere->pos.x, sphere->pos.y, sphere->pos.z);
 	printf("Diameter: %.2f\n", sphere->diameter);
-	printf("Color: RGB(%d, %d, %d) ", 
+	printf("Color: RGB(%f, %f, %f) ", 
        sphere->color.R, sphere->color.G, sphere->color.B);
 	printf("(Valid: %s)\n", 
        ((sphere->color.R >= 0 && sphere->color.R <= 255) &&
@@ -60,7 +60,7 @@ static void	print_plane(t_plane *plane)
        plane->pos.x, plane->pos.y, plane->pos.z);
 	printf("Normal Vector: (%.2f, %.2f, %.2f)\n", 
        plane->norm_vec.x, plane->norm_vec.y, plane->norm_vec.z);
-	printf("Color: RGB(%d, %d, %d)\n", 
+	printf("Color: RGB(%f, %f, %f)\n", 
        plane->color.R, plane->color.G, plane->color.B);
 	printf("==================\n");
 }
@@ -102,7 +102,7 @@ static void	print_cylinder(t_cylinder *cylinder)
         (cylinder->norm_vec.z >= 0 && cylinder->norm_vec.z <= 1)) ? "YES" : "NO");
 	printf("Diameter: %.2f\n", cylinder->diameter);
 	printf("Height: %.2f\n", cylinder->height);
-	printf("Color: RGB(%d, %d, %d) ", 
+	printf("Color: RGB(%f, %f, %f) ", 
        cylinder->color.R, cylinder->color.G, cylinder->color.B);
 	printf("(Valid: %s)\n", 
        ((cylinder->color.R >= 0 && cylinder->color.R <= 255) &&

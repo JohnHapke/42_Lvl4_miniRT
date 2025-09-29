@@ -6,7 +6,7 @@
 /*   By: johnhapke <johnhapke@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/19 11:00:34 by johnhapke         #+#    #+#             */
-/*   Updated: 2025/09/29 12:21:11 by johnhapke        ###   ########.fr       */
+/*   Updated: 2025/09/29 16:14:50 by johnhapke        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,10 @@ unsigned int	calculate_color(t_hitinfo hitinfo, t_rt_data *data)
 		diffuse_color.B = sphere->color.B * diffuse_intensity;
 
 		// final color
-		final_color.R = fmin( 255, ambient_color.R + diffuse_color.R);
-		final_color.G = fmin(255, ambient_color.G + diffuse_color.G);
-		final_color.B = fmin(255, ambient_color.B + diffuse_color.B);
-		return (final_color.R << 24 | final_color.G << 16 | final_color.B << 8 | 255);
+		final_color.R = (int)fmin( 255.0, ambient_color.R + diffuse_color.R);
+		final_color.G = (int)fmin(255.0, ambient_color.G + diffuse_color.G);
+		final_color.B = (int)fmin(255.0, ambient_color.B + diffuse_color.B);
+		return ((int)final_color.R << 24 | (int)final_color.G << 16 | (int)final_color.B << 8 | 255);
 	}
 	else
 		return (255);
