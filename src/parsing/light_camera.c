@@ -6,7 +6,7 @@
 /*   By: johnhapke <johnhapke@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 11:03:21 by johnhapke         #+#    #+#             */
-/*   Updated: 2025/09/02 15:27:49 by johnhapke        ###   ########.fr       */
+/*   Updated: 2025/09/27 16:02:40 by johnhapke        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,9 +59,12 @@ void	ft_parse_camera(char *line, t_rt_data *data)
 		ft_parsing_error_handler(line, data);
 	if (line[i] != '\n' && line[i] != '\0')
 		ft_parsing_error_handler(line, data);
-	data->camera.norm_vec = normalize(data->camera.norm_vec);
-	data->camera.up = normalize((t_vec3){0,1,0});
-	data->camera.right = normalize(vector_cross(data->camera.up, data->camera.norm_vec));
+	//data->camera.norm_vec = normalize(data->camera.norm_vec);
+	data->camera.right = normalize(vector_cross((t_vec3){0,1,0}, data->camera.norm_vec));
+	data->camera.up = normalize(vector_cross(data->camera.norm_vec, data->camera.right));
+	printf("Camera Right: (%f, %f, %f)\n", data->camera.right.x, data->camera.right.y, data->camera.right.z);
+	printf("Camera Up: (%f, %f, %f)\n", data->camera.up.x, data->camera.up.y, data->camera.up.z);
+	printf("Camera Forward: (%f, %f, %f)\n", data->camera.norm_vec.x, data->camera.norm_vec.y, data->camera.norm_vec.z);
 
 	printf("=== CAMERA DATA ===\n");
 	printf("Viewpoint: (%.2f, %.2f, %.2f)\n", 

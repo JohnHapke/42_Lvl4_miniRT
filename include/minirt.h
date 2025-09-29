@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iherman- <iherman-@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: johnhapke <johnhapke@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/08 15:28:02 by iherman-          #+#    #+#             */
-/*   Updated: 2025/09/11 15:27:38 by iherman-         ###   ########.fr       */
+/*   Updated: 2025/09/29 09:35:06 by johnhapke        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ typedef struct s_color
 
 typedef struct s_ray
 {
-	t_color	color;
+	//t_color	color;
 	t_vec3	origin;
 	t_vec3	direction;
 }	t_ray;
@@ -109,23 +109,21 @@ typedef enum e_obj_type
 	CYLINDER
 }	t_obj_type;
 
-typedef struct s_obj
-{
-	void			*obj;
-	t_obj_type		type;
-	void			(*fct_ptr)(void *obj, t_ray ray);
-	struct s_obj	*next;
-}	t_obj;
-
 typedef struct s_hitinfo
 {
 	double		t;
 	t_vec3		surface_dir;
 	t_vec3		pos;
-
 	void		*obj; // may not be neccessary
 	t_obj_type	obj_type;
 }	t_hitinfo;
+typedef struct s_obj
+{
+	void			*obj;
+	t_obj_type		type;
+	int				(*fct_ptr)(void *obj, t_ray ray, t_hitinfo *hit);
+	struct s_obj	*next;
+}	t_obj;
 
 typedef struct s_rt_data
 {
@@ -161,11 +159,18 @@ double	vector_length(t_vec3 vec);
 t_vec3	vector_add(t_vec3 vec1, t_vec3 vec2);
 t_vec3	vector_subtract(t_vec3 vec1, t_vec3 vec2);
 t_vec3	vector_multiply(t_vec3 vec, const double factor);
+t_vec3	vector_divide(t_vec3 vec, const double factor);
 bool	vector_is_larger(t_vec3 larger, t_vec3 smaller);
 t_vec3	vector_cross(t_vec3 vec1, t_vec3 vec2);
 double	vector_dot(t_vec3 vec1, t_vec3 vec2);
 
 // engine
 void	raytracer(void *tmp_data);
+unsigned int	shoot_ray(t_rt_data *data, int screen_x, int screen_y);
+t_ray	generate_ray(t_rt_data *data, int screenX, int screenY);
+
+// sphere
+int		intersect_sphere(void *obj, t_ray ray, t_hitinfo *hit);
+unsigned int	calculate_color(t_hitinfo hitinfo, t_rt_data * data);
 
 #endif // MINIRT_H

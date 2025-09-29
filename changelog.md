@@ -3,6 +3,20 @@ Info: https://keepachangelog.com/en/1.0.0/
 
 /* PLEASE ADD THE NEW VERSION ALWAYS ABOVE TO SEE ALWAYS THE NEWEST CHANGES */
 
+# V01.17
+
+## ADDED
+- ray_tracer -> intersect_test() this fct goes thorugh the intersect fct_ptr and determines the best t value and calls the calculate_color()-fct to finallz return the color for the pixel
+- objects -> folder for the object and color fcts
+- sphere_intersection.c -> calculates all necessary values for the intersection and determines/returns best t value for spheres
+- shading.c -> calculates the color (ambient/diffuse/final) -> feature to control if there is an object between t and the light is not implemented yet
+
+## CHANGED
+- minirt.h -> t_ray color commented and t_hitinfo *bj commented
+- main.c / ray_tracer.c -> width & height adapted to 800 & 600
+## FIXED
+- parsing/light_camera.c -> camera.right and camera.up were in the wrong order and variables were changed -> is fixed and coordinate system is now working correctly
+
 # V01.16
 
 ## ADDED

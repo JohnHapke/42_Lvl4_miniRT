@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   vector_math.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iherman- <iherman-@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: johnhapke <johnhapke@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/25 18:21:21 by iherman-          #+#    #+#             */
-/*   Updated: 2025/08/27 18:37:58 by iherman-         ###   ########.fr       */
+/*   Updated: 2025/09/29 08:00:29 by johnhapke        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,16 @@ t_vec3	vector_multiply(t_vec3 vec, const double factor)
 	res.x = vec.x * factor;
 	res.y = vec.y * factor;
 	res.z = vec.z * factor;
+	return (res);
+}
+
+t_vec3	vector_divide(t_vec3 vec, const double factor)
+{
+	t_vec3	res;
+
+	res.x = vec.x / factor;
+	res.y = vec.y / factor;
+	res.z = vec.z / factor;
 	return (res);
 }
 

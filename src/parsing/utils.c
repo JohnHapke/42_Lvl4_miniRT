@@ -6,7 +6,7 @@
 /*   By: johnhapke <johnhapke@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 14:22:54 by johnhapke         #+#    #+#             */
-/*   Updated: 2025/09/03 12:43:27 by johnhapke        ###   ########.fr       */
+/*   Updated: 2025/09/19 09:27:04 by johnhapke        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ int	sphere_addback(t_obj **obj, t_sphere *node)
 	if (!new_node)
 		return (1);
 	new_node->obj = node;
+	new_node->fct_ptr = intersect_sphere;
 	new_node->next = NULL;
 	new_node->type = SPHERE;
 	current = (*obj);
