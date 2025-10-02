@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray_tracer.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: johnhapke <johnhapke@student.42.fr>        +#+  +:+       +#+        */
+/*   By: iherman- <iherman-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 11:07:06 by iherman-          #+#    #+#             */
-/*   Updated: 2025/09/29 09:34:39 by johnhapke        ###   ########.fr       */
+/*   Updated: 2025/10/02 14:11:04 by iherman-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,14 +29,14 @@ static unsigned int	intersect_test(t_ray ray, t_rt_data *data)
 		if (hit == 1 && (hitinfo.t > 0 && hitinfo.t < best_hit.t))
 		{
 			best_hit = hitinfo;
-			//printf("t= %f\n", best_hit.t);
+			printf("t= %f\n", best_hit.t);
 			hit_found = true;
 		}
 		obj = obj->next;
 	}
 	if (hit_found == true)
 	{
-		unsigned int color = calculate_color(best_hit, data);
+		unsigned int color = calculate_color(&best_hit, data);
 		printf("color: %u\n", color);
 		return (color);
 	}
@@ -47,9 +47,9 @@ t_ray	generate_ray(t_rt_data *data, int screenX, int screenY)
 {
 	t_ray ray;
 
-	double aspectRatio = (double)800 / (double)600;
-	double ndcX = (2.0 * (screenX + 0.5) / 800) - 1.0;
-	double ndcY = 1.0 - (2.0 * (screenY + 0.5) / 600);
+	double aspectRatio = (double)WINDOW_WIDTH / (double)WINDOW_HEIGHT;
+	double ndcX = (2.0 * (screenX + 0.5) / WINDOW_WIDTH) - 1.0;
+	double ndcY = 1.0 - (2.0 * (screenY + 0.5) / WINDOW_HEIGHT);
 	double fovAdjust = tan(data->camera.fov * 0.5 * 3.14 / 180.0);
 
 	t_vec3 rayDir = vector_add(
@@ -66,7 +66,6 @@ t_ray	generate_ray(t_rt_data *data, int screenX, int screenY)
 unsigned int	shoot_ray(t_rt_data *data, int screen_x, int screen_y)
 {
 	t_ray			ray;
-	//unsigned char	alpha;
 
 	ray = generate_ray(data, screen_x, screen_y);
 	//printf("ray generated \n"); -> functional
@@ -79,25 +78,20 @@ void	raytracer(void *tmp_data)
 	unsigned int	color;
 	int				screen_x;
 	int				screen_y;
-	mlx_image_t		*img;
 
 	data = (t_rt_data *)tmp_data;
-	img	= mlx_new_image(data->mlx_win, 800, 600);
-	if (!img)
-		return ;
 	screen_x = 0;
 	screen_y = 0;
-	while (screen_x < 800)
+	while (screen_x < WINDOW_WIDTH)
 	{
-		while (screen_y < 600)
+		while (screen_y < WINDOW_HEIGHT)
 		{
 			color = shoot_ray(data, screen_x, screen_y);
-			mlx_put_pixel(img, screen_x, screen_y, color);
+			mlx_put_pixel(data->mlx_img, screen_x, screen_y, color);
 			screen_y++;
 		}
 		screen_y = 0;
 		screen_x++;
 	}
-	mlx_image_to_window(data->mlx_win, img, 0, 0);
-	// memory leaks :D
+	mlx_image_to_window(data->mlx_win, data->mlx_img, 0, 0);
 }

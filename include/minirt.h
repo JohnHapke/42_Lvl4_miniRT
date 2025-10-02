@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: johnhapke <johnhapke@student.42.fr>        +#+  +:+       +#+        */
+/*   By: iherman- <iherman-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/08 15:28:02 by iherman-          #+#    #+#             */
-/*   Updated: 2025/09/29 15:25:55 by johnhapke        ###   ########.fr       */
+/*   Updated: 2025/10/02 13:12:31 by iherman-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@
 # include <MLX42/MLX42.h>
 # include <MLX42/MLX42_Int.h>
 
-# define WINDOW_HEIGHT 1048
+# define WINDOW_HEIGHT 600//1048
 
-#  define WINDOW_WIDTH 2096
+#  define WINDOW_WIDTH 800//2096
 
 // very small number to add tolerance for floating point comparisons
 # define EPSILON 1e-8
@@ -114,6 +114,8 @@ typedef struct s_hitinfo
 	double		t;
 	t_vec3		surface_dir;
 	t_vec3		pos;
+	t_color		obj_color;
+
 	void		*obj; // may not be neccessary
 	t_obj_type	obj_type;
 }	t_hitinfo;
@@ -127,7 +129,8 @@ typedef struct s_obj
 
 typedef struct s_rt_data
 {
-	mlx_t	*mlx_win;
+	mlx_t		*mlx_win;
+	mlx_image_t		*mlx_img;
 	t_amb_light	amb_light;
 	t_camera	camera;
 	t_light		light;
@@ -170,7 +173,10 @@ unsigned int	shoot_ray(t_rt_data *data, int screen_x, int screen_y);
 t_ray	generate_ray(t_rt_data *data, int screenX, int screenY);
 
 // sphere
-int		intersect_sphere(void *obj, t_ray ray, t_hitinfo *hit);
-unsigned int	calculate_color(t_hitinfo hitinfo, t_rt_data * data);
+int				intersect_sphere(void *obj, t_ray ray, t_hitinfo *hit);
+int				intersect_cylinder(void *obj, t_ray ray, t_hitinfo *hit);
+int				intersect_plane(void *obj, t_ray ray, t_hitinfo *hit);
+
+unsigned int	calculate_color(const t_hitinfo *hitinfo, t_rt_data * data);
 
 #endif // MINIRT_H

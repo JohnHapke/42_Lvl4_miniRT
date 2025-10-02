@@ -3,6 +3,19 @@ Info: https://keepachangelog.com/en/1.0.0/
 
 /* PLEASE ADD THE NEW VERSION ALWAYS ABOVE TO SEE ALWAYS THE NEWEST CHANGES */
 
+# V01.19
+
+## ADDED
+- rudimentary intersection function templates for cylinder and plane
+
+## CHANGED
+- several files -> Made mlx image be a part of t_rt_data to ensure only one image is used and reused
+- added object color to t_hitinfo to generalize the use of calculate_color
+- made the calculate_color hitinfo param be a const pointer to optimize
+
+## NOTE
+- plane is not properly recognized by the parser and seemingly always spits an error
+
 # V01.18
 
 ## CHANGED

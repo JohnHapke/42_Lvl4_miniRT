@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: johnhapke <johnhapke@student.42.fr>        +#+  +:+       +#+        */
+/*   By: iherman- <iherman-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 14:22:54 by johnhapke         #+#    #+#             */
-/*   Updated: 2025/09/29 15:27:32 by johnhapke        ###   ########.fr       */
+/*   Updated: 2025/10/02 13:05:29 by iherman-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ int	plane_addback(t_obj **obj, t_plane *node)
 	if (!new_node)
 		return (1);
 	new_node->obj = node;
+	new_node->fct_ptr = intersect_plane;
 	new_node->next = NULL;
 	new_node->type = PLANE;
 	current = (*obj);
@@ -120,6 +121,7 @@ int	cylinder_addback(t_obj **obj, t_cylinder *node)
 	if (!new_node)
 		return (1);
 	new_node->obj = node;
+	new_node->fct_ptr = intersect_cylinder;
 	new_node->next = NULL;
 	new_node->type = CYLINDER;
 	current = (*obj);

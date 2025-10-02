@@ -17,6 +17,8 @@ SRC = src/main.c \
 		src/math_utils/vector_math.c \
 		src/engine/ray_tracer.c \
 		src/objects/sphere_intersection.c \
+		src/objects/plane_intersection.c \
+		src/objects/cylinder_intersection.c \
 		src/objects/shading.c
 
 GNL_SRC = get_next_line/get_next_line.c \

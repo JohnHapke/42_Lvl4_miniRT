@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sphere_intersection.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: johnhapke <johnhapke@student.42.fr>        +#+  +:+       +#+        */
+/*   By: iherman- <iherman-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/15 21:45:04 by johnhapke         #+#    #+#             */
-/*   Updated: 2025/09/29 08:40:06 by johnhapke        ###   ########.fr       */
+/*   Updated: 2025/10/02 13:44:27 by iherman-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,5 +57,6 @@ int	intersect_sphere(void *obj, t_ray ray, t_hitinfo *hit)
 	hit->surface_dir = vector_divide(vector_subtract(hit->pos, sphere->pos), (sphere->diameter / 2));
 	hit->obj = sphere;
 	hit->obj_type = SPHERE;
+	hit->obj_color = sphere->color;
 	return (1);
 }
