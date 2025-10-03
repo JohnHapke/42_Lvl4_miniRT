@@ -6,13 +6,35 @@
 /*   By: iherman- <iherman-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/19 11:00:34 by johnhapke         #+#    #+#             */
-/*   Updated: 2025/10/02 12:42:24 by iherman-         ###   ########.fr       */
+/*   Updated: 2025/10/03 11:28:15 by iherman-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
 // ToDo: ray from t to light has to be calculated to see if there is an object in between
+/*
+static bool	reaches_light(t_ray ray, t_rt_data *data)
+{
+	t_hitinfo	hitinfo;
+	int			hit;
+	t_hitinfo	best_hit;
+	t_obj		*obj;
+
+	obj = data->obj;
+	best_hit.t = -1;
+	while (obj != NULL)
+	{
+		hit = obj->fct_ptr(obj->obj, ray, &hitinfo);
+		if (hit == 1 && (hitinfo.t > 0 && hitinfo.t < best_hit.t))
+		{
+			best_hit = hitinfo;
+		}
+		obj = obj->next;
+	}
+
+	return (false);
+}*/
 
 unsigned int	calculate_color(const t_hitinfo *hitinfo, t_rt_data *data)
 {

@@ -6,7 +6,7 @@
 /*   By: iherman- <iherman-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/15 21:45:04 by johnhapke         #+#    #+#             */
-/*   Updated: 2025/10/02 13:44:27 by iherman-         ###   ########.fr       */
+/*   Updated: 2025/10/02 14:52:10 by iherman-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,10 @@ static double determine_t(double a, double b, double discriminat)
 	double t1;
 	double t2;
 
-	printf("t calculation \n");
+	//printf("t calculation \n");
 	t1 = (-b - sqrt(discriminat)) / (2 * a);
 	t2 = (-b + sqrt(discriminat)) / (2 * a);
-	printf("t1:%f, t2:%f \n", t1, t2);
+	//printf("t1:%f, t2:%f \n", t1, t2);
 	if (t1 > 0.001 && t2 > 0.001)
 		return (t1);
 	else if (t2 > 0.001)
@@ -41,16 +41,16 @@ int	intersect_sphere(void *obj, t_ray ray, t_hitinfo *hit)
 	a = vector_dot(ray.direction, ray.direction);
 	b = 2 * vector_dot(oc, ray.direction);
 	c = vector_dot(oc, oc) - (sphere->diameter/2) * (sphere->diameter/2);
-	printf("a= %f, b=%f,c=%f \n", a, b, c);
+	//printf("a= %f, b=%f,c=%f \n", a, b, c);
 	discriminant = b * b - 4 * a * c;
-	printf("discrimant=%f\n", discriminant);
+	//printf("discrimant=%f\n", discriminant);
 	if (discriminant < 0)
 	{
-		printf("discriminant < 0\n");
+		//printf("discriminant < 0\n");
 		return (0);
 	}
 	hit->t = determine_t(a, b, discriminant);
-	printf("intersect_sphere best hit->t= %f, ", hit->t);
+	//printf("intersect_sphere best hit->t= %f, ", hit->t);
 	if (hit->t == -1)
 		return (0);
 	hit->pos = vector_add(ray.origin, vector_multiply(ray.direction, hit->t));

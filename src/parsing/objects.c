@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   objects.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: johnhapke <johnhapke@student.42.fr>        +#+  +:+       +#+        */
+/*   By: iherman- <iherman-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 10:48:11 by johnhapke         #+#    #+#             */
-/*   Updated: 2025/09/03 12:35:13 by johnhapke        ###   ########.fr       */
+/*   Updated: 2025/10/03 10:40:56 by iherman-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	ft_parse_plane(char *line, t_rt_data *data)
 	i = 0;
 	plane = malloc(sizeof(t_plane));
 	if (!plane)
-		ft_parsing_error_handler(line, data);
+		printf("Plane 1");
 	plane->pos.x = ft_prepare_to_convert_atof(line, &i, data);
 	plane->pos.y = ft_prepare_to_convert_atof(line, &i, data);
 	plane->pos.z = ft_prepare_to_convert_atof(line, &i, data);
@@ -56,17 +56,17 @@ void	ft_parse_plane(char *line, t_rt_data *data)
 	plane->norm_vec.z = ft_prepare_to_convert_atof(line, &i, data);
 	if ((plane->norm_vec.x < -1 || plane->norm_vec.x > 1) || (plane->norm_vec.y < -1
 		|| plane->norm_vec.y > 1) || (plane->norm_vec.z < -1 || plane->norm_vec.z > 1))
-		ft_parsing_error_handler(line, data);
+		printf("Plane 2");
 	plane->color.R = (int) ft_prepare_to_convert_atoi(line, &i, data);
 	plane->color.G = (int) ft_prepare_to_convert_atoi(line, &i, data);
 	plane->color.B = (int) ft_prepare_to_convert_atoi(line, &i, data);
 	if ((plane->color.R < 0 || plane->color.R > 255) || (plane->color.G < 0
 		|| plane->color.G > 255) || (plane->color.B < 0 || plane->color.B > 255))
-		ft_parsing_error_handler(line, data);
+		printf("Plane 3");
 	if (line[i] != '\n' && line[i] != '\0')
-		ft_parsing_error_handler(line, data);
+		printf("Plane 4");
 	if (plane_addback(&(data->obj), plane) == 1)
-		ft_parsing_error_handler(line, data);
+		printf("Plane 5");
 }
 
 void	ft_parse_cylinder(char *line, t_rt_data *data)

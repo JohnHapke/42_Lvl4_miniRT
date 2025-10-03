@@ -6,7 +6,7 @@
 /*   By: iherman- <iherman-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/08 15:28:02 by iherman-          #+#    #+#             */
-/*   Updated: 2025/10/02 13:12:31 by iherman-         ###   ########.fr       */
+/*   Updated: 2025/10/03 11:32:30 by iherman-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,6 +119,7 @@ typedef struct s_hitinfo
 	void		*obj; // may not be neccessary
 	t_obj_type	obj_type;
 }	t_hitinfo;
+
 typedef struct s_obj
 {
 	void			*obj;
@@ -168,9 +169,9 @@ t_vec3	vector_cross(t_vec3 vec1, t_vec3 vec2);
 double	vector_dot(t_vec3 vec1, t_vec3 vec2);
 
 // engine
-void	raytracer(void *tmp_data);
+void			raytracer(void *tmp_data);
 unsigned int	shoot_ray(t_rt_data *data, int screen_x, int screen_y);
-t_ray	generate_ray(t_rt_data *data, int screenX, int screenY);
+t_ray			generate_ray(t_rt_data *data, int screenX, int screenY);
 
 // sphere
 int				intersect_sphere(void *obj, t_ray ray, t_hitinfo *hit);

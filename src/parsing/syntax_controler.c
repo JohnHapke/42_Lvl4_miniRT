@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   syntax_controler.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: johnhapke <johnhapke@student.42.fr>        +#+  +:+       +#+        */
+/*   By: iherman- <iherman-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/25 07:59:09 by johnhapke         #+#    #+#             */
-/*   Updated: 2025/08/25 13:09:03 by johnhapke        ###   ########.fr       */
+/*   Updated: 2025/10/03 11:27:00 by iherman-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,12 @@ static int ft_control_digits(char *line)
 	{
 		if (ft_isalpha(line[i]) == 1)
 			return (1);
-		else if (line[i] == '.' && (ft_isdigit(line[i - 1] || ft_isdigit(line[i] + 1))))
+		else if (line[i] == '.' && !(ft_isdigit(line[i - 1]) && ft_isdigit(line[i + 1])))
 			return (1);
 		else if (ft_isdigit(line[i]) && (!ft_isdigit(line[i + 1]) && line[i + 1] != '.'
 			&& line[i + 1] != ',' && line[i + 1] != '\0' && line[i + 1] != ' ' && line[i + 1] != '\n'))
 			return (1);
-		else if (line[i] == ',' && !ft_isdigit(line[i + 1]))
+		else if (line[i] == ',' && !(ft_isdigit(line[i + 1]) || line[i + 1] == '-'))
 			return (1);
 		i++;
 	}
@@ -56,14 +56,14 @@ void ft_control_type_identifier(char *file, t_rt_data *data)
 	{
 		if (!ft_isalpha(line[0]) && ft_strncmp(line, "\n", 1) != 0)
 			ft_parsing_error_handler(line, data);
-		else if (ft_strncmp(line, "A", 1) == 0)
+		else if (ft_strncmp(line, "A ", 2) == 0)
 			A++;
-		else if (ft_strncmp(line, "C", 1) == 0)
+		else if (ft_strncmp(line, "C ", 2) == 0)
 			C++;
-		else if (ft_strncmp(line, "L", 1) == 0)
+		else if (ft_strncmp(line, "L ", 2) == 0)
 			L++;
-		else if (ft_strncmp(line, "sp", 2) != 0 && ft_strncmp(line, "pl", 2) != 0
-			&& ft_strncmp(line, "cy", 2) != 0 && ft_strncmp(line, "\n", 1) != 0)
+		else if (ft_strncmp(line, "sp ", 3) != 0 && ft_strncmp(line, "pl ", 3) != 0
+			&& ft_strncmp(line, "cy ", 3) != 0 && ft_strncmp(line, "\n", 1) != 0)
 			ft_parsing_error_handler(line, data);
 		if (ft_control_digits(line) == 1)
 			ft_parsing_error_handler(line, data);
@@ -77,4 +77,3 @@ void ft_control_type_identifier(char *file, t_rt_data *data)
 	if (A > 1 || C > 1 || L > 1)
 		ft_parsing_error_handler(line, data);
 }
-

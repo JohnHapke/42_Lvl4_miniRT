@@ -3,6 +3,21 @@ Info: https://keepachangelog.com/en/1.0.0/
 
 /* PLEASE ADD THE NEW VERSION ALWAYS ABOVE TO SEE ALWAYS THE NEWEST CHANGES */
 
+# V01.20
+
+## UNRELEASED
+- shading: shading does not currently check for object intersections
+- pressing ESC must close the window and quit the program cleanly
+- norm compliance is still missing in most of the project:
+	changing variables names in parsing -> can not be capital letters (in fcts and color struct)
+	debug statements and comments need removal
+	function length reduction
+- rename parsing function and delete "ft_"
+- cyilinder and plane intersection implementation
+
+## FIXED
+- parsing/syntax_controler.c -> fixed a minor bug in the parsing that wouldn´t allow negative numbers and a minor bug which allowed wrong object name
+
 # V01.19
 
 ## ADDED
