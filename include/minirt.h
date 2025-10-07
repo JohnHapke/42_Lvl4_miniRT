@@ -6,7 +6,7 @@
 /*   By: iherman- <iherman-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/08 15:28:02 by iherman-          #+#    #+#             */
-/*   Updated: 2025/10/03 11:32:30 by iherman-         ###   ########.fr       */
+/*   Updated: 2025/10/07 15:23:25 by iherman-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,17 +43,9 @@ typedef struct s_vec3
 	double	z;
 }	t_vec3;
 
-
-typedef struct s_color
-{
-	double		R;
-	double		G;
-	double		B;
-}	t_color;
-
 typedef struct s_ray
 {
-	//t_color	color;
+	//t_vec3	color;
 	t_vec3	origin;
 	t_vec3	direction;
 }	t_ray;
@@ -61,7 +53,7 @@ typedef struct s_ray
 typedef	struct s_amb_light
 {
 	double	light_ratio;
-	t_color	color;
+	t_vec3	color;
 }	t_amb_light;
 
 typedef struct s_camera
@@ -76,21 +68,22 @@ typedef struct s_camera
 typedef	struct s_light
 {
 	t_vec3	light_point;
-	double	bright_ratio;
-	t_color	color;
+	double	light_ratio;
+	t_vec3	color;
 }	t_light;
+
 typedef struct s_sphere
 {
 	t_vec3	pos;
 	double	diameter;
-	t_color	color;
+	t_vec3	color;
 }	t_sphere;
 
 typedef	struct s_plane
 {
 	t_vec3	pos;
 	t_vec3	norm_vec;
-	t_color	color;
+	t_vec3	color;
 }	t_plane;
 
 typedef	struct s_cylinder
@@ -99,7 +92,7 @@ typedef	struct s_cylinder
 	t_vec3	norm_vec;
 	double	diameter;
 	double	height;
-	t_color	color;
+	t_vec3	color;
 }	t_cylinder;
 
 typedef enum e_obj_type
@@ -114,7 +107,7 @@ typedef struct s_hitinfo
 	double		t;
 	t_vec3		surface_dir;
 	t_vec3		pos;
-	t_color		obj_color;
+	t_vec3		obj_color;
 
 	void		*obj; // may not be neccessary
 	t_obj_type	obj_type;

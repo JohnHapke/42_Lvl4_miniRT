@@ -2,6 +2,13 @@ Info: https://keepachangelog.com/en/1.0.0/
 
 
 /* PLEASE ADD THE NEW VERSION ALWAYS ABOVE TO SEE ALWAYS THE NEWEST CHANGES */
+# V01.21
+
+## ADDED
+- objects/shading.c -> added functionality to cast shadows using previous intersection functions
+
+## CHANGED
+- minirt.h (& several other files) -> omitted t_color and replaced each occurrence with t_vec3 as they are functionally the same (Red == x, Green == y, Blue == z)
 
 # V01.20
 

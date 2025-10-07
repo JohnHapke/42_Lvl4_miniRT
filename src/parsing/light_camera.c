@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   light_camera.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: johnhapke <johnhapke@student.42.fr>        +#+  +:+       +#+        */
+/*   By: iherman- <iherman-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 11:03:21 by johnhapke         #+#    #+#             */
-/*   Updated: 2025/09/29 15:26:55 by johnhapke        ###   ########.fr       */
+/*   Updated: 2025/10/07 15:23:59 by iherman-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,11 @@ void	ft_parse_ambient_lighting(char *line, t_rt_data *data)
 	data->amb_light.light_ratio = ft_prepare_to_convert_atof(line, &i, data);
 	if (data->amb_light.light_ratio < 0.0 || data->amb_light.light_ratio > 1.0)
 		ft_parsing_error_handler(line, data);
-	data->amb_light.color.R = (int) ft_prepare_to_convert_atoi(line, &i, data);
-	data->amb_light.color.G = (int) ft_prepare_to_convert_atoi(line, &i, data);
-	data->amb_light.color.B = (int) ft_prepare_to_convert_atoi(line, &i, data);
-	if ((data->amb_light.color.R < 0 || data->amb_light.color.R > 255) || (data->amb_light.color.G < 0
-		|| data->amb_light.color.G > 255) || (data->amb_light.color.B < 0 || data->amb_light.color.B > 255))
+	data->amb_light.color.x = (int) ft_prepare_to_convert_atoi(line, &i, data);
+	data->amb_light.color.y = (int) ft_prepare_to_convert_atoi(line, &i, data);
+	data->amb_light.color.z = (int) ft_prepare_to_convert_atoi(line, &i, data);
+	if ((data->amb_light.color.x < 0 || data->amb_light.color.x > 255) || (data->amb_light.color.y < 0
+		|| data->amb_light.color.y > 255) || (data->amb_light.color.z < 0 || data->amb_light.color.z > 255))
 		ft_parsing_error_handler(line, data);
 	if (line[i] != '\n' && line[i] != '\0')
 		ft_parsing_error_handler(line, data);
@@ -32,11 +32,11 @@ void	ft_parse_ambient_lighting(char *line, t_rt_data *data)
 	printf("=== AMBIENT LIGHT DATA ===\n");
 	printf("Light Ratio: %.3f\n", data->amb_light.light_ratio);
 	printf("Color: RGB(%f, %f, %f) ", 
-       data->amb_light.color.R, data->amb_light.color.G, data->amb_light.color.B);
+       data->amb_light.color.x, data->amb_light.color.y, data->amb_light.color.z);
 	printf("(Valid: %s)\n", 
-       ((data->amb_light.color.R >= 0 && data->amb_light.color.R <= 255) &&
-        (data->amb_light.color.G >= 0 && data->amb_light.color.G <= 255) &&
-        (data->amb_light.color.B >= 0 && data->amb_light.color.B <= 255)) ? "YES" : "NO");
+       ((data->amb_light.color.x >= 0 && data->amb_light.color.x <= 255) &&
+        (data->amb_light.color.y >= 0 && data->amb_light.color.y <= 255) &&
+        (data->amb_light.color.z >= 0 && data->amb_light.color.z <= 255)) ? "YES" : "NO");
 	printf("===========================\n");
 }
 
@@ -83,14 +83,14 @@ void	ft_parse_light(char *line, t_rt_data *data)
 	data->light.light_point.x = ft_prepare_to_convert_atof(line, &i, data);
 	data->light.light_point.y = ft_prepare_to_convert_atof(line, &i, data);
 	data->light.light_point.z = ft_prepare_to_convert_atof(line, &i, data);
-	data->light.bright_ratio = ft_prepare_to_convert_atof(line, &i, data);
-	if (data->light.bright_ratio < 0.0 || data->light.bright_ratio > 1.0)
+	data->light.light_ratio = ft_prepare_to_convert_atof(line, &i, data);
+	if (data->light.light_ratio < 0.0 || data->light.light_ratio > 1.0)
 		ft_parsing_error_handler(line, data);
-	data->light.color.R = (int) ft_prepare_to_convert_atoi(line, &i, data);
-	data->light.color.G = (int) ft_prepare_to_convert_atoi(line, &i, data);
-	data->light.color.B = (int) ft_prepare_to_convert_atoi(line, &i, data);
-	if ((data->light.color.R < 0 || data->light.color.R > 255) || (data->light.color.G < 0
-		|| data->light.color.G > 255) || (data->light.color.B < 0 || data->light.color.B > 255))
+	data->light.color.x = (int) ft_prepare_to_convert_atoi(line, &i, data);
+	data->light.color.y = (int) ft_prepare_to_convert_atoi(line, &i, data);
+	data->light.color.z = (int) ft_prepare_to_convert_atoi(line, &i, data);
+	if ((data->light.color.x < 0 || data->light.color.x > 255) || (data->light.color.y < 0
+		|| data->light.color.y > 255) || (data->light.color.z < 0 || data->light.color.z > 255))
 		ft_parsing_error_handler(line, data);
 	if (line[i] != '\n' && line[i] != '\0')
 		ft_parsing_error_handler(line, data);
@@ -98,10 +98,10 @@ void	ft_parse_light(char *line, t_rt_data *data)
 	printf("=== LIGHT DATA ===\n");
 	printf("Light Point: (%.2f, %.2f, %.2f)\n", 
        data->light.light_point.x, data->light.light_point.y, data->light.light_point.z);
-	printf("Brightness Ratio: %.3f ", data->light.bright_ratio);
+	printf("Brightness Ratio: %.3f ", data->light.light_ratio);
 	printf("(Valid: %s)\n", 
-       (data->light.bright_ratio >= 0.0 && data->light.bright_ratio <= 1.0) ? "YES" : "NO");
+       (data->light.light_ratio >= 0.0 && data->light.light_ratio <= 1.0) ? "YES" : "NO");
 	printf("Color: RGB(%f, %f, %f)\n", 
-       data->light.color.R, data->light.color.G, data->light.color.B);
+       data->light.color.x, data->light.color.y, data->light.color.z);
 	printf("==================\n");
 }

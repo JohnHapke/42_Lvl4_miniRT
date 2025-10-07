@@ -6,7 +6,7 @@
 /*   By: iherman- <iherman-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 10:48:11 by johnhapke         #+#    #+#             */
-/*   Updated: 2025/10/03 10:40:56 by iherman-         ###   ########.fr       */
+/*   Updated: 2025/10/07 15:15:16 by iherman-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,11 @@ void	ft_parse_sphere(char *line, t_rt_data *data)
 	sphere->diameter = ft_prepare_to_convert_atof(line, &i, data);
 	if (sphere->diameter <= 0.0)
 		ft_parsing_error_handler(line, data);
-	sphere->color.R = (int) ft_prepare_to_convert_atoi(line, &i, data);
-	sphere->color.G = (int) ft_prepare_to_convert_atoi(line, &i, data);
-	sphere->color.B = (int) ft_prepare_to_convert_atoi(line, &i, data);
-	if ((sphere->color.R < 0 || sphere->color.R > 255) || (sphere->color.G < 0
-		|| sphere->color.G > 255) || (sphere->color.B < 0 || sphere->color.B > 255))
+	sphere->color.x = (int) ft_prepare_to_convert_atoi(line, &i, data);
+	sphere->color.y = (int) ft_prepare_to_convert_atoi(line, &i, data);
+	sphere->color.z = (int) ft_prepare_to_convert_atoi(line, &i, data);
+	if ((sphere->color.x < 0 || sphere->color.x > 255) || (sphere->color.y < 0
+		|| sphere->color.y > 255) || (sphere->color.z < 0 || sphere->color.z > 255))
 		ft_parsing_error_handler(line, data);
 	if (line[i] != '\n' && line[i] != '\0')
 		ft_parsing_error_handler(line, data);
@@ -57,11 +57,11 @@ void	ft_parse_plane(char *line, t_rt_data *data)
 	if ((plane->norm_vec.x < -1 || plane->norm_vec.x > 1) || (plane->norm_vec.y < -1
 		|| plane->norm_vec.y > 1) || (plane->norm_vec.z < -1 || plane->norm_vec.z > 1))
 		printf("Plane 2");
-	plane->color.R = (int) ft_prepare_to_convert_atoi(line, &i, data);
-	plane->color.G = (int) ft_prepare_to_convert_atoi(line, &i, data);
-	plane->color.B = (int) ft_prepare_to_convert_atoi(line, &i, data);
-	if ((plane->color.R < 0 || plane->color.R > 255) || (plane->color.G < 0
-		|| plane->color.G > 255) || (plane->color.B < 0 || plane->color.B > 255))
+	plane->color.x = (int) ft_prepare_to_convert_atoi(line, &i, data);
+	plane->color.y = (int) ft_prepare_to_convert_atoi(line, &i, data);
+	plane->color.z = (int) ft_prepare_to_convert_atoi(line, &i, data);
+	if ((plane->color.x < 0 || plane->color.x > 255) || (plane->color.y < 0
+		|| plane->color.y > 255) || (plane->color.z < 0 || plane->color.z > 255))
 		printf("Plane 3");
 	if (line[i] != '\n' && line[i] != '\0')
 		printf("Plane 4");
@@ -93,11 +93,11 @@ void	ft_parse_cylinder(char *line, t_rt_data *data)
 	cylinder->height = ft_prepare_to_convert_atof(line, &i, data);
 	if (cylinder->height <= 0.0)
 		ft_parsing_error_handler(line, data);
-	cylinder->color.R = (int) ft_prepare_to_convert_atoi(line, &i, data);
-	cylinder->color.G = (int) ft_prepare_to_convert_atoi(line, &i, data);
-	cylinder->color.B = (int) ft_prepare_to_convert_atoi(line, &i, data);
-	if ((cylinder->color.R < 0 || cylinder->color.R > 255) || (cylinder->color.G < 0
-		|| cylinder->color.G > 255) || (cylinder->color.B < 0 || cylinder->color.B > 255))
+	cylinder->color.x = (int) ft_prepare_to_convert_atoi(line, &i, data);
+	cylinder->color.y = (int) ft_prepare_to_convert_atoi(line, &i, data);
+	cylinder->color.z = (int) ft_prepare_to_convert_atoi(line, &i, data);
+	if ((cylinder->color.x < 0 || cylinder->color.x > 255) || (cylinder->color.y < 0
+		|| cylinder->color.y > 255) || (cylinder->color.z < 0 || cylinder->color.z > 255))
 		ft_parsing_error_handler(line, data);
 	if (line[i] != '\n' && line[i] != '\0')
 		ft_parsing_error_handler(line, data);

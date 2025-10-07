@@ -6,7 +6,7 @@
 /*   By: iherman- <iherman-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 14:22:54 by johnhapke         #+#    #+#             */
-/*   Updated: 2025/10/02 13:05:29 by iherman-         ###   ########.fr       */
+/*   Updated: 2025/10/07 15:14:35 by iherman-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@ static void	print_sphere(t_sphere *sphere)
        sphere->pos.x, sphere->pos.y, sphere->pos.z);
 	printf("Diameter: %.2f\n", sphere->diameter);
 	printf("Color: RGB(%f, %f, %f) ", 
-       sphere->color.R, sphere->color.G, sphere->color.B);
+       sphere->color.x, sphere->color.y, sphere->color.z);
 	printf("(Valid: %s)\n", 
-       ((sphere->color.R >= 0 && sphere->color.R <= 255) &&
-        (sphere->color.G >= 0 && sphere->color.G <= 255) &&
-        (sphere->color.B >= 0 && sphere->color.B <= 255)) ? "YES" : "NO");
+       ((sphere->color.x >= 0 && sphere->color.x <= 255) &&
+        (sphere->color.y >= 0 && sphere->color.y <= 255) &&
+        (sphere->color.z >= 0 && sphere->color.z <= 255)) ? "YES" : "NO");
 	printf("===================\n");
 }
 
@@ -61,7 +61,7 @@ static void	print_plane(t_plane *plane)
 	printf("Normal Vector: (%.2f, %.2f, %.2f)\n", 
        plane->norm_vec.x, plane->norm_vec.y, plane->norm_vec.z);
 	printf("Color: RGB(%f, %f, %f)\n", 
-       plane->color.R, plane->color.G, plane->color.B);
+       plane->color.x, plane->color.y, plane->color.z);
 	printf("==================\n");
 }
 
@@ -104,11 +104,11 @@ static void	print_cylinder(t_cylinder *cylinder)
 	printf("Diameter: %.2f\n", cylinder->diameter);
 	printf("Height: %.2f\n", cylinder->height);
 	printf("Color: RGB(%f, %f, %f) ", 
-       cylinder->color.R, cylinder->color.G, cylinder->color.B);
+       cylinder->color.x, cylinder->color.y, cylinder->color.z);
 	printf("(Valid: %s)\n", 
-       ((cylinder->color.R >= 0 && cylinder->color.R <= 255) &&
-        (cylinder->color.G >= 0 && cylinder->color.G <= 255) &&
-        (cylinder->color.B >= 0 && cylinder->color.B <= 255)) ? "YES" : "NO");
+       ((cylinder->color.x >= 0 && cylinder->color.x <= 255) &&
+        (cylinder->color.y >= 0 && cylinder->color.y <= 255) &&
+        (cylinder->color.z >= 0 && cylinder->color.z <= 255)) ? "YES" : "NO");
 	printf("=====================\n");
 }
 
