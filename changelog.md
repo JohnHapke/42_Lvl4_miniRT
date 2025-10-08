@@ -2,6 +2,19 @@ Info: https://keepachangelog.com/en/1.0.0/
 
 
 /* PLEASE ADD THE NEW VERSION ALWAYS ABOVE TO SEE ALWAYS THE NEWEST CHANGES */
+
+# V01.22
+
+## ADDED
+- objects/shading.c -> added basic specular reflection
+- objects/plane_intersection.c -> added a proper plane intersection function
+
+## CHANGED
+- parsing/objects.c -> added a small check to ensure normal vectors were actually normalized
+
+## REMOVED
+- ray_tracer.c -> removed a useless variable
+
 # V01.21
 
 ## ADDED
@@ -9,6 +22,9 @@ Info: https://keepachangelog.com/en/1.0.0/
 
 ## CHANGED
 - minirt.h (& several other files) -> omitted t_color and replaced each occurrence with t_vec3 as they are functionally the same (Red == x, Green == y, Blue == z)
+
+## ISSUES
+- when facing negative directions, some visual glitches appear
 
 # V01.20
 
@@ -35,7 +51,7 @@ Info: https://keepachangelog.com/en/1.0.0/
 - added object color to t_hitinfo to generalize the use of calculate_color
 - made the calculate_color hitinfo param be a const pointer to optimize
 
-## NOTE
+## ISSUES
 - plane is not properly recognized by the parser and seemingly always spits an error
 
 # V01.18

@@ -6,7 +6,7 @@
 /*   By: iherman- <iherman-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 11:07:06 by iherman-          #+#    #+#             */
-/*   Updated: 2025/10/03 11:37:33 by iherman-         ###   ########.fr       */
+/*   Updated: 2025/10/08 21:46:55 by iherman-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 static unsigned int	intersect_test(t_ray ray, t_rt_data *data)
 {
 	t_hitinfo	hitinfo;
-	int			hit;
 	t_hitinfo	best_hit;
 	bool		hit_found;
 	t_obj		*obj;
@@ -25,8 +24,7 @@ static unsigned int	intersect_test(t_ray ray, t_rt_data *data)
 	best_hit.t = INFINITY;
 	while (obj != NULL)
 	{
-		hit = obj->fct_ptr(obj->obj, ray, &hitinfo);
-		if (hit == 1 && (hitinfo.t > 0 && hitinfo.t < best_hit.t))
+		if (obj->fct_ptr(obj->obj, ray, &hitinfo) && hitinfo.t < best_hit.t)
 		{
 			best_hit = hitinfo;
 			//printf("t= %f\n", best_hit.t);
@@ -34,7 +32,7 @@ static unsigned int	intersect_test(t_ray ray, t_rt_data *data)
 		}
 		obj = obj->next;
 	}
-	if (hit_found == true)
+	if (hit_found)
 	{
 		unsigned int color = calculate_color(&best_hit, data);
 		//printf("color: %u\n", color);

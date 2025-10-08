@@ -6,7 +6,7 @@
 /*   By: iherman- <iherman-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/08 15:28:02 by iherman-          #+#    #+#             */
-/*   Updated: 2025/10/07 15:23:25 by iherman-         ###   ########.fr       */
+/*   Updated: 2025/10/08 20:22:24 by iherman-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,14 @@
 # include <MLX42/MLX42.h>
 # include <MLX42/MLX42_Int.h>
 
-# define WINDOW_HEIGHT 600//1048
+# define WINDOW_HEIGHT 524
 
-#  define WINDOW_WIDTH 800//2096
+#  define WINDOW_WIDTH 1048
 
 // very small number to add tolerance for floating point comparisons
 # define EPSILON 1e-8
+
+# define SPECULAR_M 32
 
 /*
 	To get normalized vector (for direction)

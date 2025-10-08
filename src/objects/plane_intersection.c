@@ -6,7 +6,7 @@
 /*   By: iherman- <iherman-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/02 13:02:08 by iherman-          #+#    #+#             */
-/*   Updated: 2025/10/02 13:41:35 by iherman-         ###   ########.fr       */
+/*   Updated: 2025/10/08 13:58:48 by iherman-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,20 @@
 
 int	intersect_plane(void *obj, t_ray ray, t_hitinfo *hit)
 {
-	ft_bzero(hit, sizeof(t_hitinfo));
-	hit->t = -1;
-	(void) obj;
-	(void) ray;
-	return (0);
-	/*t_plane	*plane;
+	const t_plane	*plane = (t_plane *)obj;
+	const double	denom = vector_dot(ray.direction, plane->norm_vec);
+	t_vec3		diff;
 
-	plane = (t_plane*) obj;
+	if (fabs(denom) < EPSILON)
+		return (false);
+	diff = vector_subtract(plane->pos, ray.origin);
+	hit->t = vector_dot(diff, plane->norm_vec) / denom;
+	hit->surface_dir = plane->norm_vec;
+	if (vector_dot(ray.direction, hit->surface_dir) > 0)
+	    hit->surface_dir = vector_multiply(hit->surface_dir, -1);
+	hit->obj_color = plane->color;
 	hit->pos = vector_add(ray.origin, vector_multiply(ray.direction, hit->t));
-	//hit->surface_dir = // tbd
-	hit->obj = plane;
-	hit->obj_type = PLANE;
-	hit->obj_color = plane->color;*/
+	if (hit->t < 0)
+		return (false);
+	return (true);
 }

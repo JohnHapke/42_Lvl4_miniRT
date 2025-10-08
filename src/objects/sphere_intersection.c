@@ -6,7 +6,7 @@
 /*   By: iherman- <iherman-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/15 21:45:04 by johnhapke         #+#    #+#             */
-/*   Updated: 2025/10/02 14:52:10 by iherman-         ###   ########.fr       */
+/*   Updated: 2025/10/08 13:27:19 by iherman-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,13 @@ static double determine_t(double a, double b, double discriminat)
 
 int	intersect_sphere(void *obj, t_ray ray, t_hitinfo *hit)
 {
+	const t_sphere *sphere = (t_sphere *)obj;
 	double	a;
 	double	b;
 	double	c;
 	double	discriminant;
 	t_vec3	oc;
 
-	t_sphere *sphere = (t_sphere *)obj;
 	oc = vector_subtract(ray.origin, sphere->pos);
 	a = vector_dot(ray.direction, ray.direction);
 	b = 2 * vector_dot(oc, ray.direction);
@@ -55,8 +55,8 @@ int	intersect_sphere(void *obj, t_ray ray, t_hitinfo *hit)
 		return (0);
 	hit->pos = vector_add(ray.origin, vector_multiply(ray.direction, hit->t));
 	hit->surface_dir = vector_divide(vector_subtract(hit->pos, sphere->pos), (sphere->diameter / 2));
-	hit->obj = sphere;
-	hit->obj_type = SPHERE;
+	//	hit->obj = sphere;
+	//	hit->obj_type = SPHERE;
 	hit->obj_color = sphere->color;
 	return (1);
 }
