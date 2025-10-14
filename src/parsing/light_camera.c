@@ -6,7 +6,7 @@
 /*   By: iherman- <iherman-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 11:03:21 by johnhapke         #+#    #+#             */
-/*   Updated: 2025/10/07 15:23:59 by iherman-         ###   ########.fr       */
+/*   Updated: 2025/10/11 01:50:13 by iherman-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,12 +54,13 @@ void	ft_parse_camera(char *line, t_rt_data *data)
 	if ((data->camera.norm_vec.x < -1 || data->camera.norm_vec.x > 1) || (data->camera.norm_vec.y < -1
 		|| data->camera.norm_vec.y > 1) || (data->camera.norm_vec.z < -1 || data->camera.norm_vec.z > 1))
 		ft_parsing_error_handler(line, data);
+	if (vector_length(data->camera.norm_vec) != 1)
+		ft_parsing_error_handler(line, data);
 	data->camera.fov = (int) ft_prepare_to_convert_atoi(line, &i, data);
 	if (data->camera.fov < 0 || data->camera.fov > 180)
 		ft_parsing_error_handler(line, data);
 	if (line[i] != '\n' && line[i] != '\0')
 		ft_parsing_error_handler(line, data);
-	//data->camera.norm_vec = normalize(data->camera.norm_vec);
 	data->camera.right = normalize(vector_cross((t_vec3){0,1,0}, data->camera.norm_vec));
 	data->camera.up = normalize(vector_cross(data->camera.norm_vec, data->camera.right));
 	printf("Camera Right: (%f, %f, %f)\n", data->camera.right.x, data->camera.right.y, data->camera.right.z);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error_handler.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: johnhapke <johnhapke@student.42.fr>        +#+  +:+       +#+        */
+/*   By: iherman- <iherman-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 10:29:28 by johnhapke         #+#    #+#             */
-/*   Updated: 2025/09/03 12:20:18 by johnhapke        ###   ########.fr       */
+/*   Updated: 2025/10/14 10:53:34 by iherman-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void ft_parsing_error_handler(char *line, t_rt_data *data)
 {
+	printf("Error: %s\n", line);
 	ft_free_parsing(line, data);
-	printf("Error\n");
 	exit(1);
 }
 

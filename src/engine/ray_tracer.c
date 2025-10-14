@@ -6,7 +6,7 @@
 /*   By: iherman- <iherman-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 11:07:06 by iherman-          #+#    #+#             */
-/*   Updated: 2025/10/08 21:46:55 by iherman-         ###   ########.fr       */
+/*   Updated: 2025/10/14 11:35:20 by iherman-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,6 @@ t_ray	generate_ray(t_rt_data *data, int screenX, int screenY)
 		vector_add(
 			vector_multiply(data->camera.right, ndcX * aspectRatio * fovAdjust),
 			vector_multiply(data->camera.up, ndcY * fovAdjust)));
-	//printf("ray: x=%f, y=%f, z=%f\n", rayDir.x, rayDir.y, rayDir.z);
 	ray.origin = data->camera.viewpoint;
 	ray.direction = normalize(rayDir);
 	return (ray);

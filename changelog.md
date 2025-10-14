@@ -3,6 +3,21 @@ Info: https://keepachangelog.com/en/1.0.0/
 
 /* PLEASE ADD THE NEW VERSION ALWAYS ABOVE TO SEE ALWAYS THE NEWEST CHANGES */
 
+# V01.23
+
+## ADDED
+- objects/cylinder_intersection.c -> very rudimentory cylinder intersection function without cylinder caps
+
+## FIXED
+- objects/sphere_intersection.c -> made sure the smallest t value was always chosen rather than always choosing t1
+- parsing/light_camera.c -> added a check to ensure normalized vectors
+
+## CHANGED
+- parsing/error_handler.c -> made the error handler print line before freeing
+
+## ISSUES
+- when plane is not first in intersection rendering pipeline, some strange visual glitches appear when facing negative directions. These visual glitches also appear on any spheres and cylinders that are rendered after the plane in the rendering pipeline
+
 # V01.22
 
 ## ADDED

@@ -6,7 +6,7 @@
 /*   By: iherman- <iherman-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/02 13:02:08 by iherman-          #+#    #+#             */
-/*   Updated: 2025/10/08 13:58:48 by iherman-         ###   ########.fr       */
+/*   Updated: 2025/10/14 11:46:54 by iherman-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,12 @@ int	intersect_plane(void *obj, t_ray ray, t_hitinfo *hit)
 		return (false);
 	diff = vector_subtract(plane->pos, ray.origin);
 	hit->t = vector_dot(diff, plane->norm_vec) / denom;
+	if (hit->t < 0)
+		return (false);
 	hit->surface_dir = plane->norm_vec;
 	if (vector_dot(ray.direction, hit->surface_dir) > 0)
 	    hit->surface_dir = vector_multiply(hit->surface_dir, -1);
 	hit->obj_color = plane->color;
 	hit->pos = vector_add(ray.origin, vector_multiply(ray.direction, hit->t));
-	if (hit->t < 0)
-		return (false);
 	return (true);
 }
