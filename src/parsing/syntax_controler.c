@@ -6,7 +6,7 @@
 /*   By: iherman- <iherman-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/25 07:59:09 by johnhapke         #+#    #+#             */
-/*   Updated: 2025/10/03 11:27:00 by iherman-         ###   ########.fr       */
+/*   Updated: 2025/10/15 18:56:49 by iherman-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,19 +54,22 @@ void ft_control_type_identifier(char *file, t_rt_data *data)
 		ft_parsing_error_handler(line, data);
 	while (line)
 	{
-		if (!ft_isalpha(line[0]) && ft_strncmp(line, "\n", 1) != 0)
-			ft_parsing_error_handler(line, data);
-		else if (ft_strncmp(line, "A ", 2) == 0)
-			A++;
-		else if (ft_strncmp(line, "C ", 2) == 0)
-			C++;
-		else if (ft_strncmp(line, "L ", 2) == 0)
-			L++;
-		else if (ft_strncmp(line, "sp ", 3) != 0 && ft_strncmp(line, "pl ", 3) != 0
-			&& ft_strncmp(line, "cy ", 3) != 0 && ft_strncmp(line, "\n", 1) != 0)
-			ft_parsing_error_handler(line, data);
-		if (ft_control_digits(line) == 1)
-			ft_parsing_error_handler(line, data);
+		if (line[0] != '#')
+		{
+			if (!ft_isalpha(line[0]) && ft_strncmp(line, "\n", 1) != 0)
+				ft_parsing_error_handler(line, data);
+			else if (ft_strncmp(line, "A ", 2) == 0)
+				A++;
+			else if (ft_strncmp(line, "C ", 2) == 0)
+				C++;
+			else if (ft_strncmp(line, "L ", 2) == 0)
+				L++;
+			else if (ft_strncmp(line, "sp ", 3) != 0 && ft_strncmp(line, "pl ", 3) != 0
+				&& ft_strncmp(line, "cy ", 3) != 0 && ft_strncmp(line, "\n", 1) != 0)
+				ft_parsing_error_handler(line, data);
+			if (ft_control_digits(line) == 1)
+				ft_parsing_error_handler(line, data);	
+		}
 		free(line);
 		line = ft_get_next_line(fd);
 		if (!line)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handler.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: johnhapke <johnhapke@student.42.fr>        +#+  +:+       +#+        */
+/*   By: iherman- <iherman-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/13 18:19:03 by iherman-          #+#    #+#             */
-/*   Updated: 2025/08/25 13:04:43 by johnhapke        ###   ########.fr       */
+/*   Updated: 2025/10/15 18:54:06 by iherman-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 static void	ft_facilitate_input_line(char *line, t_rt_data *data)
 {
+	if (line[0] == '#')
+		return ;
 	if (ft_strncmp(line, "A", 1) == 0)
 		ft_parse_ambient_lighting(line, data);
 	else if (ft_strncmp(line, "C", 1) == 0)

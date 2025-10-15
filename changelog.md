@@ -3,6 +3,28 @@ Info: https://keepachangelog.com/en/1.0.0/
 
 /* PLEASE ADD THE NEW VERSION ALWAYS ABOVE TO SEE ALWAYS THE NEWEST CHANGES */
 
+# V01.24
+
+## ADDED
+- parsing/handler.c && parsing/syntax_controller.c -> added a very simple comment functionality to ignore lines starting with '#'
+- generate_normal.cpp -> simple cpp program to take any input and normalize it. useful for making proper scenes
+
+## FIXED
+- objects/shading.c -> fixed and simplified reaches_light() to remove a strange visual bug
+
+## CHANGED
+- objects/cylinder.c -> made hitinfo surface_dir be properly inverted when ray intersects with backface
+
+## REMOVED
+- parsing/light_camera.c && parsing/objects.c -> removed some unnecessary lines due to normalization check already handling them
+
+## UNRELEASED
+- cylinder cap intersection implementation
+- cylinder backface intersection
+
+## ISSUES
+- parsing is too strict on taking normalized vectors. norm vecs can currently only be a combination of 0, 0 and 1. (0,1,0 for example)
+
 # V01.23
 
 ## ADDED

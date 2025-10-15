@@ -6,7 +6,7 @@
 /*   By: iherman- <iherman-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/02 13:02:08 by iherman-          #+#    #+#             */
-/*   Updated: 2025/10/14 11:46:54 by iherman-         ###   ########.fr       */
+/*   Updated: 2025/10/15 19:53:24 by iherman-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	intersect_plane(void *obj, t_ray ray, t_hitinfo *hit)
 {
 	const t_plane	*plane = (t_plane *)obj;
 	const double	denom = vector_dot(ray.direction, plane->norm_vec);
-	t_vec3		diff;
+	t_vec3			diff;
 
 	if (fabs(denom) < EPSILON)
 		return (false);
@@ -26,7 +26,7 @@ int	intersect_plane(void *obj, t_ray ray, t_hitinfo *hit)
 		return (false);
 	hit->surface_dir = plane->norm_vec;
 	if (vector_dot(ray.direction, hit->surface_dir) > 0)
-	    hit->surface_dir = vector_multiply(hit->surface_dir, -1);
+		hit->surface_dir = vector_multiply(hit->surface_dir, -1);
 	hit->obj_color = plane->color;
 	hit->pos = vector_add(ray.origin, vector_multiply(ray.direction, hit->t));
 	return (true);

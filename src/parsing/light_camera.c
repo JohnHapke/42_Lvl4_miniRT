@@ -6,7 +6,7 @@
 /*   By: iherman- <iherman-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 11:03:21 by johnhapke         #+#    #+#             */
-/*   Updated: 2025/10/11 01:50:13 by iherman-         ###   ########.fr       */
+/*   Updated: 2025/10/14 13:27:47 by iherman-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,6 @@ void	ft_parse_camera(char *line, t_rt_data *data)
 	data->camera.norm_vec.x = ft_prepare_to_convert_atof(line, &i, data);
 	data->camera.norm_vec.y = ft_prepare_to_convert_atof(line, &i, data);
 	data->camera.norm_vec.z = ft_prepare_to_convert_atof(line, &i, data);
-	if ((data->camera.norm_vec.x < -1 || data->camera.norm_vec.x > 1) || (data->camera.norm_vec.y < -1
-		|| data->camera.norm_vec.y > 1) || (data->camera.norm_vec.z < -1 || data->camera.norm_vec.z > 1))
-		ft_parsing_error_handler(line, data);
 	if (vector_length(data->camera.norm_vec) != 1)
 		ft_parsing_error_handler(line, data);
 	data->camera.fov = (int) ft_prepare_to_convert_atoi(line, &i, data);

@@ -6,7 +6,7 @@
 /*   By: iherman- <iherman-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 10:48:11 by johnhapke         #+#    #+#             */
-/*   Updated: 2025/10/08 13:39:50 by iherman-         ###   ########.fr       */
+/*   Updated: 2025/10/14 13:28:55 by iherman-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,6 @@ void	ft_parse_plane(char *line, t_rt_data *data)
 	plane->norm_vec.x = ft_prepare_to_convert_atof(line, &i, data);
 	plane->norm_vec.y = ft_prepare_to_convert_atof(line, &i, data);
 	plane->norm_vec.z = ft_prepare_to_convert_atof(line, &i, data);
-	if ((plane->norm_vec.x < -1 || plane->norm_vec.x > 1) || (plane->norm_vec.y < -1
-		|| plane->norm_vec.y > 1) || (plane->norm_vec.z < -1 || plane->norm_vec.z > 1))
-		ft_parsing_error_handler(line, data);
 	if (vector_length(plane->norm_vec) != 1)
 		ft_parsing_error_handler(line, data);
 	plane->color.x = (int) ft_prepare_to_convert_atoi(line, &i, data);
@@ -86,9 +83,6 @@ void	ft_parse_cylinder(char *line, t_rt_data *data)
 	cylinder->norm_vec.x = ft_prepare_to_convert_atof(line, &i, data);
 	cylinder->norm_vec.y = ft_prepare_to_convert_atof(line, &i, data);
 	cylinder->norm_vec.z = ft_prepare_to_convert_atof(line, &i, data);
-	if ((cylinder->norm_vec.x < -1 || cylinder->norm_vec.x > 1) || (cylinder->norm_vec.y < -1
-		|| cylinder->norm_vec.y > 1) || (cylinder->norm_vec.z < -1 || cylinder->norm_vec.z > 1))
-		ft_parsing_error_handler(line, data);
 	if (vector_length(cylinder->norm_vec) != 1)
 		ft_parsing_error_handler(line, data);
 	cylinder->diameter = ft_prepare_to_convert_atof(line, &i, data);

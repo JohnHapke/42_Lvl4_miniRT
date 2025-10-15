@@ -19,6 +19,7 @@ bool	solve_quad(t_vec3 vec1, t_vec3 vec2, double diameter, double *t1, double *t
 	const double b = 2.0 * vector_dot(vec1, vec2);
 	const double c = vector_dot(vec2, vec2) - diameter * diameter;
 	const double discriminant = b * b - 4 * a * c;
+
 	if (discriminant < 0.0)
 		return (false);
 	sqrt_disc = sqrt(discriminant);
@@ -38,28 +39,27 @@ int	intersect_cylinder(void *obj, t_ray ray, t_hitinfo *hit)
 	double	t2;
 	double	proj_len;
 	const t_cylinder	*cylinder = (t_cylinder *)obj;
-	const t_vec3	d_proj = vector_subtract(ray.direction, project(ray.direction, cylinder->norm_vec));
-	const t_vec3	oc_proj = vector_subtract(vector_subtract(ray.origin, cylinder->pos), project(vector_subtract(ray.origin, cylinder->pos), cylinder->norm_vec));
+	const t_vec3		d_proj = vector_subtract(ray.direction, project(ray.direction, cylinder->norm_vec));
+	const t_vec3		oc_proj = vector_subtract(vector_subtract(ray.origin, cylinder->pos), project(vector_subtract(ray.origin, cylinder->pos), cylinder->norm_vec));
 	t_vec3 hit_to_axis;
 
 	if (!solve_quad(d_proj, oc_proj, cylinder->diameter * 0.5, &t1, &t2))
 		return (false);
 	hit->t = INFINITY;
-	if (t1 > 0.0 && t1 < hit->t)
+	if (t1 > EPSILON && t1 < hit->t)
 		hit->t = t1;
-	if (t2 > 0.0 && t2 < hit->t)
+	if (t2 > EPSILON && t2 < hit->t)
 		hit->t = t2;
-
 	if (hit->t == INFINITY)
 		return (false);
 	hit->pos = vector_add(ray.origin, vector_multiply(ray.direction, hit->t));
-
 	hit_to_axis = vector_subtract(hit->pos, cylinder->pos);
 	proj_len = vector_dot(hit_to_axis, cylinder->norm_vec);
 	if (proj_len < 0.0 || proj_len > cylinder->height)
-	return (false);
-
+		return (false);
 	hit->surface_dir = normalize(vector_subtract(hit_to_axis, project(hit_to_axis, cylinder->norm_vec)));
+	if (vector_dot(hit->surface_dir, ray.direction) > 0)
+		hit->surface_dir = vector_multiply(hit->surface_dir, -1.0);
 	hit->obj_color = cylinder->color;
 	return (true);
 }

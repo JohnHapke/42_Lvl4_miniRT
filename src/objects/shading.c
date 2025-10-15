@@ -6,7 +6,7 @@
 /*   By: iherman- <iherman-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/19 11:00:34 by johnhapke         #+#    #+#             */
-/*   Updated: 2025/10/11 15:51:05 by iherman-         ###   ########.fr       */
+/*   Updated: 2025/10/15 18:41:18 by iherman-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,11 @@
 static bool	reaches_light(const t_hitinfo *prev_hitinfo, t_rt_data *data)
 {
 	t_hitinfo	hitinfo;
-	t_hitinfo	best_hit;
 	t_ray		ray;
 	t_obj		*obj;
 	double		light_t;
 
 	obj = data->obj;
-	best_hit.t = INFINITY;
 	ray.direction = vector_subtract(data->light.light_point, prev_hitinfo->pos);
 	light_t = vector_length(ray.direction);
 	ray.direction = normalize(ray.direction);
@@ -32,13 +30,13 @@ static bool	reaches_light(const t_hitinfo *prev_hitinfo, t_rt_data *data)
 		return (false);
 	while (obj != NULL)
 	{
-		obj->fct_ptr(obj->obj, ray, &hitinfo);
-		if ((hitinfo.t > 0 && hitinfo.t < best_hit.t))
-			best_hit = hitinfo;
+		if (obj->fct_ptr(obj->obj, ray, &hitinfo))
+		{
+			if (hitinfo.t > 0 && hitinfo.t < light_t)
+				return (false);
+		}
 		obj = obj->next;
 	}
-	if (best_hit.t > 0 && best_hit.t < light_t)
-		return (false);
 	return (true);
 }
 
