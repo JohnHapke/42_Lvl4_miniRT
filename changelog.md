@@ -3,6 +3,15 @@ Info: https://keepachangelog.com/en/1.0.0/
 
 /* PLEASE ADD THE NEW VERSION ALWAYS ABOVE TO SEE ALWAYS THE NEWEST CHANGES */
 
+# V01.27
+
+## CHANGED
+- objects/cylinder_intersection.c -> implememnted full intersection logic
+
+## UNRELEASED
+- ESC handling mlx
+- accepting normalized values in parsing
+
 # V01.26
 
 ## CHANGED

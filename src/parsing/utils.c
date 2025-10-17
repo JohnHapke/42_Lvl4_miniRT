@@ -6,7 +6,7 @@
 /*   By: iherman- <iherman-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 14:22:54 by johnhapke         #+#    #+#             */
-/*   Updated: 2025/10/15 23:16:05 by iherman-         ###   ########.fr       */
+/*   Updated: 2025/10/17 14:30:28 by iherman-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	sphere_addback(t_obj **obj, t_sphere *node)
 	if (!new_node)
 		return (1);
 	new_node->obj = node;
-	new_node->fct_ptr = intersect_sphere;
+	new_node->check_intersection = intersect_sphere;
 	new_node->next = NULL;
 	new_node->type = SPHERE;
 	current = (*obj);
@@ -73,7 +73,7 @@ int	plane_addback(t_obj **obj, t_plane *node)
 	if (!new_node)
 		return (1);
 	new_node->obj = node;
-	new_node->fct_ptr = intersect_plane;
+	new_node->check_intersection = intersect_plane;
 	new_node->next = NULL;
 	new_node->type = PLANE;
 	current = (*obj);
@@ -120,7 +120,7 @@ int	cylinder_addback(t_obj **obj, t_cylinder *node)
 	if (!new_node)
 		return (1);
 	new_node->obj = node;
-	new_node->fct_ptr = intersect_cylinder;
+	new_node->check_intersection = intersect_cylinder;
 	new_node->next = NULL;
 	new_node->type = CYLINDER;
 	current = (*obj);

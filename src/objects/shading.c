@@ -6,7 +6,7 @@
 /*   By: iherman- <iherman-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/19 11:00:34 by johnhapke         #+#    #+#             */
-/*   Updated: 2025/10/15 18:41:18 by iherman-         ###   ########.fr       */
+/*   Updated: 2025/10/17 14:29:59 by iherman-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static bool	reaches_light(const t_hitinfo *prev_hitinfo, t_rt_data *data)
 		return (false);
 	while (obj != NULL)
 	{
-		if (obj->fct_ptr(obj->obj, ray, &hitinfo))
+		if (obj->check_intersection(obj->obj, ray, &hitinfo))
 		{
 			if (hitinfo.t > 0 && hitinfo.t < light_t)
 				return (false);

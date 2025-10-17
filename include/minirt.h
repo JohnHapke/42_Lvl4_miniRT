@@ -6,7 +6,7 @@
 /*   By: iherman- <iherman-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/08 15:28:02 by iherman-          #+#    #+#             */
-/*   Updated: 2025/10/14 11:39:27 by iherman-         ###   ########.fr       */
+/*   Updated: 2025/10/17 14:32:54 by iherman-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@
 // very small number to add tolerance for floating point comparisons
 # define EPSILON 1e-8
 
-# define SPECULAR_M 32
+# define SPECULAR_M 50
 
 /*
 	To get normalized vector (for direction)
@@ -119,7 +119,7 @@ typedef struct s_obj
 {
 	void			*obj;
 	t_obj_type		type;
-	int				(*fct_ptr)(void *obj, t_ray ray, t_hitinfo *hit);
+	int				(*check_intersection)(void *obj, t_ray ray, t_hitinfo *hit);
 	struct s_obj	*next;
 }	t_obj;
 

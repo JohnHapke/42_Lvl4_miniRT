@@ -6,7 +6,7 @@
 /*   By: iherman- <iherman-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 11:07:06 by iherman-          #+#    #+#             */
-/*   Updated: 2025/10/14 11:35:20 by iherman-         ###   ########.fr       */
+/*   Updated: 2025/10/17 14:33:07 by iherman-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static unsigned int	intersect_test(t_ray ray, t_rt_data *data)
 	best_hit.t = INFINITY;
 	while (obj != NULL)
 	{
-		if (obj->fct_ptr(obj->obj, ray, &hitinfo) && hitinfo.t < best_hit.t)
+		if (obj->check_intersection(obj->obj, ray, &hitinfo) && hitinfo.t < best_hit.t)
 		{
 			best_hit = hitinfo;
 			//printf("t= %f\n", best_hit.t);

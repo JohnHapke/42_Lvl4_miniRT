@@ -12,22 +12,6 @@
 
 #include "minirt.h"
 
-/*bool	solve_quad(t_vec3 vec1, t_vec3 vec2, double diameter, double *t1, double *t2) // expand into a more general function later that can be used in sphere intersection aswel, as they´re very similar mathematical formulas
-{
-	double	sqrt_disc;
-	const double a = vector_dot(vec1, vec1);
-	const double b = 2.0 * vector_dot(vec1, vec2);
-	const double c = vector_dot(vec2, vec2) - diameter * diameter;
-	const double discriminant = b * b - 4 * a * c;
-
-	if (discriminant < 0.0)
-		return (false);
-	sqrt_disc = sqrt(discriminant);
-	*t1 = (-b - sqrt_disc) / (2.0 * a);
-	*t2 = (-b + sqrt_disc) / (2.0 * a);
-	return (true);
-}*/
-
 t_vec3	project(t_vec3 v, t_vec3 axis)
 {
 	return (vector_multiply(axis, vector_dot(v, axis)));
@@ -99,21 +83,21 @@ int	intersect_cylinder(void *obj, t_ray ray, t_hitinfo *hit)
 	const t_cylinder	*cylinder = (t_cylinder *)obj;
 	t_hitinfo	wall;
 	t_hitinfo	cap;
+	t_hitinfo	cap2;
 
-	if (intersect_cyl_wall(cylinder, ray, &wall))
-	{
+	intersect_cyl_wall(cylinder, ray, &wall);
+	intersect_cyl_cap(cylinder, cylinder->height, ray, &cap);
+	intersect_cyl_cap(cylinder, 0, ray, &cap2);
+
+	hit->t = INFINITY;
+	if (wall.t > EPSILON && wall.t < hit->t)
 		*hit = wall;
-		return (true);
-	}
-	else if (intersect_cyl_cap(cylinder, cylinder->height, ray, &cap))
-	{
+	if (cap.t > EPSILON && cap.t < hit->t)
 		*hit = cap;
-		return (true);
-	}
-	else if (intersect_cyl_cap(cylinder, 0, ray, &cap))
-	{
-		*hit = cap;
-		return (true);
-	}
-	return (false);
+	if (cap2.t > EPSILON && cap2.t < hit->t)
+		*hit = cap2;
+
+	if (hit->t == INFINITY)
+		return (false);
+	return (true);
 }
