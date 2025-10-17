@@ -33,41 +33,34 @@ t_vec3	project(t_vec3 v, t_vec3 axis)
 	return (vector_multiply(axis, vector_dot(v, axis)));
 }
 
-static void intersect_cap_top(const t_cylinder cylinder, t_ray ray, t_hitinfo *cap_top)
+static bool intersect_cyl_cap(const t_cylinder *cylinder, const double height, t_ray ray, t_hitinfo *hitinfo)
 {
-	t_vec3	cap_center;
-	double	cross_check;
+	t_plane	cap;
+	t_vec3	v;
+	double radius;
 
-	cap_center = vector_add(cylinder.pos, vector_multiply(cylinder.norm_vec, (cylinder.height / 2)));
-	cross_check = vector_dot(ray.direction, cylinder.norm_vec);
-	if (fabs(cross_check) < EPSILON)
+	cap.pos = vector_add(cylinder->pos, vector_multiply(cylinder->norm_vec, height));
+	cap.norm_vec = cylinder->norm_vec;
+	cap.color = cylinder->color;
+	if (intersect_plane(&cap, ray, hitinfo))
 	{
-		cap_top->t = INFINITY;
-		return ;
+		radius = cylinder->diameter / 2.0;
+		v = vector_subtract(hitinfo->pos, cap.pos);
+		if (vector_dot(v, v) > radius * radius)
+			return (false);
+		return (true);
 	}
-	cap_top->t = vector_dot(vector_subtract(cap_center, ray.origin), cylinder.norm_vec) / cross_check;
-	if (fabs(cap_top->t) < EPSILON)
-	{
-		cap_top->t = INFINITY;
-		return ;
-	}
-	/* generate whole hitinfo */
-	/* control hit_pos with diameter/2 to check if the hit is really in the cap*/
+	return (false);
 }
 
-static void intersect_cap_bottom(const t_cylinder cylinder, t_ray ray, t_hitinfo *cap_bottom)
-{
-	/* same as cap_top just for the check we need the negative height, so a general function could be used with a int or boolean to distinguish the hitinfo*/
-}
-
-static void generate_cyl_surf_hitinfo(const t_cylinder cylinder, t_ray ray, t_hitinfo *cyl_surf)
+static bool intersect_cyl_wall(const t_cylinder *cylinder, t_ray ray, t_hitinfo *cyl_surf)
 {
 	double	sqrt_disc;
-	const t_vec3		d_proj = vector_subtract(ray.direction, project(ray.direction, cylinder.norm_vec));
-	const t_vec3		oc_proj = vector_subtract(vector_subtract(ray.origin, cylinder.pos), project(vector_subtract(ray.origin, cylinder.pos), cylinder.norm_vec));
+	const t_vec3		d_proj = vector_subtract(ray.direction, project(ray.direction, cylinder->norm_vec));
+	const t_vec3		oc_proj = vector_subtract(vector_subtract(ray.origin, cylinder->pos), project(vector_subtract(ray.origin, cylinder->pos), cylinder->norm_vec));
 	const double a = vector_dot(d_proj, d_proj);
 	const double b = 2.0 * vector_dot(d_proj, oc_proj);
-	const double c = vector_dot(oc_proj, oc_proj) - (cylinder.diameter/2) * (cylinder.diameter/2);
+	const double c = vector_dot(oc_proj, oc_proj) - (cylinder->diameter/2) * (cylinder->diameter/2);
 	const double discriminant = b * b - 4 * a * c;
 	double t1;
 	double t2;
@@ -77,7 +70,7 @@ static void generate_cyl_surf_hitinfo(const t_cylinder cylinder, t_ray ray, t_hi
 	if (discriminant < 0.0)
 	{
 		cyl_surf->t = INFINITY;
-		return ;
+		return (false);
 	}
 	sqrt_disc = sqrt(discriminant);
 	t1 = (-b - sqrt_disc) / (2.0 * a);
@@ -89,72 +82,38 @@ static void generate_cyl_surf_hitinfo(const t_cylinder cylinder, t_ray ray, t_hi
 	else
 		cyl_surf->t = t2;
 	cyl_surf->pos = vector_add(ray.origin, vector_multiply(ray.direction, cyl_surf->t));
-	hit_to_axis = vector_subtract(cyl_surf->pos, cylinder.pos);
-	proj_len = vector_dot(hit_to_axis, cylinder.norm_vec);
-	if (proj_len < 0.0 || proj_len > cylinder.height)
-		return (false);
-	cyl_surf->surface_dir = normalize(vector_subtract(hit_to_axis, project(hit_to_axis, cylinder.norm_vec)));
-	if (vector_dot(cyl_surf->surface_dir, ray.direction) > 0)
-		cyl_surf->surface_dir = vector_multiply(cyl_surf->surface_dir, -1.0);
-	cyl_surf->obj_color = cylinder.color;
-}
-
-static int	determine_best_t(const t_cylinder cylinder, t_ray ray, t_hitinfo *hit)
-{
-	t_hitinfo	cyl_surf;
-	t_hitinfo	cap_top;
-	t_hitinfo	cap_bottom;
-
-	generate_cyl_surf_hitinfo(cylinder, ray, &cyl_surf);
-	generate_cap_top_hitinfo(cylinder, ray, &cap_top);
-	generate_cap_bottom_hitinfo(cylinder, ray, &cap_bottom);
-	if (cyl_surf.t == -1 && cap_top.t == -1 && cap_bottom.t == -1)
-		return (0);
-	hit->t = INFINITY;
-	if (cyl_surf.t > EPSILON && cyl_surf.t < hit->t)
-		*hit = cyl_surf;
-	if (cap_top.t > EPSILON && cap_top.t < hit->t)
-		*hit = cap_top;
-	if (cap_bottom.t > EPSILON && cap_bottom.t < hit->t)
-		*hit = cap_bottom;
-	return (1);
-}
-
-int	intersect_cylinder(void *obj, t_ray ray, t_hitinfo *hit)
-{
-	/*double	t1;
-	double	t2;
-	double	proj_len;
-	const t_vec3		d_proj = vector_subtract(ray.direction, project(ray.direction, cylinder->norm_vec));
-	const t_vec3		oc_proj = vector_subtract(vector_subtract(ray.origin, cylinder->pos), project(vector_subtract(ray.origin, cylinder->pos), cylinder->norm_vec));
-	t_vec3 hit_to_axis;*/
-	const t_cylinder	*cylinder = (t_cylinder *)obj;
-
-	determine_best_t(cylinder, ray, hit);
-	/*if (!solve_quad(d_proj, oc_proj, cylinder->diameter * 0.5, &t1, &t2))
-		return (false);
-	hit->t = INFINITY;
-	if (t1 > EPSILON && t1 < hit->t)
-		hit->t = t1;
-	if (t2 > EPSILON && t2 < hit->t)
-		hit->t = t2;
-
-	double t_cap_top = intersect_cap_top(cylinder, ray);
-	if (t_cap_top > EPSILON && t_cap_top < hit->t)
-		hit->t = t_cap_top;
-	double t_cap_bottom = intersect_cap_bottom(cylinder, ray);
-	if (t_cap_bottom > EPSILON && t_cap_bottom < hit->t)
-		hit->t = t_cap_bottom;
-	if (hit->t == INFINITY)
-		return (false);
-	hit->pos = vector_add(ray.origin, vector_multiply(ray.direction, hit->t));
-	hit_to_axis = vector_subtract(hit->pos, cylinder->pos);
+	hit_to_axis = vector_subtract(cyl_surf->pos, cylinder->pos);
 	proj_len = vector_dot(hit_to_axis, cylinder->norm_vec);
 	if (proj_len < 0.0 || proj_len > cylinder->height)
 		return (false);
-	hit->surface_dir = normalize(vector_subtract(hit_to_axis, project(hit_to_axis, cylinder->norm_vec)));
-	if (vector_dot(hit->surface_dir, ray.direction) > 0)
-		hit->surface_dir = vector_multiply(hit->surface_dir, -1.0);
-	hit->obj_color = cylinder->color;
-	return (true);*/
+	cyl_surf->surface_dir = normalize(vector_subtract(hit_to_axis, project(hit_to_axis, cylinder->norm_vec)));
+	if (vector_dot(cyl_surf->surface_dir, ray.direction) > 0)
+		cyl_surf->surface_dir = vector_multiply(cyl_surf->surface_dir, -1.0);
+	cyl_surf->obj_color = cylinder->color;
+	return (true);
+}
+
+
+int	intersect_cylinder(void *obj, t_ray ray, t_hitinfo *hit)
+{
+	const t_cylinder	*cylinder = (t_cylinder *)obj;
+	t_hitinfo	wall;
+	t_hitinfo	cap;
+
+	if (intersect_cyl_wall(cylinder, ray, &wall))
+	{
+		*hit = wall;
+		return (true);
+	}
+	else if (intersect_cyl_cap(cylinder, cylinder->height, ray, &cap))
+	{
+		*hit = cap;
+		return (true);
+	}
+	else if (intersect_cyl_cap(cylinder, 0, ray, &cap))
+	{
+		*hit = cap;
+		return (true);
+	}
+	return (false);
 }

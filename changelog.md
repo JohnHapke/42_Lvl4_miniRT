@@ -3,6 +3,14 @@ Info: https://keepachangelog.com/en/1.0.0/
 
 /* PLEASE ADD THE NEW VERSION ALWAYS ABOVE TO SEE ALWAYS THE NEWEST CHANGES */
 
+# V01.26
+
+## CHANGED
+- objects/cylinder_intersection.c -> slightly refined logic and finished some code. Should be functional now
+
+## REMOVED
+- math_utils/vector_math.c -> removed vector_length_squared function as functionality is the same as dot product
+
 # V01.25
 
 ## ADDED

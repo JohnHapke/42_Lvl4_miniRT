@@ -6,7 +6,7 @@
 /*   By: iherman- <iherman-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 14:22:54 by johnhapke         #+#    #+#             */
-/*   Updated: 2025/10/07 15:14:35 by iherman-         ###   ########.fr       */
+/*   Updated: 2025/10/15 23:16:05 by iherman-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ static void	print_sphere(t_sphere *sphere)
         (sphere->color.z >= 0 && sphere->color.z <= 255)) ? "YES" : "NO");
 	printf("===================\n");
 }
-
 
 int	sphere_addback(t_obj **obj, t_sphere *node)
 {
