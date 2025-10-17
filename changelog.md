@@ -3,6 +3,14 @@ Info: https://keepachangelog.com/en/1.0.0/
 
 /* PLEASE ADD THE NEW VERSION ALWAYS ABOVE TO SEE ALWAYS THE NEWEST CHANGES */
 
+# V01.25
+
+## ADDED
+- objects/cylinder_intersection.c - intersect fcts for caps partially coded, calculation of complete hitinfo for caps and check for hit_pos within/outside of caps still missing
+
+## CHANGED
+- objects/cylinder_intersection.c - change of architecture in the file to prepare implementation and check of cylinder surface and caps
+
 # V01.24
 
 ## ADDED

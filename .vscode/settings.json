@@ -1,6 +1,7 @@
 {
 	"files.associations": {
 		"cstdlib": "c",
-		"limits": "c"
+		"limits": "c",
+		"cmath": "c"
 	}
 }
