@@ -77,7 +77,6 @@ static bool intersect_cyl_wall(const t_cylinder *cylinder, t_ray ray, t_hitinfo 
 	return (true);
 }
 
-
 int	intersect_cylinder(void *obj, t_ray ray, t_hitinfo *hit)
 {
 	const t_cylinder	*cylinder = (t_cylinder *)obj;
@@ -85,16 +84,12 @@ int	intersect_cylinder(void *obj, t_ray ray, t_hitinfo *hit)
 	t_hitinfo	cap;
 	t_hitinfo	cap2;
 
-	intersect_cyl_wall(cylinder, ray, &wall);
-	intersect_cyl_cap(cylinder, cylinder->height, ray, &cap);
-	intersect_cyl_cap(cylinder, 0, ray, &cap2);
-
 	hit->t = INFINITY;
-	if (wall.t > EPSILON && wall.t < hit->t)
+	if (intersect_cyl_wall(cylinder, ray, &wall) && wall.t > EPSILON && wall.t < hit->t)
 		*hit = wall;
-	if (cap.t > EPSILON && cap.t < hit->t)
+	if (intersect_cyl_cap(cylinder, cylinder->height, ray, &cap) && cap.t > EPSILON && cap.t < hit->t)
 		*hit = cap;
-	if (cap2.t > EPSILON && cap2.t < hit->t)
+	if (intersect_cyl_cap(cylinder, 0, ray, &cap2) && cap2.t > EPSILON && cap2.t < hit->t)
 		*hit = cap2;
 
 	if (hit->t == INFINITY)

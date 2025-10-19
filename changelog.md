@@ -3,6 +3,14 @@ Info: https://keepachangelog.com/en/1.0.0/
 
 /* PLEASE ADD THE NEW VERSION ALWAYS ABOVE TO SEE ALWAYS THE NEWEST CHANGES */
 
+# V01.28
+
+## CHANGED 
+- objects/cylinder_intersection.c -> refined logic and fixed visual glitches
+
+## ADDED
+- main.c -> added esc key handling
+
 # V01.27
 
 ## CHANGED
