@@ -6,7 +6,7 @@
 /*   By: iherman- <iherman-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/08 15:28:02 by iherman-          #+#    #+#             */
-/*   Updated: 2025/10/17 14:32:54 by iherman-         ###   ########.fr       */
+/*   Updated: 2025/10/21 21:56:43 by iherman-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,12 +144,15 @@ void	ft_parse_sphere(char *line, t_rt_data *data);
 void	ft_parse_plane(char *line, t_rt_data *data);
 void	ft_parse_cylinder(char *line, t_rt_data *data);
 void 	ft_control_type_identifier(char *file, t_rt_data *data);
-double	ft_prepare_to_convert_atoi(const char *line, int *i, t_rt_data *data);
-double	ft_prepare_to_convert_atof(const char *line, int *i, t_rt_data *data);
-// void	ft_control_line_end(char *line, int *i, t_rt_data *data);
+double	ft_prepare_to_convert_atoi(char *line, int *i, t_rt_data *data);
+double	ft_prepare_to_convert_atof(char *line, int *i, t_rt_data *data);
 int		sphere_addback(t_obj **obj, t_sphere *node);
 int		plane_addback(t_obj **obj, t_plane *node);
 int		cylinder_addback(t_obj **obj, t_cylinder *node);
+
+void	mlx_handler(t_rt_data *data);
+
+t_vec3	convert_vec3(char *line, int *i, t_rt_data *data);
 
 // vector math
 t_vec3	normalize(t_vec3 vec);

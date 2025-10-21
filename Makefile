@@ -7,6 +7,7 @@ DEF = \033[0m
 NAME = miniRT
 
 SRC = src/main.c \
+		src/mlx_handling.c \
 		src/parsing/error_handler.c \
 		src/parsing/light_camera.c \
 		src/parsing/handler.c \
@@ -14,7 +15,8 @@ SRC = src/main.c \
 		src/parsing/syntax_controler.c \
 		src/parsing/converter.c \
 		src/parsing/utils.c \
-		src/math_utils/vector_math.c \
+		src/math_utils/vector_basic.c \
+		src/math_utils/vector_advanced.c \
 		src/engine/ray_tracer.c \
 		src/objects/sphere_intersection.c \
 		src/objects/plane_intersection.c \

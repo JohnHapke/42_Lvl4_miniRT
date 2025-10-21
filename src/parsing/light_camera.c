@@ -6,7 +6,7 @@
 /*   By: iherman- <iherman-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 11:03:21 by johnhapke         #+#    #+#             */
-/*   Updated: 2025/10/14 13:27:47 by iherman-         ###   ########.fr       */
+/*   Updated: 2025/10/21 21:49:00 by iherman-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,12 +45,8 @@ void	ft_parse_camera(char *line, t_rt_data *data)
 	int	i;
 
 	i = 0;
-	data->camera.viewpoint.x = ft_prepare_to_convert_atof(line, &i, data);
-	data->camera.viewpoint.y = ft_prepare_to_convert_atof(line, &i, data);
-	data->camera.viewpoint.z = ft_prepare_to_convert_atof(line, &i, data);
-	data->camera.norm_vec.x = ft_prepare_to_convert_atof(line, &i, data);
-	data->camera.norm_vec.y = ft_prepare_to_convert_atof(line, &i, data);
-	data->camera.norm_vec.z = ft_prepare_to_convert_atof(line, &i, data);
+	data->camera.viewpoint = convert_vec3(line, &i, data);
+	data->camera.norm_vec = convert_vec3(line, &i, data);
 	if (vector_length(data->camera.norm_vec) != 1)
 		ft_parsing_error_handler(line, data);
 	data->camera.fov = (int) ft_prepare_to_convert_atoi(line, &i, data);
@@ -78,9 +74,7 @@ void	ft_parse_light(char *line, t_rt_data *data)
 	int	i;
 
 	i = 0;
-	data->light.light_point.x = ft_prepare_to_convert_atof(line, &i, data);
-	data->light.light_point.y = ft_prepare_to_convert_atof(line, &i, data);
-	data->light.light_point.z = ft_prepare_to_convert_atof(line, &i, data);
+	data->light.light_point = convert_vec3(line, &i, data);
 	data->light.light_ratio = ft_prepare_to_convert_atof(line, &i, data);
 	if (data->light.light_ratio < 0.0 || data->light.light_ratio > 1.0)
 		ft_parsing_error_handler(line, data);

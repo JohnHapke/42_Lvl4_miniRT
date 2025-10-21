@@ -3,6 +3,18 @@ Info: https://keepachangelog.com/en/1.0.0/
 
 /* PLEASE ADD THE NEW VERSION ALWAYS ABOVE TO SEE ALWAYS THE NEWEST CHANGES */
 
+# V01.29
+
+## CHANGED
+- several files -> moved toward norm compliance
+- parsing/utils.c & rest of parsing -> added a function to get 3 numbers for a vector
+- main.c -> moved mlx handling into a seperate file and made data be on the stack
+
+## ISSUES
+- parsing currently accepts multiple decimal points for doubles (e.g. 0.51.73)
+- parsing currently doesn´t handle negative doubles correctly (first part of decimal is correct, but second part isn´t given a sign, this results in -10.5 becoming -9.5) 
+- parsing accepts any amount of whitespace in place of or before a comma
+
 # V01.28
 
 ## CHANGED 

@@ -39,17 +39,16 @@ static bool intersect_cyl_cap(const t_cylinder *cylinder, const double height, t
 
 static bool intersect_cyl_wall(const t_cylinder *cylinder, t_ray ray, t_hitinfo *cyl_surf)
 {
-	double	sqrt_disc;
+	double				sqrt_disc;
 	const t_vec3		d_proj = vector_subtract(ray.direction, project(ray.direction, cylinder->norm_vec));
 	const t_vec3		oc_proj = vector_subtract(vector_subtract(ray.origin, cylinder->pos), project(vector_subtract(ray.origin, cylinder->pos), cylinder->norm_vec));
-	const double a = vector_dot(d_proj, d_proj);
-	const double b = 2.0 * vector_dot(d_proj, oc_proj);
-	const double c = vector_dot(oc_proj, oc_proj) - (cylinder->diameter/2) * (cylinder->diameter/2);
-	const double discriminant = b * b - 4 * a * c;
-	double t1;
-	double t2;
-	t_vec3 hit_to_axis;
-	double	proj_len;
+	const double		a = vector_dot(d_proj, d_proj);
+	const double		b = 2.0 * vector_dot(d_proj, oc_proj);
+	const double		c = vector_dot(oc_proj, oc_proj) - (cylinder->diameter * 0.5) * (cylinder->diameter * 0.5);
+	const double		discriminant = b * b - 4 * a * c;
+	double				t[2];
+	t_vec3				hit_to_axis;
+	double				proj_len;
 
 	if (discriminant < 0.0)
 	{
@@ -57,14 +56,14 @@ static bool intersect_cyl_wall(const t_cylinder *cylinder, t_ray ray, t_hitinfo 
 		return (false);
 	}
 	sqrt_disc = sqrt(discriminant);
-	t1 = (-b - sqrt_disc) / (2.0 * a);
-	t2 = (-b + sqrt_disc) / (2.0 * a);
-	if (t1 > 0.0 && t2 > 0.0)
-		cyl_surf->t = fmin(t1, t2);
-	else if (t1 > 0.0)
-		cyl_surf->t = t1;
+	t[0] = (-b - sqrt_disc) / (2.0 * a);
+	t[1] = (-b + sqrt_disc) / (2.0 * a);
+	if (t[0] > 0.0 && t[1] > 0.0)
+		cyl_surf->t = fmin(t[0], t[1]);
+	else if (t[0] > 0.0)
+		cyl_surf->t = t[0];
 	else
-		cyl_surf->t = t2;
+		cyl_surf->t = t[1];
 	cyl_surf->pos = vector_add(ray.origin, vector_multiply(ray.direction, cyl_surf->t));
 	hit_to_axis = vector_subtract(cyl_surf->pos, cylinder->pos);
 	proj_len = vector_dot(hit_to_axis, cylinder->norm_vec);

@@ -6,7 +6,7 @@
 /*   By: iherman- <iherman-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 14:22:54 by johnhapke         #+#    #+#             */
-/*   Updated: 2025/10/17 14:30:28 by iherman-         ###   ########.fr       */
+/*   Updated: 2025/10/21 21:56:59 by iherman-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,4 +134,14 @@ int	cylinder_addback(t_obj **obj, t_cylinder *node)
 	}
 	print_cylinder(new_node->obj);
 	return (0);
+}
+
+t_vec3	convert_vec3(char *line, int *i, t_rt_data *data)
+{
+	t_vec3	ret;
+
+	ret.x = ft_prepare_to_convert_atof(line, i, data);
+	ret.y = ft_prepare_to_convert_atof(line, i, data);
+	ret.z = ft_prepare_to_convert_atof(line, i, data);
+	return (ret);
 }
