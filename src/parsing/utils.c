@@ -6,7 +6,7 @@
 /*   By: iherman- <iherman-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 14:22:54 by johnhapke         #+#    #+#             */
-/*   Updated: 2025/10/21 21:56:59 by iherman-         ###   ########.fr       */
+/*   Updated: 2025/10/22 12:16:12 by iherman-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int	sphere_addback(t_obj **obj, t_sphere *node)
 static void	print_plane(t_plane *plane)
 {
 	printf("=== PLANE-NODE DATA ===\n");
-	printf("Position: (%.2f, %.2f, %.2f)\n", 
+	printf("Position: (%.2f, %.2f, %.2f)\n",
        plane->pos.x, plane->pos.y, plane->pos.z);
 	printf("Normal Vector: (%.2f, %.2f, %.2f)\n", 
        plane->norm_vec.x, plane->norm_vec.y, plane->norm_vec.z);
@@ -144,4 +144,22 @@ t_vec3	convert_vec3(char *line, int *i, t_rt_data *data)
 	ret.y = ft_prepare_to_convert_atof(line, i, data);
 	ret.z = ft_prepare_to_convert_atof(line, i, data);
 	return (ret);
+}
+
+bool	in_range(t_vec3 vec, double rl, double ru)
+{
+	if (vec.x < rl || vec.x > ru)
+		return (false);
+	if (vec.y < rl || vec.y > ru)
+		return (false);
+	if (vec.z < rl || vec.z > ru)
+		return (false);
+	return (true);
+}
+
+bool	is_normalized(t_vec3 vec)
+{
+	if (fabs(vector_length(vec) - 1) < 1e-2)
+		return (true);
+	return (false);
 }

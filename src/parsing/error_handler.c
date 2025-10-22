@@ -6,13 +6,13 @@
 /*   By: iherman- <iherman-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 10:29:28 by johnhapke         #+#    #+#             */
-/*   Updated: 2025/10/21 22:07:03 by iherman-         ###   ########.fr       */
+/*   Updated: 2025/10/22 12:31:10 by iherman-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-void ft_parsing_error_handler(char *line, t_rt_data *data)
+void	ft_parsing_error_handler(char *line, t_rt_data *data)
 {
 	printf("Error: %s\n", line);
 	ft_free_parsing(line, data);

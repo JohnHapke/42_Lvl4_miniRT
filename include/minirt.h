@@ -6,7 +6,7 @@
 /*   By: iherman- <iherman-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/08 15:28:02 by iherman-          #+#    #+#             */
-/*   Updated: 2025/10/21 21:56:43 by iherman-         ###   ########.fr       */
+/*   Updated: 2025/10/22 11:46:20 by iherman-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,6 +153,8 @@ int		cylinder_addback(t_obj **obj, t_cylinder *node);
 void	mlx_handler(t_rt_data *data);
 
 t_vec3	convert_vec3(char *line, int *i, t_rt_data *data);
+bool	in_range(t_vec3 vec, double rl, double ru);
+bool	is_normalized(t_vec3 vec);
 
 // vector math
 t_vec3	normalize(t_vec3 vec);

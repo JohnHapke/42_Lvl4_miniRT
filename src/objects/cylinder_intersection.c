@@ -62,8 +62,10 @@ static bool intersect_cyl_wall(const t_cylinder *cylinder, t_ray ray, t_hitinfo 
 		cyl_surf->t = fmin(t[0], t[1]);
 	else if (t[0] > 0.0)
 		cyl_surf->t = t[0];
-	else
+	else if (t[1] > 0.0)
 		cyl_surf->t = t[1];
+	else
+		return (false);
 	cyl_surf->pos = vector_add(ray.origin, vector_multiply(ray.direction, cyl_surf->t));
 	hit_to_axis = vector_subtract(cyl_surf->pos, cylinder->pos);
 	proj_len = vector_dot(hit_to_axis, cylinder->norm_vec);
@@ -79,16 +81,17 @@ static bool intersect_cyl_wall(const t_cylinder *cylinder, t_ray ray, t_hitinfo 
 int	intersect_cylinder(void *obj, t_ray ray, t_hitinfo *hit)
 {
 	const t_cylinder	*cylinder = (t_cylinder *)obj;
-	t_hitinfo	wall;
-	t_hitinfo	cap;
-	t_hitinfo	cap2;
+	t_hitinfo			wall;
+	t_hitinfo			cap;
+	t_hitinfo			cap2;
 
 	hit->t = INFINITY;
-	if (intersect_cyl_wall(cylinder, ray, &wall) && wall.t > EPSILON && wall.t < hit->t)
+	if (intersect_cyl_wall(cylinder, ray, &wall) && wall.t < hit->t)
 		*hit = wall;
-	if (intersect_cyl_cap(cylinder, cylinder->height, ray, &cap) && cap.t > EPSILON && cap.t < hit->t)
+	if (intersect_cyl_cap(cylinder, cylinder->height, ray, &cap)
+		&& cap.t < hit->t)
 		*hit = cap;
-	if (intersect_cyl_cap(cylinder, 0, ray, &cap2) && cap2.t > EPSILON && cap2.t < hit->t)
+	if (intersect_cyl_cap(cylinder, 0, ray, &cap2) && cap2.t < hit->t)
 		*hit = cap2;
 
 	if (hit->t == INFINITY)

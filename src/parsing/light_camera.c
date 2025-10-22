@@ -6,7 +6,7 @@
 /*   By: iherman- <iherman-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 11:03:21 by johnhapke         #+#    #+#             */
-/*   Updated: 2025/10/21 21:49:00 by iherman-         ###   ########.fr       */
+/*   Updated: 2025/10/22 11:49:23 by iherman-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,7 @@ void	ft_parse_ambient_lighting(char *line, t_rt_data *data)
 	data->amb_light.color.x = (int) ft_prepare_to_convert_atoi(line, &i, data);
 	data->amb_light.color.y = (int) ft_prepare_to_convert_atoi(line, &i, data);
 	data->amb_light.color.z = (int) ft_prepare_to_convert_atoi(line, &i, data);
-	if ((data->amb_light.color.x < 0 || data->amb_light.color.x > 255) || (data->amb_light.color.y < 0
-		|| data->amb_light.color.y > 255) || (data->amb_light.color.z < 0 || data->amb_light.color.z > 255))
+	if (!in_range(data->amb_light.color, 0, 255))
 		ft_parsing_error_handler(line, data);
 	if (line[i] != '\n' && line[i] != '\0')
 		ft_parsing_error_handler(line, data);
@@ -81,8 +80,7 @@ void	ft_parse_light(char *line, t_rt_data *data)
 	data->light.color.x = (int) ft_prepare_to_convert_atoi(line, &i, data);
 	data->light.color.y = (int) ft_prepare_to_convert_atoi(line, &i, data);
 	data->light.color.z = (int) ft_prepare_to_convert_atoi(line, &i, data);
-	if ((data->light.color.x < 0 || data->light.color.x > 255) || (data->light.color.y < 0
-		|| data->light.color.y > 255) || (data->light.color.z < 0 || data->light.color.z > 255))
+	if (!in_range(data->light.color, 0, 255))
 		ft_parsing_error_handler(line, data);
 	if (line[i] != '\n' && line[i] != '\0')
 		ft_parsing_error_handler(line, data);

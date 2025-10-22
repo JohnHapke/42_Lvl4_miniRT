@@ -3,6 +3,21 @@ Info: https://keepachangelog.com/en/1.0.0/
 
 /* PLEASE ADD THE NEW VERSION ALWAYS ABOVE TO SEE ALWAYS THE NEWEST CHANGES */
 
+# V01.30
+
+## CHANGED
+- several files -> made several files more norm compliant while keeping functionality similar
+- parsing/converter.c -> made parsing more strict to fix every big listed in last changelogs issues
+- parsing/objects.c -> fixed a bug where on error, the object wouldn't be freed
+
+## ADDED
+- parsing/utils.c -> added a function to check normal vectors more leniently, also made sure the input was explicitly normalized inside the parsing
+
+## UNRELEASED
+- full norm compliance
+- camera movement (optional)
+- explicit parsing error messaged (optional?)
+
 # V01.29
 
 ## CHANGED

@@ -6,7 +6,7 @@
 /*   By: iherman- <iherman-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/19 11:00:34 by johnhapke         #+#    #+#             */
-/*   Updated: 2025/10/17 14:29:59 by iherman-         ###   ########.fr       */
+/*   Updated: 2025/10/22 12:40:47 by iherman-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ static bool	reaches_light(const t_hitinfo *prev_hitinfo, t_rt_data *data)
 	ray.direction = vector_subtract(data->light.light_point, prev_hitinfo->pos);
 	light_t = vector_length(ray.direction);
 	ray.direction = normalize(ray.direction);
-	ray.origin = vector_add(prev_hitinfo->pos, vector_multiply(prev_hitinfo->surface_dir, EPSILON));
+	ray.origin = vector_add(prev_hitinfo->pos,
+			vector_multiply(prev_hitinfo->surface_dir, EPSILON));
 	if (vector_dot(ray.direction, prev_hitinfo->surface_dir) < 0)
 		return (false);
 	while (obj != NULL)
@@ -40,16 +41,23 @@ static bool	reaches_light(const t_hitinfo *prev_hitinfo, t_rt_data *data)
 	return (true);
 }
 
-t_vec3 calculate_specular(const t_hitinfo *hitinfo, const t_rt_data *data, double shininess)
+t_vec3	calculate_specular(const t_hitinfo *hitinfo, const t_rt_data *data)
 {
-    t_vec3 L = normalize(vector_subtract(data->light.light_point, hitinfo->pos));
-    t_vec3 V = normalize(vector_subtract(data->camera.viewpoint, hitinfo->pos));
-    t_vec3 N = hitinfo->surface_dir;
-    double NdotL = fmax(0, vector_dot(N, L));
-    t_vec3 R = vector_subtract(vector_multiply(N, 2 * NdotL), L);
-    double RdotV = fmax(0, vector_dot(R, V));
-    double specular_intensity = pow(RdotV, shininess);
-    return (vector_multiply((t_vec3){255, 255, 255}, specular_intensity));
+	const t_vec3	l = normalize(vector_subtract(data->light.light_point,
+				hitinfo->pos));
+	const double	ndotl = fmax(0, vector_dot(hitinfo->surface_dir, l));
+	const double	rdotv = fmax(0, vector_dot(vector_subtract
+				(vector_multiply(hitinfo->surface_dir, 2 * ndotl), l),
+				normalize(vector_subtract(data->camera.viewpoint,
+						hitinfo->pos))));
+	const double	specular_intensity = pow(rdotv, SPECULAR_M);
+
+	return (vector_multiply((t_vec3){255, 255, 255}, specular_intensity));
+}
+
+unsigned int	format_color(t_vec3 color)
+{
+	return ((int)color.x << 24 | (int)color.y << 16 | (int)color.z << 8 | 255);
 }
 
 unsigned int	calculate_color(const t_hitinfo *hitinfo, t_rt_data *data)
@@ -60,16 +68,22 @@ unsigned int	calculate_color(const t_hitinfo *hitinfo, t_rt_data *data)
 	t_vec3	final_color;
 	double	diffuse_intensity;
 
-	ambient_color = vector_multiply(hitinfo->obj_color, data->amb_light.light_ratio);
+	ambient_color = vector_multiply(hitinfo->obj_color,
+			data->amb_light.light_ratio);
 	if (reaches_light(hitinfo, data))
 	{
-		diffuse_intensity = fmax(0, vector_dot(hitinfo->surface_dir, normalize(vector_subtract(data->light.light_point, hitinfo->pos))) * data->light.light_ratio);
+		diffuse_intensity = fmax(0, vector_dot(hitinfo->surface_dir,
+					normalize(vector_subtract(data->light.light_point,
+							hitinfo->pos))) * data->light.light_ratio);
 		diffuse_color = vector_multiply(hitinfo->obj_color, diffuse_intensity);
-		specular_color = calculate_specular(hitinfo, data, SPECULAR_M);
-		final_color.x = (int)fmin(255.0, ambient_color.x + diffuse_color.x + specular_color.x);
-		final_color.y = (int)fmin(255.0, ambient_color.y + diffuse_color.y + specular_color.y);
-		final_color.z = (int)fmin(255.0, ambient_color.z + diffuse_color.z + specular_color.z);
-		return ((int)final_color.x << 24 | (int)final_color.y << 16 | (int)final_color.z << 8 | 255);
+		specular_color = calculate_specular(hitinfo, data);
+		final_color.x = (int)fmin(255.0, ambient_color.x
+				+ diffuse_color.x + specular_color.x);
+		final_color.y = (int)fmin(255.0, ambient_color.y
+				+ diffuse_color.y + specular_color.y);
+		final_color.z = (int)fmin(255.0, ambient_color.z
+				+ diffuse_color.z + specular_color.z);
+		return (format_color(final_color));
 	}
-	return ((int)ambient_color.x << 24 | (int)ambient_color.y << 16 | (int)ambient_color.z << 8 | 255);
+	return (format_color(ambient_color));
 }
