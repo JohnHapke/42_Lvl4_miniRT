@@ -3,6 +3,19 @@ Info: https://keepachangelog.com/en/1.0.0/
 
 /* PLEASE ADD THE NEW VERSION ALWAYS ABOVE TO SEE ALWAYS THE NEWEST CHANGES */
 
+# V01.32
+
+## CHANGED
+- engine/ray_tracer.c, parsing/light_camera.c, minirt.h -> moved aspect ratio and fov audjust to camera struct to avoid recomputing values needlessly
+- engine/ray_tracer.c -> removed shoot_ray and moved functionality to our main raytracer loop
+- objects/shading.c -> added a line to be able to disable specular by setting it to -1 in header
+
+## ADDED
+- mlx_handling.c -> added some basic functionality for moving the camera with arrow keys and rotating with WASD
+
+## REMOVED
+- minirt.h -> removed several unused struct variables
+
 # V01.31
 
 ## CHANGED

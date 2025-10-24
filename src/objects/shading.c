@@ -6,7 +6,7 @@
 /*   By: iherman- <iherman-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/19 11:00:34 by johnhapke         #+#    #+#             */
-/*   Updated: 2025/10/22 12:40:47 by iherman-         ###   ########.fr       */
+/*   Updated: 2025/10/24 22:58:09 by iherman-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,15 +43,21 @@ static bool	reaches_light(const t_hitinfo *prev_hitinfo, t_rt_data *data)
 
 t_vec3	calculate_specular(const t_hitinfo *hitinfo, const t_rt_data *data)
 {
-	const t_vec3	l = normalize(vector_subtract(data->light.light_point,
+	t_vec3	l;
+	double	ndotl;
+	double	rdotv;
+	double	specular_intensity;
+
+	if (SPECULAR_M == -1)
+		return ((t_vec3){0,0,0});
+	l = normalize(vector_subtract(data->light.light_point,
 				hitinfo->pos));
-	const double	ndotl = fmax(0, vector_dot(hitinfo->surface_dir, l));
-	const double	rdotv = fmax(0, vector_dot(vector_subtract
+	ndotl = fmax(0, vector_dot(hitinfo->surface_dir, l));
+	rdotv = fmax(0, vector_dot(vector_subtract
 				(vector_multiply(hitinfo->surface_dir, 2 * ndotl), l),
 				normalize(vector_subtract(data->camera.viewpoint,
 						hitinfo->pos))));
-	const double	specular_intensity = pow(rdotv, SPECULAR_M);
-
+	specular_intensity = pow(rdotv, SPECULAR_M);
 	return (vector_multiply((t_vec3){255, 255, 255}, specular_intensity));
 }
 

@@ -6,7 +6,7 @@
 /*   By: iherman- <iherman-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 11:03:21 by johnhapke         #+#    #+#             */
-/*   Updated: 2025/10/22 11:49:23 by iherman-         ###   ########.fr       */
+/*   Updated: 2025/10/24 21:33:48 by iherman-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,8 @@ void	ft_parse_camera(char *line, t_rt_data *data)
 		ft_parsing_error_handler(line, data);
 	data->camera.right = normalize(vector_cross((t_vec3){0,1,0}, data->camera.norm_vec));
 	data->camera.up = normalize(vector_cross(data->camera.norm_vec, data->camera.right));
+	data->camera.aspect_ratio = (double)WINDOW_WIDTH / (double)WINDOW_HEIGHT;
+	data->camera.fov_adjust = tan(data->camera.fov * 0.5 * M_PI / 180.0);
 	printf("Camera Right: (%f, %f, %f)\n", data->camera.right.x, data->camera.right.y, data->camera.right.z);
 	printf("Camera Up: (%f, %f, %f)\n", data->camera.up.x, data->camera.up.y, data->camera.up.z);
 	printf("Camera Forward: (%f, %f, %f)\n", data->camera.norm_vec.x, data->camera.norm_vec.y, data->camera.norm_vec.z);

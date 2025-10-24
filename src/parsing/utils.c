@@ -6,7 +6,7 @@
 /*   By: iherman- <iherman-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 14:22:54 by johnhapke         #+#    #+#             */
-/*   Updated: 2025/10/22 12:16:12 by iherman-         ###   ########.fr       */
+/*   Updated: 2025/10/24 21:41:38 by iherman-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ int	sphere_addback(t_obj **obj, t_sphere *node)
 	new_node->obj = node;
 	new_node->check_intersection = intersect_sphere;
 	new_node->next = NULL;
-	new_node->type = SPHERE;
 	current = (*obj);
 	if (!(*obj))
 		(*obj) = new_node;
@@ -75,7 +74,6 @@ int	plane_addback(t_obj **obj, t_plane *node)
 	new_node->obj = node;
 	new_node->check_intersection = intersect_plane;
 	new_node->next = NULL;
-	new_node->type = PLANE;
 	current = (*obj);
 	if (!(*obj))
 		(*obj) = new_node;
@@ -122,7 +120,6 @@ int	cylinder_addback(t_obj **obj, t_cylinder *node)
 	new_node->obj = node;
 	new_node->check_intersection = intersect_cylinder;
 	new_node->next = NULL;
-	new_node->type = CYLINDER;
 	current = (*obj);
 	if (!(*obj))
 		(*obj) = new_node;

@@ -32,7 +32,7 @@ OBJ= $(SRC:src/%.c=$(OBJDIR)%.o)
 GNL_OBJ = $(GNL_SRC:get_next_line/%.c=$(OBJDIR)get_next_line/%.o)
 ALL_OBJ = $(OBJ) $(GNL_OBJ)
 
-FLAGS = -Werror -Wall -Wextra -g #-lm
+FLAGS = -Werror -Wall -Wextra -g#-lm
 CC = @cc
 
 LIBFT = libft/libft.a
@@ -41,10 +41,11 @@ MLX42_A = $(MLX42_DIR)/build/libmlx42.a
 MLX42_FLAGS = -ldl -lglfw -pthread -lm
 
 INCLUDES = -Iinclude -Ilibft -Iget_next_line -IMLX42/include
+HEADER = include/minirt.h
 
 all: $(NAME)
 
-$(NAME): $(OBJDIR) $(ALL_OBJ) $(LIBFT) $(MLX42_A)
+$(NAME): $(HEADER) $(OBJDIR) $(ALL_OBJ) $(LIBFT) $(MLX42_A)
 	@echo "$(YLW)MiniRT: Compiling executable...$(DEF)"
 	$(CC) $(FLAGS) $(ALL_OBJ) $(LIBFT) $(MLX42_A) -o $(NAME) $(MLX42_FLAGS)
 

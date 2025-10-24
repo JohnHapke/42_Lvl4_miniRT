@@ -6,7 +6,7 @@
 /*   By: iherman- <iherman-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/08 15:28:02 by iherman-          #+#    #+#             */
-/*   Updated: 2025/10/24 18:28:07 by iherman-         ###   ########.fr       */
+/*   Updated: 2025/10/24 22:58:21 by iherman-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@
 // very small number to add tolerance for floating point comparisons
 # define EPSILON 1e-8
 
-# define SPECULAR_M 50
+# define SPECULAR_M 60
 
 /*
 	To get normalized vector (for direction)
@@ -64,6 +64,8 @@ typedef struct s_camera
 	t_vec3	norm_vec;
 	t_vec3	up;
 	t_vec3	right;
+	double	aspect_ratio;
+	double	fov_adjust;
 	double	fov;
 }	t_camera;
 
@@ -97,28 +99,17 @@ typedef	struct s_cylinder
 	t_vec3	color;
 }	t_cylinder;
 
-typedef enum e_obj_type
-{
-	SPHERE,
-	PLANE,
-	CYLINDER
-}	t_obj_type;
-
 typedef struct s_hitinfo
 {
 	double		t;
 	t_vec3		surface_dir;
 	t_vec3		pos;
 	t_vec3		obj_color;
-
-	void		*obj; // may not be neccessary
-	t_obj_type	obj_type;
 }	t_hitinfo;
 
 typedef struct s_obj
 {
 	void			*obj;
-	t_obj_type		type;
 	int				(*check_intersection)(void *obj, t_ray ray, t_hitinfo *hit);
 	struct s_obj	*next;
 }	t_obj;
@@ -126,7 +117,7 @@ typedef struct s_obj
 typedef struct s_rt_data
 {
 	mlx_t		*mlx_win;
-	mlx_image_t		*mlx_img;
+	mlx_image_t	*mlx_img;
 	t_amb_light	amb_light;
 	t_camera	camera;
 	t_light		light;

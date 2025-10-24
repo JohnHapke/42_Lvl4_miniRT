@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   vector_basic_arithmetic.c                          :+:      :+:    :+:   */
+/*   vector_basic.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: iherman- <iherman-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 12:47:04 by iherman-          #+#    #+#             */
-/*   Updated: 2025/10/21 12:47:36 by iherman-         ###   ########.fr       */
+/*   Updated: 2025/10/24 21:55:59 by iherman-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-t_vec3	vector_add(t_vec3 vec1, t_vec3 vec2)
+inline t_vec3	vector_add(t_vec3 vec1, t_vec3 vec2)
 {
 	t_vec3	res;
 
@@ -22,7 +22,7 @@ t_vec3	vector_add(t_vec3 vec1, t_vec3 vec2)
 	return (res);
 }
 
-t_vec3	vector_subtract(t_vec3 vec1, t_vec3 vec2)
+inline t_vec3	vector_subtract(t_vec3 vec1, t_vec3 vec2)
 {
 	t_vec3	res;
 
@@ -32,7 +32,7 @@ t_vec3	vector_subtract(t_vec3 vec1, t_vec3 vec2)
 	return (res);
 }
 
-t_vec3	vector_multiply(t_vec3 vec, const double factor)
+inline t_vec3	vector_multiply(t_vec3 vec, const double factor)
 {
 	t_vec3	res;
 
@@ -42,7 +42,7 @@ t_vec3	vector_multiply(t_vec3 vec, const double factor)
 	return (res);
 }
 
-t_vec3	vector_divide(t_vec3 vec, const double factor)
+inline t_vec3	vector_divide(t_vec3 vec, const double factor)
 {
 	t_vec3	res;
 
@@ -52,7 +52,7 @@ t_vec3	vector_divide(t_vec3 vec, const double factor)
 	return (res);
 }
 
-bool	vector_is_larger(t_vec3 larger, t_vec3 smaller)
+inline bool	vector_is_larger(t_vec3 larger, t_vec3 smaller)
 {
 	if (vector_dot(larger, larger) > vector_dot(smaller, smaller))
 		return (true);

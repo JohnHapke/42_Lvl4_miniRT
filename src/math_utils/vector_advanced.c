@@ -6,18 +6,18 @@
 /*   By: iherman- <iherman-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/25 18:21:21 by iherman-          #+#    #+#             */
-/*   Updated: 2025/10/21 12:51:05 by iherman-         ###   ########.fr       */
+/*   Updated: 2025/10/24 21:55:34 by iherman-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-double	vector_length(t_vec3 vec)
+inline double	vector_length(t_vec3 vec)
 {
 	return (sqrt((vec.x * vec.x) + (vec.y * vec.y) + (vec.z * vec.z)));
 }
 
-t_vec3	normalize(t_vec3 vec)
+inline t_vec3	normalize(t_vec3 vec)
 {
 	const double	v = vector_length(vec);
 	t_vec3			normalized;
@@ -30,7 +30,7 @@ t_vec3	normalize(t_vec3 vec)
 	return (normalized);
 }
 
-t_vec3	vector_cross(t_vec3 vec1, t_vec3 vec2)
+inline t_vec3	vector_cross(t_vec3 vec1, t_vec3 vec2)
 {
 	t_vec3	res;
 
@@ -40,7 +40,7 @@ t_vec3	vector_cross(t_vec3 vec1, t_vec3 vec2)
 	return (res);
 }
 
-double	vector_dot(t_vec3 vec1, t_vec3 vec2)
+inline double	vector_dot(t_vec3 vec1, t_vec3 vec2)
 {
 	return ((vec1.x * vec2.x) + (vec1.y * vec2.y) + (vec1.z * vec2.z));
 }
