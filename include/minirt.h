@@ -6,7 +6,7 @@
 /*   By: iherman- <iherman-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/08 15:28:02 by iherman-          #+#    #+#             */
-/*   Updated: 2025/10/22 11:46:20 by iherman-         ###   ########.fr       */
+/*   Updated: 2025/10/24 18:28:07 by iherman-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,6 +149,7 @@ double	ft_prepare_to_convert_atof(char *line, int *i, t_rt_data *data);
 int		sphere_addback(t_obj **obj, t_sphere *node);
 int		plane_addback(t_obj **obj, t_plane *node);
 int		cylinder_addback(t_obj **obj, t_cylinder *node);
+bool	match_format(const char *restrict format, const char *line);
 
 void	mlx_handler(t_rt_data *data);
 

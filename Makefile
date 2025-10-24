@@ -9,6 +9,7 @@ NAME = miniRT
 SRC = src/main.c \
 		src/mlx_handling.c \
 		src/parsing/error_handler.c \
+		src/parsing/match_format.c \
 		src/parsing/light_camera.c \
 		src/parsing/handler.c \
 		src/parsing/objects.c \

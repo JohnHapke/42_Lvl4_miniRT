@@ -3,6 +3,14 @@ Info: https://keepachangelog.com/en/1.0.0/
 
 /* PLEASE ADD THE NEW VERSION ALWAYS ABOVE TO SEE ALWAYS THE NEWEST CHANGES */
 
+# V01.31
+
+## CHANGED
+- parsing/syntax_controller.c -> implemented a new structure using the new match_format() function
+
+## ADDED
+- parsing/match_format.c -> added a function called match_format to compare two lines with the first line being in a printf style, e.g. %i means int, %f means float
+
 # V01.30
 
 ## CHANGED
