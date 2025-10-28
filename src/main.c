@@ -6,7 +6,7 @@
 /*   By: iherman- <iherman-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/08 15:13:04 by iherman-          #+#    #+#             */
-/*   Updated: 2025/10/21 21:59:23 by iherman-         ###   ########.fr       */
+/*   Updated: 2025/10/28 17:12:01 by iherman-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	main(int argc, char *argv[])
 
 	if (argc != 2)
 	{
-		write(2, "Error: Usage: Must provide .rt scene", 36);
+		write(2, "Error: Usage: Must provide .rt scene\n", 37);
 		return (1);
 	}
 	ft_bzero(&data, sizeof(t_rt_data));

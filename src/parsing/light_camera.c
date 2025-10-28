@@ -6,7 +6,7 @@
 /*   By: iherman- <iherman-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 11:03:21 by johnhapke         #+#    #+#             */
-/*   Updated: 2025/10/28 10:52:20 by iherman-         ###   ########.fr       */
+/*   Updated: 2025/10/28 17:44:20 by iherman-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ void	ft_parse_ambient_lighting(char *line, t_rt_data *data)
         (data->amb_light.color.y >= 0 && data->amb_light.color.y <= 255) &&
         (data->amb_light.color.z >= 0 && data->amb_light.color.z <= 255)) ? "YES" : "NO");
 	printf("===========================\n");
+	data->amb_light.color = vector_divide(data->amb_light.color, 255);
 }
 
 void	ft_parse_camera(char *line, t_rt_data *data)
@@ -90,4 +91,5 @@ void	ft_parse_light(char *line, t_rt_data *data)
 	printf("Color: RGB(%f, %f, %f)\n", 
        data->light.color.x, data->light.color.y, data->light.color.z);
 	printf("==================\n");
+	data->light.color = vector_divide(data->light.color, 255);
 }

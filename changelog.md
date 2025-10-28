@@ -3,6 +3,12 @@ Info: https://keepachangelog.com/en/1.0.0/
 
 /* PLEASE ADD THE NEW VERSION ALWAYS ABOVE TO SEE ALWAYS THE NEWEST CHANGES */
 
+# V01.34
+
+## CHANGED
+- parsing/objects.c & parsing/light_camera.c -> made sure to normalize color values to 0 - 1
+- objects/shading.c -> added colored lighting
+
 # V01.33
 
 ## CHANGED

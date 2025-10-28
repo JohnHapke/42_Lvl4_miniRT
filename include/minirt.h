@@ -6,7 +6,7 @@
 /*   By: iherman- <iherman-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/08 15:28:02 by iherman-          #+#    #+#             */
-/*   Updated: 2025/10/28 10:55:36 by iherman-         ###   ########.fr       */
+/*   Updated: 2025/10/28 17:44:24 by iherman-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,6 @@
 
 // very small number to add tolerance for floating point comparisons
 # define EPSILON 1e-8
-
-# define SPECULAR_M 60
 
 #ifndef M_PI
 # define M_PI 3.14159265359

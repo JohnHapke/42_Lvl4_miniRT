@@ -6,7 +6,7 @@
 /*   By: iherman- <iherman-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 10:48:11 by johnhapke         #+#    #+#             */
-/*   Updated: 2025/10/28 10:43:18 by iherman-         ###   ########.fr       */
+/*   Updated: 2025/10/28 16:14:07 by iherman-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ void	ft_parse_sphere(char *line, t_rt_data *data)
 		ft_parsing_error_handler(line, "Usage: sphere diameter cannot be < EPSILON", data);
 	if (!in_range(sphere->color, 0, 255))
 		ft_parsing_error_handler(line, "Usage: color values have to be in range 0 - 255", data);
+	sphere->color = vector_divide(sphere->color, 255);
 }
 
 void	ft_parse_plane(char *line, t_rt_data *data)
@@ -58,6 +59,7 @@ void	ft_parse_plane(char *line, t_rt_data *data)
 		ft_parsing_error_handler(line, "Usage: vector is not normalized", data);
 	if (!in_range(plane->color, 0, 255))
 		ft_parsing_error_handler(line, "Usage: color values have to be in range 0 - 255", data);
+	plane->color = vector_divide(plane->color, 255);
 }
 
 void	ft_parse_cylinder(char *line, t_rt_data *data)
@@ -87,4 +89,5 @@ void	ft_parse_cylinder(char *line, t_rt_data *data)
 		ft_parsing_error_handler(line, "Usage: cylinder height cannot be < EPSILON", data);
 	if (!in_range(cylinder->color, 0, 255))
 		ft_parsing_error_handler(line, "Usage: color values have to be in range 0 - 255", data);
+	cylinder->color = vector_divide(cylinder->color, 255);
 }
