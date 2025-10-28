@@ -6,7 +6,7 @@
 /*   By: iherman- <iherman-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/08 15:28:02 by iherman-          #+#    #+#             */
-/*   Updated: 2025/10/24 22:58:21 by iherman-         ###   ########.fr       */
+/*   Updated: 2025/10/28 10:55:36 by iherman-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,18 @@
 # include <MLX42/MLX42.h>
 # include <MLX42/MLX42_Int.h>
 
-# define WINDOW_HEIGHT 524
+# define WINDOW_HEIGHT 1048
 
-#  define WINDOW_WIDTH 1048
+#  define WINDOW_WIDTH 2096
 
 // very small number to add tolerance for floating point comparisons
 # define EPSILON 1e-8
 
 # define SPECULAR_M 60
+
+#ifndef M_PI
+# define M_PI 3.14159265359
+#endif // M_PI
 
 /*
 	To get normalized vector (for direction)
@@ -122,11 +126,12 @@ typedef struct s_rt_data
 	t_camera	camera;
 	t_light		light;
 	t_obj		*obj;
+	bool		error;
 }	t_rt_data;
 
 // parser
 void	ft_parsing_handler(char *file, t_rt_data *data);
-void	ft_parsing_error_handler(char *line, t_rt_data *data);
+void	ft_parsing_error_handler(char *line, char *msg, t_rt_data *data);
 void	ft_free_parsing(char *line, t_rt_data *data);
 void	ft_parse_ambient_lighting(char *line, t_rt_data *data);
 void	ft_parse_camera(char *line, t_rt_data *data);

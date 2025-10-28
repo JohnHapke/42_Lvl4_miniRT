@@ -6,7 +6,7 @@
 /*   By: iherman- <iherman-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/13 18:19:03 by iherman-          #+#    #+#             */
-/*   Updated: 2025/10/15 18:54:06 by iherman-         ###   ########.fr       */
+/*   Updated: 2025/10/28 10:52:42 by iherman-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	ft_parsing_handler(char *file, t_rt_data *data)
 	ft_control_type_identifier(file, data);
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
-		ft_parsing_error_handler(NULL, data);
+		ft_parsing_error_handler(NULL, "Internal: failed to open file", data);
 	while (1)
 	{
 		line = ft_get_next_line(fd);

@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   match_format.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: iherman- <iherman-@student.42malaga.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/10/28 10:39:13 by iherman-          #+#    #+#             */
+/*   Updated: 2025/10/28 10:39:15 by iherman-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include <stdbool.h>
 #include <minirt.h>
@@ -71,8 +82,7 @@ static bool (*check_identifier(char c))(const char **)
 // checks whether argument 2 follows the format of argument 1 using printf type identifiers
 bool	match_format(const char *restrict format, const char *line)
 {
-	bool	(*format_check)(const char**);
-
+	bool (*format_check)(const char **);
 	if (!format || !line)
 		return (false);
 	while (*format)

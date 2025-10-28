@@ -12,7 +12,7 @@ void	normalize(const double *xyz)
 	normalized[0] = xyz[0] / v;
 	normalized[1] = xyz[1] / v;
 	normalized[2] = xyz[2] / v;
-	std::cout << "Final vector: " << normalized[0] << ' ' << normalized[1] << ' '  << normalized[2] << ' '  << std::endl;
+	std::cout << "Final vector: " << normalized[0] << ',' << normalized[1] << ','  << normalized[2] << std::endl;
 }
 
 int main()

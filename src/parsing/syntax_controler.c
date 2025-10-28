@@ -6,7 +6,7 @@
 /*   By: iherman- <iherman-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/25 07:59:09 by johnhapke         #+#    #+#             */
-/*   Updated: 2025/10/24 18:30:47 by iherman-         ###   ########.fr       */
+/*   Updated: 2025/10/28 10:51:19 by iherman-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void ft_control_type_identifier(char *file, t_rt_data *data)
 	l = 0;
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
-		ft_parsing_error_handler(NULL, data);
+		ft_parsing_error_handler(NULL, "Internal: failed to open file", data);
 	line = ft_get_next_line(fd);
 	while (line)
 	{
@@ -61,7 +61,7 @@ void ft_control_type_identifier(char *file, t_rt_data *data)
 			{
 				close(fd);
 				ft_get_next_line(-1);
-				ft_parsing_error_handler(line, data);
+				ft_parsing_error_handler(line, "Usage: line does not conform to format", data);
 			}
 			if (line[0] == 'A')
 				a++;
@@ -78,5 +78,5 @@ void ft_control_type_identifier(char *file, t_rt_data *data)
 	close(fd);
 	ft_get_next_line(-1);
 	if (a != 1 || c != 1 || l != 1)
-		ft_parsing_error_handler(line, data);
+		ft_parsing_error_handler(line, "Usage: can only have 1x A, C and L", data);
 }

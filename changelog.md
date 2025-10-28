@@ -3,6 +3,11 @@ Info: https://keepachangelog.com/en/1.0.0/
 
 /* PLEASE ADD THE NEW VERSION ALWAYS ABOVE TO SEE ALWAYS THE NEWEST CHANGES */
 
+# V01.33
+
+## CHANGED
+- parsing* -> changed error handler to accept a message for user
+
 # V01.32
 
 ## CHANGED

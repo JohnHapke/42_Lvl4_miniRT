@@ -6,7 +6,7 @@
 /*   By: iherman- <iherman-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/25 08:43:39 by johnhapke         #+#    #+#             */
-/*   Updated: 2025/10/22 12:31:30 by iherman-         ###   ########.fr       */
+/*   Updated: 2025/10/28 10:21:54 by iherman-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static double	ft_convert_to_atof(int start, int end,
 
 	str = malloc((end - start + 1) * sizeof(char));
 	if (!str)
-		ft_parsing_error_handler((char *)line, data);
+		ft_parsing_error_handler((char *)line, "Internal: malloc failed", data);
 	j = 0;
 	while (start < end)
 	{
@@ -93,8 +93,6 @@ double	ft_prepare_to_convert_atof(char *line, int *i, t_rt_data *data)
 		(*i)++;
 	while (ft_isdigit(line[*i]))
 		(*i)++;
-	if (line[*i] != ' ' && line[*i] != ',' && line[*i] != '\n')
-		ft_parsing_error_handler(line, data);
 	end = *i;
 	res = ft_convert_to_atof(start, end, line, data);
 	return (res);

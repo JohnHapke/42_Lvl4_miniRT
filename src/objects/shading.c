@@ -6,13 +6,11 @@
 /*   By: iherman- <iherman-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/19 11:00:34 by johnhapke         #+#    #+#             */
-/*   Updated: 2025/10/24 22:58:09 by iherman-         ###   ########.fr       */
+/*   Updated: 2025/10/28 11:43:46 by iherman-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
-
-// ToDo: ray from t to light has to be calculated to see if there is an object in between
 
 static bool	reaches_light(const t_hitinfo *prev_hitinfo, t_rt_data *data)
 {
@@ -27,8 +25,8 @@ static bool	reaches_light(const t_hitinfo *prev_hitinfo, t_rt_data *data)
 	ray.direction = normalize(ray.direction);
 	ray.origin = vector_add(prev_hitinfo->pos,
 			vector_multiply(prev_hitinfo->surface_dir, EPSILON));
-	if (vector_dot(ray.direction, prev_hitinfo->surface_dir) < 0)
-		return (false);
+	//if (vector_dot(ray.direction, prev_hitinfo->surface_dir) < 0)
+		//return (false);
 	while (obj != NULL)
 	{
 		if (obj->check_intersection(obj->obj, ray, &hitinfo))
