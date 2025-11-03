@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iherman- <iherman-@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: johnhapke <johnhapke@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/08 15:28:02 by iherman-          #+#    #+#             */
-/*   Updated: 2025/10/28 17:44:24 by iherman-         ###   ########.fr       */
+/*   Updated: 2025/11/03 11:16:23 by johnhapke        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,21 +24,13 @@
 
 # define WINDOW_HEIGHT 1048
 
-#  define WINDOW_WIDTH 2096
+# define WINDOW_WIDTH 2096
 
-// very small number to add tolerance for floating point comparisons
 # define EPSILON 1e-8
 
-#ifndef M_PI
-# define M_PI 3.14159265359
-#endif // M_PI
-
-/*
-	To get normalized vector (for direction)
-		Get the magnitude: √(x² + y² + z²) = magnitude
-		Divide all components by magnitude: x/magnitude, y/magnitude, z/magnitude
-	Mostly useful for getting a clean direction for our vec3
-*/
+# ifndef M_PI
+#  define M_PI 3.14159265359
+# endif
 
 typedef struct s_vec3
 {
@@ -54,7 +46,7 @@ typedef struct s_ray
 	t_vec3	direction;
 }	t_ray;
 
-typedef	struct s_amb_light
+typedef struct s_amb_light
 {
 	double	light_ratio;
 	t_vec3	color;
@@ -71,7 +63,7 @@ typedef struct s_camera
 	double	fov;
 }	t_camera;
 
-typedef	struct s_light
+typedef struct s_light
 {
 	t_vec3	light_point;
 	double	light_ratio;
@@ -85,14 +77,14 @@ typedef struct s_sphere
 	t_vec3	color;
 }	t_sphere;
 
-typedef	struct s_plane
+typedef struct s_plane
 {
 	t_vec3	pos;
 	t_vec3	norm_vec;
 	t_vec3	color;
 }	t_plane;
 
-typedef	struct s_cylinder
+typedef struct s_cylinder
 {
 	t_vec3	pos;
 	t_vec3	norm_vec;
@@ -128,40 +120,40 @@ typedef struct s_rt_data
 }	t_rt_data;
 
 // parser
-void	ft_parsing_handler(char *file, t_rt_data *data);
-void	ft_parsing_error_handler(char *line, char *msg, t_rt_data *data);
-void	ft_free_parsing(char *line, t_rt_data *data);
-void	ft_parse_ambient_lighting(char *line, t_rt_data *data);
-void	ft_parse_camera(char *line, t_rt_data *data);
-void	ft_parse_light(char *line, t_rt_data *data);
-void	ft_parse_sphere(char *line, t_rt_data *data);
-void	ft_parse_plane(char *line, t_rt_data *data);
-void	ft_parse_cylinder(char *line, t_rt_data *data);
-void 	ft_control_type_identifier(char *file, t_rt_data *data);
-double	ft_prepare_to_convert_atoi(char *line, int *i, t_rt_data *data);
-double	ft_prepare_to_convert_atof(char *line, int *i, t_rt_data *data);
-int		sphere_addback(t_obj **obj, t_sphere *node);
-int		plane_addback(t_obj **obj, t_plane *node);
-int		cylinder_addback(t_obj **obj, t_cylinder *node);
-bool	match_format(const char *restrict format, const char *line);
+void			parsing_handler(char *file, t_rt_data *data);
+void			parsing_error_handler(char *line, char *msg, t_rt_data *data);
+void			free_parsing(char *line, t_rt_data *data);
+void			parse_ambient_lighting(char *line, t_rt_data *data);
+void			parse_camera(char *line, t_rt_data *data);
+void			parse_light(char *line, t_rt_data *data);
+void			parse_sphere(char *line, t_rt_data *data);
+void			parse_plane(char *line, t_rt_data *data);
+void			parse_cylinder(char *line, t_rt_data *data);
+void			control_type_identifier(char *file, t_rt_data *data);
+double			prepare_to_convert_atoi(char *line, int *i, t_rt_data *data);
+double			prepare_to_convert_atof(char *line, int *i, t_rt_data *data);
+int				sphere_addback(t_obj **obj, t_sphere *node);
+int				plane_addback(t_obj **obj, t_plane *node);
+int				cylinder_addback(t_obj **obj, t_cylinder *node);
+bool			match_format(const char *restrict format, const char *line);
 
-void	mlx_handler(t_rt_data *data);
+void			mlx_handler(t_rt_data *data);
 
-t_vec3	convert_vec3(char *line, int *i, t_rt_data *data);
-bool	in_range(t_vec3 vec, double rl, double ru);
-bool	is_normalized(t_vec3 vec);
+t_vec3			convert_vec3(char *line, int *i, t_rt_data *data);
+bool			in_range(t_vec3 vec, double rl, double ru);
+bool			is_normalized(t_vec3 vec);
 
 // vector math
-t_vec3	normalize(t_vec3 vec);
-double	vector_length_squared(t_vec3 vec);
-double	vector_length(t_vec3 vec);
-t_vec3	vector_add(t_vec3 vec1, t_vec3 vec2);
-t_vec3	vector_subtract(t_vec3 vec1, t_vec3 vec2);
-t_vec3	vector_multiply(t_vec3 vec, const double factor);
-t_vec3	vector_divide(t_vec3 vec, const double factor);
-bool	vector_is_larger(t_vec3 larger, t_vec3 smaller);
-t_vec3	vector_cross(t_vec3 vec1, t_vec3 vec2);
-double	vector_dot(t_vec3 vec1, t_vec3 vec2);
+t_vec3			normalize(t_vec3 vec);
+double			vector_length_squared(t_vec3 vec);
+double			vector_length(t_vec3 vec);
+t_vec3			vector_add(t_vec3 vec1, t_vec3 vec2);
+t_vec3			vector_subtract(t_vec3 vec1, t_vec3 vec2);
+t_vec3			vector_multiply(t_vec3 vec, const double factor);
+t_vec3			vector_divide(t_vec3 vec, const double factor);
+bool			vector_is_larger(t_vec3 larger, t_vec3 smaller);
+t_vec3			vector_cross(t_vec3 vec1, t_vec3 vec2);
+double			vector_dot(t_vec3 vec1, t_vec3 vec2);
 
 // engine
 void			raytracer(void *tmp_data);
@@ -173,6 +165,6 @@ int				intersect_sphere(void *obj, t_ray ray, t_hitinfo *hit);
 int				intersect_cylinder(void *obj, t_ray ray, t_hitinfo *hit);
 int				intersect_plane(void *obj, t_ray ray, t_hitinfo *hit);
 
-unsigned int	calculate_color(const t_hitinfo *hitinfo, t_rt_data * data);
+unsigned int	calculate_color(const t_hitinfo *hitinfo, t_rt_data *data);
 
 #endif // MINIRT_H

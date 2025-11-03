@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   syntax_controler.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iherman- <iherman-@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: johnhapke <johnhapke@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/25 07:59:09 by johnhapke         #+#    #+#             */
-/*   Updated: 2025/10/28 10:51:19 by iherman-         ###   ########.fr       */
+/*   Updated: 2025/11/03 10:43:02 by johnhapke        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,12 @@
 
 bool	check_line(char *line)
 {
-	const size_t	len = ft_strlen(line);
-	const char		*valid_formats[7] = {
-		"A% %f% %i,%i,%i",
+	size_t			len;
+	const char		*valid_formats[7];
+	int				i;
+
+	len = ft_strlen(line);
+	valid_formats[7] = {"A% %f% %i,%i,%i",
 		"C% %f,%f,%f% %f,%f,%f% %i",
 		"L% %f,%f,%f% %f% %i,%i,%i",
 		"pl% %f,%f,%f% %f,%f,%f% %i,%i,%i",
@@ -24,11 +27,9 @@ bool	check_line(char *line)
 		"sp% %f,%f,%f% %f% %i,%i,%i",
 		NULL
 	};
-	int	i;
-
 	i = 0;
 	if (len > 0 && line[len - 1] == '\n')
-	    line[len - 1] = '\0';
+		line[len - 1] = '\0';
 	while (valid_formats[i])
 	{
 		if (match_format(valid_formats[i], line))
@@ -38,7 +39,7 @@ bool	check_line(char *line)
 	return (false);
 }
 
-void ft_control_type_identifier(char *file, t_rt_data *data)
+void	control_type_identifier(char *file, t_rt_data *data)
 {
 	int		fd;
 	char	*line;
@@ -51,7 +52,7 @@ void ft_control_type_identifier(char *file, t_rt_data *data)
 	l = 0;
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
-		ft_parsing_error_handler(NULL, "Internal: failed to open file", data);
+		parsing_error_handler(NULL, "Internal: failed to open file", data);
 	line = ft_get_next_line(fd);
 	while (line)
 	{
@@ -61,7 +62,8 @@ void ft_control_type_identifier(char *file, t_rt_data *data)
 			{
 				close(fd);
 				ft_get_next_line(-1);
-				ft_parsing_error_handler(line, "Usage: line does not conform to format", data);
+				parsing_error_handler(line,
+					"Usage: line does not conform to format", data);
 			}
 			if (line[0] == 'A')
 				a++;
@@ -78,5 +80,6 @@ void ft_control_type_identifier(char *file, t_rt_data *data)
 	close(fd);
 	ft_get_next_line(-1);
 	if (a != 1 || c != 1 || l != 1)
-		ft_parsing_error_handler(line, "Usage: can only have 1x A, C and L", data);
+		parsing_error_handler(line,
+			"Usage: can only have 1x A, C and L", data);
 }

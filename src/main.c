@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iherman- <iherman-@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: johnhapke <johnhapke@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/08 15:13:04 by iherman-          #+#    #+#             */
-/*   Updated: 2025/10/28 17:12:01 by iherman-         ###   ########.fr       */
+/*   Updated: 2025/11/03 11:19:54 by johnhapke        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ int	main(int argc, char *argv[])
 		return (1);
 	}
 	ft_bzero(&data, sizeof(t_rt_data));
-	ft_parsing_handler(argv[1], &data);
+	parsing_handler(argv[1], &data);
 	mlx_handler(&data);
 	mlx_loop(data.mlx_win);
-	ft_free_parsing(NULL, &data);
+	free_parsing(NULL, &data);
 	return (0);
 }

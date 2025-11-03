@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   match_format.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iherman- <iherman-@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: johnhapke <johnhapke@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 10:39:13 by iherman-          #+#    #+#             */
-/*   Updated: 2025/10/28 10:39:15 by iherman-         ###   ########.fr       */
+/*   Updated: 2025/11/03 10:46:15 by johnhapke        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,6 @@ static bool (*check_identifier(char c))(const char **)
 		return (&format_error);
 }
 
-// checks whether argument 2 follows the format of argument 1 using printf type identifiers
 bool	match_format(const char *restrict format, const char *line)
 {
 	bool (*format_check)(const char **);

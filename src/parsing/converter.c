@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   converter.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iherman- <iherman-@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: johnhapke <johnhapke@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/25 08:43:39 by johnhapke         #+#    #+#             */
-/*   Updated: 2025/10/28 10:21:54 by iherman-         ###   ########.fr       */
+/*   Updated: 2025/11/03 11:17:27 by johnhapke        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-static double	ft_atof(const char *str)
+static double	atof(const char *str)
 {
 	int		i;
 	int		start;
@@ -37,7 +37,7 @@ static double	ft_atof(const char *str)
 	return (res);
 }
 
-static double	ft_convert_to_atof(int start, int end,
+static double	convert_to_atof(int start, int end,
 	char *line, t_rt_data *data)
 {
 	char	*str;
@@ -46,19 +46,19 @@ static double	ft_convert_to_atof(int start, int end,
 
 	str = malloc((end - start + 1) * sizeof(char));
 	if (!str)
-		ft_parsing_error_handler((char *)line, "Internal: malloc failed", data);
+		parsing_error_handler((char *)line, "Internal: malloc failed", data);
 	j = 0;
 	while (start < end)
 	{
 		str[j++] = line[start++];
 	}
 	str[j] = '\0';
-	res = ft_atof(str);
+	res = atof(str);
 	free (str);
 	return (res);
 }
 
-double	ft_prepare_to_convert_atoi(char *line, int *i, t_rt_data *data)
+double	prepare_to_convert_atoi(char *line, int *i, t_rt_data *data)
 {
 	int		start;
 	int		end;
@@ -72,11 +72,11 @@ double	ft_prepare_to_convert_atoi(char *line, int *i, t_rt_data *data)
 	while (ft_isdigit(line[*i]))
 		(*i)++;
 	end = *i;
-	res = ft_convert_to_atof(start, end, line, data);
+	res = convert_to_atof(start, end, line, data);
 	return (res);
 }
 
-double	ft_prepare_to_convert_atof(char *line, int *i, t_rt_data *data)
+double	prepare_to_convert_atof(char *line, int *i, t_rt_data *data)
 {
 	int		start;
 	int		end;
@@ -94,6 +94,6 @@ double	ft_prepare_to_convert_atof(char *line, int *i, t_rt_data *data)
 	while (ft_isdigit(line[*i]))
 		(*i)++;
 	end = *i;
-	res = ft_convert_to_atof(start, end, line, data);
+	res = convert_to_atof(start, end, line, data);
 	return (res);
 }

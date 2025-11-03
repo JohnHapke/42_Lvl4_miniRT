@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shading.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iherman- <iherman-@student.42malaga.com    +#+  +:+       +#+        */
+/*   By: johnhapke <johnhapke@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/19 11:00:34 by johnhapke         #+#    #+#             */
-/*   Updated: 2025/10/28 17:44:08 by iherman-         ###   ########.fr       */
+/*   Updated: 2025/11/03 11:07:35 by johnhapke        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,35 +51,42 @@ t_vec3	calculate_ambient(const t_hitinfo *hitinfo, t_rt_data *data)
 {
 	t_vec3	ambient_color;
 
-	ambient_color.x = fmin(1.0, ((hitinfo->obj_color.x * data->amb_light.color.x) * data->amb_light.light_ratio));
-	ambient_color.y = fmin(1.0, ((hitinfo->obj_color.y * data->amb_light.color.y) * data->amb_light.light_ratio));
-	ambient_color.z = fmin(1.0, ((hitinfo->obj_color.z * data->amb_light.color.z) * data->amb_light.light_ratio));
+	ambient_color.x = fmin(1.0, ((hitinfo->obj_color.x
+					* data->amb_light.color.x) * data->amb_light.light_ratio));
+	ambient_color.y = fmin(1.0, ((hitinfo->obj_color.y
+					* data->amb_light.color.y) * data->amb_light.light_ratio));
+	ambient_color.z = fmin(1.0, ((hitinfo->obj_color.z
+					* data->amb_light.color.z) * data->amb_light.light_ratio));
 	return (ambient_color);
 }
 
-static inline t_vec3 vector_hadamard(t_vec3 a, t_vec3 b)
+static inline t_vec3	vector_hadamard(t_vec3 a, t_vec3 b)
 {
-    t_vec3 res;
+	t_vec3	res;
 
-    res.x = a.x * b.x;
-    res.y = a.y * b.y;
-    res.z = a.z * b.z;
-    return res;
+	res.x = a.x * b.x;
+	res.y = a.y * b.y;
+	res.z = a.z * b.z;
+	return (res);
 }
 
 unsigned int	calculate_color(const t_hitinfo *hitinfo, t_rt_data *data)
 {
-	const t_vec3	ambient_color = calculate_ambient(hitinfo, data);
-	t_vec3			diffuse_color;
-	t_vec3			final_color;
-	t_vec3			light_dir;
-	double			diffuse_intensity;
+	t_vec3	ambient_color;
+	t_vec3	diffuse_color;
+	t_vec3	final_color;
+	t_vec3	light_dir;
+	double	diffuse_intensity;
 
+	ambient_color = calculate_ambient(hitinfo, data);
 	final_color = ambient_color;
 	if (reaches_light(hitinfo, data))
 	{
-		light_dir = normalize(vector_subtract(data->light.light_point, hitinfo->pos));
-		diffuse_intensity = fmax(0.0, vector_dot(hitinfo->surface_dir, light_dir)) * data->light.light_ratio;
+		light_dir
+			= normalize(vector_subtract(data->light.light_point, hitinfo->pos));
+		diffuse_intensity
+			= fmax(0.0, vector_dot(hitinfo->surface_dir, light_dir))
+			* data->light.light_ratio;
 		diffuse_color = vector_hadamard(hitinfo->obj_color, data->light.color);
 		diffuse_color = vector_multiply(diffuse_color, diffuse_intensity);
 		final_color = vector_add(final_color, diffuse_color);
