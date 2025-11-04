@@ -3,6 +3,13 @@ Info: https://keepachangelog.com/en/1.0.0/
 
 /* PLEASE ADD THE NEW VERSION ALWAYS ABOVE TO SEE ALWAYS THE NEWEST CHANGES */
 
+# V01.37
+
+## CHANGED
+- all scenes moved to a scenes/ dir
+- several files -> fixed bugs and inconsistencies produced by norminette fixes
+- several files -> seeming full norm compliance
+
 # V01.36
 
 ## CHANGED
@@ -11,7 +18,6 @@ Info: https://keepachangelog.com/en/1.0.0/
 ## UNRELEASED
 - full norm compliance
 - obj should be deleted with make clean -> at the moment it stays and not all .o files are deleted
-
 
 # V01.35
 

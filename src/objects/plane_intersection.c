@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   plane_intersection.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: johnhapke <johnhapke@student.42.fr>        +#+  +:+       +#+        */
+/*   By: iherman- <iherman-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/02 13:02:08 by iherman-          #+#    #+#             */
-/*   Updated: 2025/11/03 11:04:15 by johnhapke        ###   ########.fr       */
+/*   Updated: 2025/11/04 13:15:24 by iherman-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,10 @@
 
 int	intersect_plane(void *obj, t_ray ray, t_hitinfo *hit)
 {
-	const t_plane	*plane;
+	const t_plane	*plane = (t_plane *)obj;
 	double			denom;
 	t_vec3			diff;
 
-	plane = (t_plane *)obj;
 	denom = vector_dot(ray.direction, plane->norm_vec);
 	if (fabs(denom) < EPSILON)
 		return (false);

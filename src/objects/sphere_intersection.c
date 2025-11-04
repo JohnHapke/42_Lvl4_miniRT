@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   sphere_intersection.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: johnhapke <johnhapke@student.42.fr>        +#+  +:+       +#+        */
+/*   By: iherman- <iherman-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/15 21:45:04 by johnhapke         #+#    #+#             */
-/*   Updated: 2025/11/03 11:09:08 by johnhapke        ###   ########.fr       */
+/*   Updated: 2025/11/04 14:08:09 by iherman-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-static double	determine_t(double a, double b, double discriminant)
+double	determine_t(double a, double b, double discriminant)
 {
 	double	sqrt_d;
 	double	t1;
@@ -32,13 +32,12 @@ static double	determine_t(double a, double b, double discriminant)
 
 int	intersect_sphere(void *obj, t_ray ray, t_hitinfo *hit)
 {
-	t_sphere	*sphere;
-	double		a;
-	double		b;
-	double		discriminant;
-	t_vec3		oc;
+	const t_sphere	*sphere = (t_sphere *)obj;
+	double			a;
+	double			b;
+	double			discriminant;
+	t_vec3			oc;
 
-	sphere = (t_sphere *)obj;
 	oc = vector_subtract(ray.origin, sphere->pos);
 	a = vector_dot(ray.direction, ray.direction);
 	b = 2 * vector_dot(oc, ray.direction);

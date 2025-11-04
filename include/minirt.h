@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhapke <jhapke@student.42.fr>              +#+  +:+       +#+        */
+/*   By: iherman- <iherman-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/08 15:28:02 by iherman-          #+#    #+#             */
-/*   Updated: 2025/11/04 12:24:59 by jhapke           ###   ########.fr       */
+/*   Updated: 2025/11/04 14:08:03 by iherman-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@
 
 # ifndef M_PI
 #  define M_PI 3.14159265359
-# endif
+# endif // M_PI
 
 typedef struct s_vec3
 {
@@ -161,10 +161,11 @@ void			raytracer(void *tmp_data);
 unsigned int	shoot_ray(t_rt_data *data, int screen_x, int screen_y);
 t_ray			generate_ray(t_rt_data *data, int screenX, int screenY);
 
-// sphere
+// intersection
 int				intersect_sphere(void *obj, t_ray ray, t_hitinfo *hit);
 int				intersect_cylinder(void *obj, t_ray ray, t_hitinfo *hit);
 int				intersect_plane(void *obj, t_ray ray, t_hitinfo *hit);
+double			determine_t(double a, double b, double discriminant);
 
 unsigned int	calculate_color(const t_hitinfo *hitinfo, t_rt_data *data);
 

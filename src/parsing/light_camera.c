@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   light_camera.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: johnhapke <johnhapke@student.42.fr>        +#+  +:+       +#+        */
+/*   By: iherman- <iherman-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 11:03:21 by johnhapke         #+#    #+#             */
-/*   Updated: 2025/11/03 11:18:41 by johnhapke        ###   ########.fr       */
+/*   Updated: 2025/11/04 13:21:06 by iherman-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,21 +27,8 @@ void	parse_ambient_lighting(char *line, t_rt_data *data)
 	if (!in_range(data->amb_light.color, 0, 255))
 		parsing_error_handler(line,
 			"Usage: color values have to be in range 0 - 255", data);
-}
-
-	/*printf("=== AMBIENT LIGHT DATA ===\n");
-	printf("Light Ratio: %.3f\n", data->amb_light.light_ratio);
-	printf("Color: RGB(%f, %f, %f) ", 
-       data->amb_light.color.x, data->amb_light.color.y, 
-	   data->amb_light.color.z);
-	printf("(Valid: %s)\n", 
-       ((data->amb_light.color.x >= 0 && data->amb_light.color.x <= 255) &&
-        (data->amb_light.color.y >= 0 && data->amb_light.color.y <= 255) &&
-        (data->amb_light.color.z >= 0 &&
-		data->amb_light.color.z <= 255)) ? "YES" : "NO");
-	printf("===========================\n");
 	data->amb_light.color = vector_divide(data->amb_light.color, 255);
-}*/
+}
 
 void	parse_camera(char *line, t_rt_data *data)
 {
@@ -56,32 +43,13 @@ void	parse_camera(char *line, t_rt_data *data)
 	if (data->camera.fov < 1 || data->camera.fov > 180)
 		parsing_error_handler(line,
 			"Usage: camera fov have to be in range 1 - 180", data);
-}
-
-	/*data->camera.right = normalize(vector_cross((t_vec3){0,1,0},
-	data->camera.norm_vec));
+	data->camera.right = normalize(vector_cross((t_vec3){0, 1, 0},
+				data->camera.norm_vec));
 	data->camera.up = normalize(vector_cross(data->camera.norm_vec,
-	data->camera.right));
+				data->camera.right));
 	data->camera.aspect_ratio = (double)WINDOW_WIDTH / (double)WINDOW_HEIGHT;
 	data->camera.fov_adjust = tan(data->camera.fov * 0.5 * M_PI / 180.0);
-	printf("Camera Right: (%f, %f, %f)\n", data->camera.right.x,
-		data->camera.right.y, data->camera.right.z);
-	printf("Camera Up: (%f, %f, %f)\n", data->camera.up.x,
-		data->camera.up.y, data->camera.up.z);
-	printf("Camera Forward: (%f, %f, %f)\n",
-		data->camera.norm_vec.x, data->camera.norm_vec.y,
-		data->camera.norm_vec.z);
-
-	printf("=== CAMERA DATA ===\n");
-	printf("Viewpoint: (%.2f, %.2f, %.2f)\n", 
-       data->camera.viewpoint.x, data->camera.viewpoint.y,
-	   data->camera.viewpoint.z);
-	printf("Direction: (%.2f, %.2f, %.2f)\n", 
-       data->camera.norm_vec.x, data->camera.norm_vec.y,
-	   data->camera.norm_vec.z);
-	printf("FOV: %.0f degrees\n", data->camera.fov);
-	printf("===================\n");
-}*/
+}
 
 void	parse_light(char *line, t_rt_data *data)
 {
@@ -99,17 +67,5 @@ void	parse_light(char *line, t_rt_data *data)
 	if (!in_range(data->light.color, 0, 255))
 		parsing_error_handler(line,
 			"Usage: color values have to be in range 0 - 255", data);
-}
-	/*printf("=== LIGHT DATA ===\n");
-	printf("Light Point: (%.2f, %.2f, %.2f)\n",
-		data->light.light_point.x, data->light.light_point.y,
-		data->light.light_point.z);
-	printf("Brightness Ratio: %.3f ", data->light.light_ratio);
-	printf("(Valid: %s)\n",
-       (data->light.light_ratio >= 0.0 &&
-	   data->light.light_ratio <= 1.0) ? "YES" : "NO");
-	printf("Color: RGB(%f, %f, %f)\n",
-		data->light.color.x, data->light.color.y, data->light.color.z);
-	printf("==================\n");
 	data->light.color = vector_divide(data->light.color, 255);
-}*/
+}

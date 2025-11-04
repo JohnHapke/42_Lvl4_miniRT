@@ -3,14 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   match_format.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhapke <jhapke@student.42.fr>              +#+  +:+       +#+        */
+/*   By: iherman- <iherman-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 10:39:13 by iherman-          #+#    #+#             */
-/*   Updated: 2025/11/04 12:40:50 by jhapke           ###   ########.fr       */
+/*   Updated: 2025/11/04 13:57:55 by iherman-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdbool.h>
 #include <minirt.h>
 
 static bool	format_whitespace(const char **line)
@@ -61,27 +60,20 @@ static bool	format_int(const char **line)
 	return (true);
 }
 
-static bool	format_error(const char **line)
-{
-	(void) line;
-	return (false);
-}
-
-static bool (*check_identifier(char c))(const char **)
+static bool	check_identifier(const char c, const char **line)
 {
 	if (c == ' ')
-		return (&format_whitespace);
+		return (format_whitespace(line));
 	else if (c == 'f')
-		return (&format_float);
+		return (format_float(line));
 	else if (c == 'd' || c == 'i')
-		return (&format_int);
+		return (format_int(line));
 	else
-		return (&format_error);
+		return (false);
 }
 
 bool	match_format(const char *restrict format, const char *line)
 {
-	bool (*format_check)(const char **);
 	if (!format || !line)
 		return (false);
 	while (*format)
@@ -89,8 +81,7 @@ bool	match_format(const char *restrict format, const char *line)
 		if (*format == '%')
 		{
 			format++;
-			format_check = check_identifier(*format);
-			if (!format_check(&line))
+			if (!check_identifier(*format, &line))
 				return (false);
 			format++;
 		}
