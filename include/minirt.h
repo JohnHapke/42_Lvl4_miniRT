@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: johnhapke <johnhapke@student.42.fr>        +#+  +:+       +#+        */
+/*   By: jhapke <jhapke@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/08 15:28:02 by iherman-          #+#    #+#             */
-/*   Updated: 2025/11/03 11:16:23 by johnhapke        ###   ########.fr       */
+/*   Updated: 2025/11/04 12:24:59 by jhapke           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,6 +138,7 @@ int				cylinder_addback(t_obj **obj, t_cylinder *node);
 bool			match_format(const char *restrict format, const char *line);
 
 void			mlx_handler(t_rt_data *data);
+void			move_camera(mlx_key_data_t keydata, t_camera *camera);
 
 t_vec3			convert_vec3(char *line, int *i, t_rt_data *data);
 bool			in_range(t_vec3 vec, double rl, double ru);

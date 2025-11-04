@@ -7,11 +7,13 @@ DEF = \033[0m
 NAME = miniRT
 
 SRC = src/main.c \
-		src/mlx_handling.c \
+		src/mlx_handling/mlx_handling.c \
+		src/mlx_handling/mlx_movements.c \
 		src/parsing/error_handler.c \
 		src/parsing/match_format.c \
 		src/parsing/light_camera.c \
 		src/parsing/handler.c \
+		src/parsing/obj_list.c \
 		src/parsing/objects.c \
 		src/parsing/syntax_controler.c \
 		src/parsing/converter.c \

@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   converter.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: johnhapke <johnhapke@student.42.fr>        +#+  +:+       +#+        */
+/*   By: jhapke <jhapke@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/25 08:43:39 by johnhapke         #+#    #+#             */
-/*   Updated: 2025/11/03 11:17:27 by johnhapke        ###   ########.fr       */
+/*   Updated: 2025/11/04 12:29:42 by jhapke           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
 
-static double	atof(const char *str)
+static double	ft_atof(const char *str)
 {
 	int		i;
 	int		start;
@@ -53,7 +53,7 @@ static double	convert_to_atof(int start, int end,
 		str[j++] = line[start++];
 	}
 	str[j] = '\0';
-	res = atof(str);
+	res = ft_atof(str);
 	free (str);
 	return (res);
 }

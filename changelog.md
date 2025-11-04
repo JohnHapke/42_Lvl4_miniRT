@@ -3,6 +3,16 @@ Info: https://keepachangelog.com/en/1.0.0/
 
 /* PLEASE ADD THE NEW VERSION ALWAYS ABOVE TO SEE ALWAYS THE NEWEST CHANGES */
 
+# V01.36
+
+## CHANGED
+- norminette errors were treated but the project still has some norm errors
+
+## UNRELEASED
+- full norm compliance
+- obj should be deleted with make clean -> at the moment it stays and not all .o files are deleted
+
+
 # V01.35
 
 ## CHANGED

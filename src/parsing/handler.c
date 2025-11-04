@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handler.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: johnhapke <johnhapke@student.42.fr>        +#+  +:+       +#+        */
+/*   By: jhapke <jhapke@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/13 18:19:03 by iherman-          #+#    #+#             */
-/*   Updated: 2025/11/03 11:17:58 by johnhapke        ###   ########.fr       */
+/*   Updated: 2025/11/04 11:00:06 by jhapke           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	parsing_handler(char *file, t_rt_data *data)
 	control_type_identifier(file, data);
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
-		ft_parsing_error_handler(NULL, "Internal: failed to open file", data);
+		parsing_error_handler(NULL, "Internal: failed to open file", data);
 	while (1)
 	{
 		line = ft_get_next_line(fd);

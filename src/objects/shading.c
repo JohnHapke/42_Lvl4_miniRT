@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shading.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: johnhapke <johnhapke@student.42.fr>        +#+  +:+       +#+        */
+/*   By: jhapke <jhapke@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/19 11:00:34 by johnhapke         #+#    #+#             */
-/*   Updated: 2025/11/03 11:07:35 by johnhapke        ###   ########.fr       */
+/*   Updated: 2025/11/04 11:31:54 by jhapke           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,6 @@ static bool	reaches_light(const t_hitinfo *prev_hitinfo, t_rt_data *data)
 	ray.direction = normalize(ray.direction);
 	ray.origin = vector_add(prev_hitinfo->pos,
 			vector_multiply(prev_hitinfo->surface_dir, EPSILON));
-	//if (vector_dot(ray.direction, prev_hitinfo->surface_dir) < 0)
-		//return (false);
 	while (obj != NULL)
 	{
 		if (obj->check_intersection(obj->obj, ray, &hitinfo))
