@@ -6,7 +6,7 @@
 /*   By: iherman- <iherman-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/15 21:45:04 by johnhapke         #+#    #+#             */
-/*   Updated: 2025/11/04 14:08:09 by iherman-         ###   ########.fr       */
+/*   Updated: 2025/11/10 11:41:46 by iherman-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,8 @@ int	intersect_sphere(void *obj, t_ray ray, t_hitinfo *hit)
 	hit->pos = vector_add(ray.origin, vector_multiply(ray.direction, hit->t));
 	hit->surface_dir = vector_divide(vector_subtract(hit->pos, sphere->pos),
 			(sphere->diameter / 2));
+	if (vector_dot(hit->surface_dir, ray.direction) > 0)
+		hit->surface_dir = vector_multiply(hit->surface_dir, -1.0);
 	hit->obj_color = sphere->color;
 	return (1);
 }

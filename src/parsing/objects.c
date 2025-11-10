@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   objects.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: johnhapke <johnhapke@student.42.fr>        +#+  +:+       +#+        */
+/*   By: iherman- <iherman-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/19 10:48:11 by johnhapke         #+#    #+#             */
-/*   Updated: 2025/11/03 10:45:34 by johnhapke        ###   ########.fr       */
+/*   Updated: 2025/11/10 11:57:13 by iherman-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,10 @@ void	parse_sphere(char *line, t_rt_data *data)
 	sphere->color.y = (int) prepare_to_convert_atoi(line, &i, data);
 	sphere->color.z = (int) prepare_to_convert_atoi(line, &i, data);
 	if (sphere_addback(&(data->obj), sphere) == 1)
+	{
+		free(sphere);
 		parsing_error_handler(line, "Internal: malloc falure", data);
+	}
 	if (sphere->diameter <= EPSILON)
 		parsing_error_handler(line,
 			"Usage: sphere diameter cannot be < EPSILON", data);
@@ -68,7 +71,10 @@ void	parse_plane(char *line, t_rt_data *data)
 static void	control_error_cyl(char *line, t_cylinder *cylinder, t_rt_data *data)
 {
 	if (cylinder_addback(&data->obj, cylinder) == 1)
+	{
+		free(cylinder);
 		parsing_error_handler(line, "Internal: malloc failure", data);
+	}
 	if (!is_normalized(cylinder->norm_vec))
 		parsing_error_handler(line, "Usage: vector is not normalized", data);
 	cylinder->norm_vec = normalize(cylinder->norm_vec);

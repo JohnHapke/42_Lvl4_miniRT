@@ -6,7 +6,7 @@
 /*   By: iherman- <iherman-@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/25 07:59:09 by johnhapke         #+#    #+#             */
-/*   Updated: 2025/11/04 13:46:02 by iherman-         ###   ########.fr       */
+/*   Updated: 2025/11/10 11:51:14 by iherman-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	control_type_identifier(char *file, t_rt_data *data)
 	ft_bzero(acl, sizeof(int) * 3);
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
-		parsing_error_handler(NULL, "Internal: failed to open file", data);
+		parsing_error_handler(NULL, "failed to open file", data);
 	line = ft_get_next_line(fd);
 	while (line)
 	{

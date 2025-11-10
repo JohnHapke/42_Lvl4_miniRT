@@ -3,6 +3,15 @@ Info: https://keepachangelog.com/en/1.0.0/
 
 /* PLEASE ADD THE NEW VERSION ALWAYS ABOVE TO SEE ALWAYS THE NEWEST CHANGES */
 
+# V01.38 - EVAL VERSION
+
+## CHANGED
+- objects/sphere_intersection -> added a simple check so surface_dir can point inside the sphere
+- parsing/objects -> added some missed free() calls when addback functions fail
+
+## REMOVED
+- generate_normal.cpp removed
+
 # V01.37
 
 ## CHANGED
