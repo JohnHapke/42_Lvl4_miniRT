@@ -1,5 +1,7 @@
 # miniRT - A Basic Ray Tracer Implementation
 
+This was a group project developed together with my teammate and team lead Igor ((https://github.com/iherman-p). The project was carried out remotely, and we held regular meetings to synchronize progress. We maintained a changelog to document updates in every commit, and followed a structured versioning approach to ensure clarity and traceability.
+
 ## Purpose
 > The purpose of the miniRT project is to create a C program that implements a functional ray tracer, providing hands-on experience with 3D mathematics, light physics, and computer graphics algorithms. The program demonstrates understanding of ray-object intersection calculations, lighting models, and image rendering while implementing core ray tracing functionality.
 
@@ -129,14 +131,6 @@ $> ./miniRT scenes/complex_lighting.rt
 - Real-time rendering capabilities
 - Proper window and event management
 
-## Bonus Features (If Implemented)
-
-- `Specular Reflection` - Full Phong reflection model
-- `Checkerboard Patterns` - Color disruption textures
-- `Colored Multi-Spot` Lights - Enhanced lighting system
-- `Additional Objects` - Cones, hyperboloids, paraboloids
-- `Bump Mapping` - Texture-based surface detail
-
 ## Mathematical Foundation
 This project implements fundamental computer graphics algorithms including:
 
@@ -158,4 +152,4 @@ The project includes various scene files demonstrating:
 - Shadow and reflection examples
 
 
-## Grade: tbd/100
+## Grade: 100/100
